@@ -52,7 +52,15 @@ export default function SupportHub({ userName }: SupportHubProps) {
         }
     ];
 
+    const triggerLuna = (text?: string, action: 'open' | 'send' = 'open') => {
+        const event = new CustomEvent('tsn:trigger-luna', {
+            detail: { action, text }
+        });
+        window.dispatchEvent(event);
+    };
+
     if (isLoading) {
+        // ... (Keep existing loading state)
         return (
             <div className={styles.hubContainer}>
                 <header className={styles.welcomeSection}>
@@ -96,7 +104,11 @@ export default function SupportHub({ userName }: SupportHubProps) {
                 <h3 className={styles.checkinTitle}>{t('checkin.title')}</h3>
                 <div className={styles.moodGroup}>
                     {moodOptions.map((mood) => (
-                        <button key={mood.key} className={styles.moodBtn}>
+                        <button
+                            key={mood.key}
+                            className={styles.moodBtn}
+                            onClick={() => triggerLuna(`MOOD_${t(`checkin.options.${mood.key}`)}`, 'send')}
+                        >
                             <span>{mood.icon}</span> {t(`checkin.options.${mood.key}`)}
                         </button>
                     ))}
@@ -105,23 +117,42 @@ export default function SupportHub({ userName }: SupportHubProps) {
 
             {/* Support Grid */}
             <div className={styles.supportGrid}>
-                {supportCards.map((card) => (
-                    <div key={card.key} className={styles.supportCard}>
-                        {card.icon}
-                        <h4 className={styles.cardTitle}>{t(`cards.${card.key}.title`)}</h4>
-                        <p className={styles.cardDesc}>{t(`cards.${card.key}.description`)}</p>
-                        <Link href={card.path} className={styles.cardBtn}>
-                            {t(`cards.${card.key}.cta`)}
-                        </Link>
-                    </div>
-                ))}
+                {supportCards.map((card) => {
+                    if (card.key === 'luna') {
+                        return (
+                            <button
+                                key={card.key}
+                                className={styles.supportCard}
+                                onClick={() => triggerLuna()}
+                                style={{ textAlign: 'left', border: 'none', background: 'var(--bg-panel)', width: '100%', cursor: 'pointer' }}
+                            >
+                                {card.icon}
+                                <h4 className={styles.cardTitle}>{t(`cards.${card.key}.title`)}</h4>
+                                <p className={styles.cardDesc}>{t(`cards.${card.key}.description`)}</p>
+                                <span className={styles.cardBtn}>
+                                    {t(`cards.${card.key}.cta`)}
+                                </span>
+                            </button>
+                        );
+                    }
+                    return (
+                        <div key={card.key} className={styles.supportCard}>
+                            {card.icon}
+                            <h4 className={styles.cardTitle}>{t(`cards.${card.key}.title`)}</h4>
+                            <p className={styles.cardDesc}>{t(`cards.${card.key}.description`)}</p>
+                            <Link href={card.path} className={styles.cardBtn}>
+                                {t(`cards.${card.key}.cta`)}
+                            </Link>
+                        </div>
+                    );
+                })}
             </div>
 
             {/* Support Journey */}
             <section className={styles.journeySection}>
                 <h3 className={styles.journeyTitle}>{t('journey.title')}</h3>
                 <div className={styles.journeyGrid}>
-                    <div className={styles.journeyCard}>
+                    <button onClick={() => triggerLuna()} className={styles.journeyCard} style={{ border: 'none', background: 'none', padding: 0, textAlign: 'left', cursor: 'pointer' }}>
                         <div className={styles.journeyIcon}>
                             <Clock size={20} />
                         </div>
@@ -129,8 +160,8 @@ export default function SupportHub({ userName }: SupportHubProps) {
                             <h5>{t('journey.recentChat.title')}</h5>
                             <p>{t('journey.recentChat.description')}</p>
                         </div>
-                    </div>
-                    <div className={styles.journeyCard}>
+                    </button>
+                    <Link href="/coaches" className={styles.journeyCard}>
                         <div className={styles.journeyIcon}>
                             <Calendar size={20} />
                         </div>
@@ -138,8 +169,8 @@ export default function SupportHub({ userName }: SupportHubProps) {
                             <h5>{t('journey.upcomingSession.title')}</h5>
                             <p>{t('journey.upcomingSession.description', { coachName: 'Sarah Miller' })}</p>
                         </div>
-                    </div>
-                    <div className={styles.journeyCard}>
+                    </Link>
+                    <Link href="/coaches?filter=saved" className={styles.journeyCard}>
                         <div className={styles.journeyIcon}>
                             <Bookmark size={20} />
                         </div>
@@ -147,7 +178,7 @@ export default function SupportHub({ userName }: SupportHubProps) {
                             <h5>{t('journey.savedCoaches.title')}</h5>
                             <p>{t('journey.savedCoaches.description')}</p>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </section>
         </div>

@@ -40,18 +40,32 @@ export default function ChatAssistant() {
         }
     }, [locale, t, tCommon]);
 
+    // Handle external triggers (e.g. from Support Hub)
     useEffect(() => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-        }
-    }, [messages, isTyping]);
+        const handleTrigger = (event: Event) => {
+            const customEvent = event as CustomEvent;
+            const { action, text } = customEvent.detail || {};
 
-    const handleSend = () => {
-        if (!input.trim()) return;
+            setIsOpen(true);
+            setIsMinimized(false);
 
-        const userMsg = input.toLowerCase();
-        setMessages(prev => [...prev, { role: 'user', content: input }]);
-        setInput('');
+            if (action === 'send' && text) {
+                // Simulate the user sending a message
+                setInput(text);
+                // We'll use a small timeout to let the state update or just call handleSend directly if we refactor it
+            }
+        };
+
+        window.addEventListener('tsn:trigger-luna', handleTrigger);
+        return () => window.removeEventListener('tsn:trigger-luna', handleTrigger);
+    }, []);
+
+    // Refactored handleSend logic to be callable internally
+    const sendMessage = (text: string) => {
+        if (!text.trim()) return;
+
+        const userMsg = text.toLowerCase();
+        setMessages(prev => [...prev, { role: 'user', content: text }]);
         setIsTyping(true);
 
         // Simulated AI logic with keyword parsing
@@ -70,7 +84,7 @@ export default function ChatAssistant() {
             } else if (userMsg.includes('resourc') || userMsg.includes('library') || userMsg.includes('help')) {
                 responseContent = t('resourcesResponse');
                 suggestedActions = [{ label: tCommon('nav.resources'), path: '/resources' }];
-            } else if (userMsg.includes('stress') || userMsg.includes('anxiety') || userMsg.includes('feel') || userMsg.includes('mår')) {
+            } else if (userMsg.includes('stress') || userMsg.includes('anxiety') || userMsg.includes('feel') || userMsg.includes('mår') || userMsg.includes('mood') || userMsg.includes('känsla')) {
                 responseContent = t('defaultResponse');
                 suggestedActions = [
                     { label: tCommon('nav.coaches'), path: '/coaches' },
@@ -90,6 +104,34 @@ export default function ChatAssistant() {
                 actions: suggestedActions.length > 0 ? suggestedActions : undefined
             }]);
         }, 1500);
+    };
+
+    // Use effect to handle the 'send' action from trigger
+    useEffect(() => {
+        if (input && isOpen && !isMinimized && messages[messages.length - 1]?.role !== 'user') {
+            // Check if input was set by a trigger
+            if (input.startsWith("MOOD_") || input.startsWith("ACTION_")) {
+                const messageToSend = input.startsWith("MOOD_")
+                    ? `I'm feeling ${input.split('_')[1]} right now.`
+                    : "I'd like to continue our conversation.";
+
+                setInput('');
+                sendMessage(messageToSend);
+            }
+        }
+    }, [input, isOpen, isMinimized]);
+
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+    }, [messages, isTyping]);
+
+    const handleSend = () => {
+        if (!input.trim()) return;
+        const text = input;
+        setInput('');
+        sendMessage(text);
     };
 
     if (!isOpen) {

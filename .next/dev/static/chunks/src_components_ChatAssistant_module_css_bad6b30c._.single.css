@@ -1,0 +1,262 @@
+/* [project]/src/components/ChatAssistant.module.css [app-client] (css) */
+.ChatAssistant-module__IUfz-a__trigger {
+  bottom: var(--spacing-xl);
+  right: var(--spacing-xl);
+  background: var(--accent-blue);
+  color: #0b0f14;
+  cursor: pointer;
+  width: 64px;
+  height: 64px;
+  transition: var(--transition-smooth);
+  z-index: 900;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  box-shadow: 0 8px 32px #7bb0d166;
+}
+
+.ChatAssistant-module__IUfz-a__trigger:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px #7bb0d180;
+}
+
+.ChatAssistant-module__IUfz-a__window {
+  bottom: calc(var(--spacing-xl)  + 80px);
+  right: var(--spacing-xl);
+  background: var(--bg-panel);
+  border-radius: var(--radius-lg);
+  z-index: 1000;
+  border: var(--border-soft);
+  width: 400px;
+  max-width: calc(100vw - 40px);
+  height: 600px;
+  transition: all .3s var(--transition-smooth);
+  flex-direction: column;
+  animation: .4s cubic-bezier(.4, 0, .2, 1) ChatAssistant-module__IUfz-a__slideUp;
+  display: flex;
+  position: fixed;
+  overflow: hidden;
+  box-shadow: 0 20px 50px #00000080;
+}
+
+@keyframes ChatAssistant-module__IUfz-a__slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px)scale(.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)scale(1);
+  }
+}
+
+.ChatAssistant-module__IUfz-a__window.ChatAssistant-module__IUfz-a__minimized {
+  height: 72px;
+}
+
+.ChatAssistant-module__IUfz-a__header {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-secondary);
+  border-bottom: var(--border-soft);
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.ChatAssistant-module__IUfz-a__headerInfo {
+  align-items: center;
+  gap: var(--spacing-md);
+  display: flex;
+}
+
+.ChatAssistant-module__IUfz-a__avatar {
+  width: 44px;
+  height: 44px;
+  color: var(--accent-blue);
+  border: 2px solid var(--accent-blue);
+  background: #7bb0d11a;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.ChatAssistant-module__IUfz-a__name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.ChatAssistant-module__IUfz-a__status {
+  color: var(--accent-blue);
+  margin: 0;
+  font-size: .75rem;
+}
+
+.ChatAssistant-module__IUfz-a__headerActions {
+  gap: var(--spacing-xs);
+  display: flex;
+}
+
+.ChatAssistant-module__IUfz-a__actionBtn {
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+  padding: 6px;
+}
+
+.ChatAssistant-module__IUfz-a__actionBtn:hover {
+  color: var(--text-bright);
+  background: #ffffff0d;
+}
+
+.ChatAssistant-module__IUfz-a__messages {
+  padding: var(--spacing-lg);
+  gap: var(--spacing-md);
+  background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-dark) 100%);
+  flex-direction: column;
+  flex: 1;
+  display: flex;
+  overflow-y: auto;
+}
+
+.ChatAssistant-module__IUfz-a__message {
+  max-width: 85%;
+  display: flex;
+}
+
+.ChatAssistant-module__IUfz-a__assistant {
+  align-self: flex-start;
+}
+
+.ChatAssistant-module__IUfz-a__user {
+  align-self: flex-end;
+}
+
+.ChatAssistant-module__IUfz-a__bubble {
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-size: .95rem;
+  line-height: 1.5;
+  box-shadow: 0 2px 8px #0000001a;
+}
+
+.ChatAssistant-module__IUfz-a__assistant .ChatAssistant-module__IUfz-a__bubble {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-bottom-left-radius: 4px;
+}
+
+.ChatAssistant-module__IUfz-a__actionCards {
+  margin-top: var(--spacing-md);
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+}
+
+.ChatAssistant-module__IUfz-a__actionCard {
+  background: var(--bg-dark);
+  border-radius: var(--radius-sm);
+  color: var(--accent-blue);
+  border: var(--border-soft);
+  transition: var(--transition-smooth);
+  text-align: center;
+  padding: 10px 14px;
+  font-size: .85rem;
+  font-weight: 500;
+}
+
+.ChatAssistant-module__IUfz-a__actionCard:hover {
+  background: var(--accent-blue);
+  color: #0b0f14;
+  transform: translateY(-2px);
+}
+
+.ChatAssistant-module__IUfz-a__user .ChatAssistant-module__IUfz-a__bubble {
+  background: var(--accent-blue);
+  color: #0b0f14;
+  border-bottom-right-radius: 4px;
+}
+
+.ChatAssistant-module__IUfz-a__inputArea {
+  padding: var(--spacing-md);
+  gap: var(--spacing-sm);
+  background: var(--bg-secondary);
+  border-top: var(--border-soft);
+  display: flex;
+}
+
+.ChatAssistant-module__IUfz-a__input {
+  background: var(--bg-dark);
+  border: var(--border-soft);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  transition: var(--transition-smooth);
+  outline: none;
+  flex: 1;
+  padding: .75rem 1.25rem;
+  font-size: .95rem;
+}
+
+.ChatAssistant-module__IUfz-a__input:focus {
+  border-color: var(--accent-blue);
+}
+
+.ChatAssistant-module__IUfz-a__sendBtn {
+  border-radius: var(--radius-full);
+  background: var(--accent-blue);
+  color: #0b0f14;
+  width: 44px;
+  height: 44px;
+  transition: var(--transition-smooth);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.ChatAssistant-module__IUfz-a__sendBtn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.ChatAssistant-module__IUfz-a__sendBtn:not(:disabled):hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #7bb0d166;
+}
+
+.ChatAssistant-module__IUfz-a__typing {
+  gap: 4px;
+  padding: 12px 16px;
+  display: flex;
+}
+
+.ChatAssistant-module__IUfz-a__dot {
+  background: var(--text-muted);
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  animation: 1.4s infinite ChatAssistant-module__IUfz-a__bounce;
+}
+
+.ChatAssistant-module__IUfz-a__dot:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.ChatAssistant-module__IUfz-a__dot:nth-child(3) {
+  animation-delay: .4s;
+}
+
+@keyframes ChatAssistant-module__IUfz-a__bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
+
+/*# sourceMappingURL=src_components_ChatAssistant_module_css_bad6b30c._.single.css.map*/
