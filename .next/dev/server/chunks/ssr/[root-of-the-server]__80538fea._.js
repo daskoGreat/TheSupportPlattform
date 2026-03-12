@@ -80,13 +80,17 @@ if ("TURBOPACK compile-time truthy", 1) {
 }
 const url = process.env.DATABASE_URL;
 const prismaClientSingleton = ()=>{
+    const maskedUrl = url ? url.replace(/:[^:]+@/, ':****@') : 'undefined';
+    console.log(`[Prisma] Initializing with URL: ${maskedUrl}`);
     if (url?.startsWith('prisma+postgres://')) {
+        console.log('[Prisma] Using Accelerate');
         return new __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2c$__cjs$2c$__$5b$project$5d2f$node_modules$2f40$prisma$2f$client$29$__["PrismaClient"]({
             accelerateUrl: url
         });
     }
     // If it's a Neon connection, use the optimized serverless adapter
     if (url?.includes('neon.tech')) {
+        console.log('[Prisma] Using Neon Serverless adapter');
         const pool = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$neondatabase$2f$serverless$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Pool"]({
             connectionString: url
         });
@@ -102,6 +106,7 @@ const prismaClientSingleton = ()=>{
         });
     }
     // Fallback for local PostgreSQL (standard pg adapter)
+    console.log('[Prisma] Using standard PostgreSQL adapter (fallback)');
     const { Pool: PgPool } = __turbopack_context__.r("[externals]/pg [external] (pg, cjs, [project]/node_modules/pg)");
     const { PrismaPg } = __turbopack_context__.r("[project]/node_modules/@prisma/adapter-pg/dist/index.js [app-rsc] (ecmascript)");
     const pool = new PgPool({

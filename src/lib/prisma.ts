@@ -1,40 +1,36 @@
 import { PrismaClient } from '@prisma/client';
-import { Pool, neonConfig } from '@neondatabase/serverless';
-import { PrismaNeon } from '@prisma/adapter-neon';
-import ws from 'ws';
-
-// Required for Neon to work in local Node environments if using the serverless driver
-if (typeof window === 'undefined') {
-    neonConfig.webSocketConstructor = ws;
-}
 
 const url = process.env.DATABASE_URL;
 
 const prismaClientSingleton = () => {
-    if (url?.startsWith('prisma+postgres://')) {
-        return new PrismaClient({ accelerateUrl: url });
+    const maskedUrl = url ? url.replace(/:[^:]+@/, ':****@') : 'undefined';
+    console.log(`[Prisma] Initializing. Vercel: ${!!process.env.VERCEL}, URL: ${maskedUrl}`);
+
+    // On Vercel (Production), use the standard Prisma Client with the Neon Pooler URL.
+    // This is the most stable and reliable configuration for Serverless Functions.
+    if (process.env.VERCEL) {
+        console.log('[Prisma] Using standard client for Vercel deployment');
+        return new PrismaClient({
+            log: ['error', 'warn'],
+        });
     }
 
-    // If it's a Neon connection, use the optimized serverless adapter
-    if (url?.includes('neon.tech')) {
-        const pool = new Pool({ connectionString: url });
-        const adapter = new PrismaNeon(pool as any);
+    // Local Development - Fallback to pg adapter for local PostgreSQL
+    try {
+        console.log('[Prisma] Using local PostgreSQL adapter');
+        const { Pool: PgPool } = require('pg');
+        const { PrismaPg } = require('@prisma/adapter-pg');
+        const pool = new PgPool({ connectionString: url });
+        const adapter = new PrismaPg(pool);
+
         return new PrismaClient({
             adapter,
             log: ['query', 'info', 'warn', 'error'],
         });
+    } catch (e) {
+        console.log('[Prisma] Adapter fallback failed, using standard client');
+        return new PrismaClient();
     }
-
-    // Fallback for local PostgreSQL (standard pg adapter)
-    const { Pool: PgPool } = require('pg');
-    const { PrismaPg } = require('@prisma/adapter-pg');
-    const pool = new PgPool({ connectionString: url });
-    const adapter = new PrismaPg(pool);
-
-    return new PrismaClient({
-        adapter,
-        log: ['query', 'info', 'warn', 'error'],
-    });
 };
 
 declare global {
