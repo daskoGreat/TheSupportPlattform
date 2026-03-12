@@ -18,7 +18,7 @@ const prismaClientSingleton = () => {
     // If it's a Neon connection, use the optimized serverless adapter
     if (url?.includes('neon.tech')) {
         const pool = new Pool({ connectionString: url });
-        const adapter = new PrismaNeon(pool);
+        const adapter = new PrismaNeon(pool as any);
         return new PrismaClient({
             adapter,
             log: ['query', 'info', 'warn', 'error'],
