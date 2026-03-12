@@ -108,3 +108,6 @@ Read more at https://pris.ly/d/client-constructor
 [00:11:12.759] Server  LOG     ✓ Compiled in 60ms
 [00:11:12.850] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
 [00:11:12.850] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:22:19.239] Server  LOG     ✓ Compiled in 197ms
+[00:22:19.428] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:22:19.428] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
