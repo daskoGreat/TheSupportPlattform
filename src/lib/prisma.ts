@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { PrismaClient } from '@prisma/client'
 import { Pool, neonConfig } from '@neondatabase/serverless'
 import { PrismaNeon } from '@prisma/adapter-neon'
@@ -6,7 +7,13 @@ import ws from 'ws'
 neonConfig.webSocketConstructor = ws
 
 const prismaClientSingleton = () => {
-    const connectionString = `${process.env.DATABASE_URL}`
+    const connectionString = process.env.DATABASE_URL
+    console.log("[Prisma] Initializing with URL:", connectionString ? "found (starts with " + connectionString.substring(0, 10) + "..." : "NOT FOUND")
+
+    if (!connectionString) {
+        throw new Error("DATABASE_URL is not defined in environment variables")
+    }
+
     const pool = new Pool({ connectionString })
     const adapter = new PrismaNeon(pool)
     return new PrismaClient({ adapter } as any)
