@@ -348,11 +348,12 @@ async function main() {
 
     let resourcesCreated = 0;
     for (const res of resourcesData) {
-        await prisma.resource.upsert({
-            where: { id: res.title.toLowerCase().replace(/ /g, '-') },
+        const id = res.title.toLowerCase().replace(/ /g, '-');
+        await (prisma as any).resource.upsert({
+            where: { id },
             update: res,
             create: {
-                id: res.title.toLowerCase().replace(/ /g, '-'),
+                id,
                 ...res
             }
         });

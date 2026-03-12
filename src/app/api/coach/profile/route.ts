@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
+export const dynamic = 'force-dynamic';
 import { NextResponse } from "next/server";
 import { getResources } from "@/i18n/resources";
 import type { Locale } from "@/i18n/types";

@@ -1,4 +1,5 @@
 import prisma from '@/lib/prisma';
+export const dynamic = 'force-dynamic';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Clock, User, Tag, Heart, MessageCircle } from 'lucide-react';
@@ -8,8 +9,8 @@ interface ResourceDetailPageProps {
     params: { id: string };
 }
 
-export default async function ResourceDetailPage({ params }: ResourceDetailPageProps) {
-    const resource = await prisma.resource.findUnique({
+export default async function ResourceDetailPage({ params }: { params: { id: string } }) {
+    const resource = await (prisma as any).resource.findUnique({
         where: { id: params.id }
     });
 
@@ -56,11 +57,11 @@ export default async function ResourceDetailPage({ params }: ResourceDetailPageP
 
                         <div className={styles.content}>
                             {/* In a real app we'd use a markdown renderer here */}
-                            {resource.content.split('\n').map((line, i) => {
-                                if (line.startsWith('# ')) return <h1 key={i}>{line.replace('# ', '')}</h1>;
-                                if (line.startsWith('## ')) return <h2 key={i}>{line.replace('## ', '')}</h2>;
-                                if (line.startsWith('### ')) return <h3 key={i}>{line.replace('### ', '')}</h3>;
-                                if (line.startsWith('- ')) return <li key={i}>{line.replace('- ', '')}</li>;
+                            {resource.content.split('\n').map((line: string, i: number) => {
+                                if (line.startsWith('###')) return <h3 key={i}>{line.replace('###', '')}</h3>;
+                                if (line.startsWith('##')) return <h2 key={i}>{line.replace('##', '')}</h2>;
+                                if (line.startsWith('#')) return <h1 key={i}>{line.replace('#', '')}</h1>;
+                                if (line.startsWith('-')) return <li key={i}>{line.replace('-', '')}</li>;
                                 return <p key={i}>{line}</p>;
                             })}
                         </div>
@@ -103,7 +104,7 @@ export default async function ResourceDetailPage({ params }: ResourceDetailPageP
                         <div className={styles.sidebarSection}>
                             <h3 className={styles.sidebarTitle}>Topics</h3>
                             <div className={styles.tagGrid}>
-                                {resource.tags.map(tag => (
+                                {resource.tags.map((tag: string) => (
                                     <span key={tag} className={styles.topicTag}>
                                         <Tag size={12} /> {tag}
                                     </span>

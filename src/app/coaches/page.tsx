@@ -1,6 +1,7 @@
 import styles from './Coaches.module.css';
 import { SAMPLE_COACHES } from '@/lib/data/sample-coaches';
 import { getServerT } from '@/i18n/server';
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 
 export default async function CoachesPage() {

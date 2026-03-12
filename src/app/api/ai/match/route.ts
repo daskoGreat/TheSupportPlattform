@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
     try {
@@ -50,33 +51,33 @@ export async function POST(req: Request) {
         });
 
         // 4. Query resources that match these categories
-        const resources = await prisma.resource.findMany({
+        const matchedResources = await (prisma as any).resource.findMany({
             where: {
-                OR: [
-                    { category: { in: matchedCategories } },
-                    { tags: { hasSome: matchedCategories } }
-                ]
+                OR: matchedCategories.map(cat => ({
+                    category: { contains: cat, mode: 'insensitive' }
+                }))
             },
             take: 3
         });
 
-        return NextResponse.json({
-            matched: true,
+        const response = {
+            matched: coaches.length > 0 || matchedResources.length > 0,
             categories: matchedCategories,
-            coaches: coaches.map(c => ({
+            coaches: coaches.map((c: any) => ({
                 id: c.userId,
                 name: c.user.name,
                 avatar: c.user.image,
                 title: c.title,
                 shortIntro: c.shortIntro
             })),
-            resources: resources.map(r => ({
+            resources: matchedResources.map((r: any) => ({
                 id: r.id,
                 title: r.title,
                 description: r.description,
                 category: r.category
             }))
-        });
+        };
+        return NextResponse.json(response);
 
     } catch (error) {
         console.error('Matching error:', error);
