@@ -6,11 +6,13 @@ import { ArrowLeft, MessageCircle, Calendar, Star, ShieldCheck, Globe, Award, Br
 import { getServerT } from '@/i18n/server';
 import styles from './CoachProfile.module.css';
 
+import CoachActions from './CoachActions';
+
 interface CoachProfilePageProps {
-    params: { id: string };
+    params: Promise<{ id: string }>;
 }
 
-export default async function CoachProfilePage({ params }: { params: Promise<{ id: string }> }) {
+export default async function CoachProfilePage({ params }: CoachProfilePageProps) {
     const { id } = await params;
     const t = await getServerT();
 
@@ -53,29 +55,11 @@ export default async function CoachProfilePage({ params }: { params: Promise<{ i
                             </div>
                         </div>
 
-                        <div className={styles.actionCard}>
-                            <button
-                                onClick={async () => {
-                                    const res = await fetch('/api/conversations', {
-                                        method: 'POST',
-                                        headers: { 'Content-Type': 'application/json' },
-                                        body: JSON.stringify({ coachId: coach.id })
-                                    });
-                                    if (res.ok) {
-                                        const conv = await res.json();
-                                        window.location.href = `/chat/${coach.id}`;
-                                    }
-                                }}
-                                className={styles.chatBtn}
-                                style={{ width: '100%', border: 'none', cursor: 'pointer' }}
-                            >
-                                <MessageCircle size={20} /> Chat with {coach.name?.split(' ')[0]}
-                            </button>
-                            <Link href={`/book/${coach.id}`} className={styles.bookBtn}>
-                                <Calendar size={20} /> Book Video Session
-                            </Link>
-                            <p className={styles.pricingNote}>First session is always free.</p>
-                        </div>
+                        <CoachActions
+                            coachId={coach.id}
+                            coachName={coach.name || ''}
+                            styles={styles}
+                        />
 
                         <div className={styles.infoCard}>
                             <div className={styles.infoItem}>
