@@ -1,56 +1,42 @@
 .trigger {
     position: fixed;
-    bottom: var(--spacing-lg);
-    right: var(--spacing-lg);
+    bottom: var(--spacing-xl);
+    right: var(--spacing-xl);
     width: 64px;
     height: 64px;
-    border-radius: var(--radius-full);
+    border-radius: 50%;
     background: var(--accent-blue);
     color: #0b0f14;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow-warm);
+    box-shadow: 0 8px 32px rgba(123, 176, 209, 0.4);
+    cursor: pointer;
     transition: var(--transition-smooth);
-    z-index: 99;
-    border: 4px solid var(--bg-dark);
+    z-index: 900;
 }
 
 .trigger:hover {
-    transform: scale(1.05) translateY(-4px);
-    background: var(--text-bright);
-}
-
-.triggerBadge {
-    position: absolute;
-    top: -8px;
-    right: -20px;
-    background: var(--bg-panel);
-    color: var(--text-primary);
-    padding: 4px 12px;
-    border-radius: var(--radius-full);
-    font-size: 0.75rem;
-    font-weight: 600;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    border: var(--border-soft);
+    transform: scale(1.1);
+    box-shadow: 0 12px 40px rgba(123, 176, 209, 0.5);
 }
 
 .window {
     position: fixed;
-    bottom: calc(var(--spacing-lg) + 80px);
-    right: var(--spacing-lg);
-    width: 380px;
+    bottom: calc(var(--spacing-xl) + 80px);
+    right: var(--spacing-xl);
+    width: 400px;
     max-width: calc(100vw - 40px);
-    height: 520px;
+    height: 600px;
     background: var(--bg-panel);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-warm);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     z-index: 1000;
     overflow: hidden;
     border: var(--border-soft);
+    transition: all 0.3s var(--transition-smooth);
     animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -86,14 +72,15 @@
 }
 
 .avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-full);
-    background: var(--accent-blue);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(123, 176, 209, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #0b0f14;
+    color: var(--accent-blue);
+    border: 2px solid var(--accent-blue);
 }
 
 .name {

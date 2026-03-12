@@ -5,6 +5,7 @@ import { Providers } from '@/components/Providers';
 import GlobalOverlays from '@/components/GlobalOverlays';
 import Navbar from '@/components/Navbar';
 import { getServerLocale } from '@/i18n/server';
+import { auth } from '@/auth';
 
 export const metadata: Metadata = {
     title: 'The Support Network',
@@ -17,14 +18,23 @@ export default async function RootLayout({
     children: React.ReactNode;
 }) {
     const locale = await getServerLocale();
+    const session = await auth();
+    const isAuthenticated = !!session;
+
     return (
         <html lang={locale} suppressHydrationWarning>
             <body>
                 <Providers>
                     <SelectionProvider>
-                        <GlobalOverlays />
-                        <Navbar />
-                        <main className="page-content">{children}</main>
+                        {isAuthenticated && (
+                            <>
+                                <GlobalOverlays />
+                                <Navbar />
+                            </>
+                        )}
+                        <main className={isAuthenticated ? "page-content" : undefined}>
+                            {children}
+                        </main>
                     </SelectionProvider>
                 </Providers>
             </body>

@@ -7,8 +7,10 @@
   "disclaimer": "Esta es una conversación privada entre tú y tu coach.",
   "emptyTitle": "Tu conversación empieza aquí.",
   "emptySubtitle": "Escribe un mensaje para comenzar.",
-  "inputPlaceholder": "Escribe un mensaje a tu coach...",
+  "welcome": "¡Hola! Soy Luna, tu guía amable en The Support Network. Estou aquí para ayudarte a encontrar el tipo de apoyo adecuado. Cuando estés listo, cuéntame un poco sobre lo que tienes en mente.",
+  "status": "Tu Guía de Apoyo",
+  "defaultResponse": "Gracias por compartirlo. Parece que estás pasando por mucho. Estoy aquí para apoyarte. ¿Te gustaría explorar algunas opciones de coaching o quizás ver nuestros grupos comunitarios?",
+  "inputPlaceholder": "Escribe un mensaje...",
   "bookBar": "¿Se siente bien?",
   "bookCta": "Reservar una sesión"
 }
-

@@ -3,8 +3,10 @@
   "nav": {
     "back": "Volver",
     "home": "Inicio",
+    "coaches": "Coaches",
     "community": "Comunidad",
-    "findCoach": "Encontrar un coach"
+    "resources": "Recursos",
+    "signIn": "Iniciar sesión"
   },
   "loading": {
     "loading": "Cargando...",
@@ -19,7 +21,8 @@
     "continue": "Continuar",
     "save": "Guardar",
     "update": "Actualizar",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "viewProfile": "Ver perfil"
   },
   "labels": {
     "unknownUser": "Usuario desconocido"
@@ -28,6 +31,14 @@
     "coaches": {
       "title": "Nuestros coaches especializados",
       "subtitle": "Encuentra a la persona adecuada para acompañarte en tu camino."
+    },
+    "dashboard": {
+      "welcome": "Bienvenido de nuevo",
+      "subtitle": "¿Cómo podemos ayudarte hoy?"
+    },
+    "community": {
+      "title": "Comunidades pares",
+      "subtitle": "Conéctate con otros que entienden por lo que estás pasando."
     }
   },
   "toast": {
@@ -39,4 +50,3 @@
     "languageUpdated": "Idioma actualizado"
   }
 }
-

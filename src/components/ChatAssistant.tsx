@@ -13,6 +13,7 @@ export default function ChatAssistant() {
     const [messages, setMessages] = useState<{ role: 'assistant' | 'user', content: string, actions?: { label: string, path: string }[] }[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const { t } = useTranslation('chat');
+    const { t: tCommon } = useTranslation('common');
     const scrollRef = useRef<HTMLDivElement>(null);
 
     // Initial welcome message
@@ -21,16 +22,16 @@ export default function ChatAssistant() {
             setMessages([
                 {
                     role: 'assistant',
-                    content: "Hello! I'm Luna, your friendly guide at The Support Network. I'm here to help you find the right kind of support. Whenever you're ready, tell me a little about what's on your mind.",
+                    content: t('welcome') || "Hello! I'm Luna, your friendly guide at The Support Network. I'm here to help you find the right kind of support. Whenever you're ready, tell me a little about what's on your mind.",
                     actions: [
-                        { label: 'Find a Coach', path: '/coaches' },
-                        { label: 'Join Community', path: '/community' },
-                        { label: 'View Resources', path: '/resources' }
+                        { label: tCommon('nav.coaches'), path: '/coaches' },
+                        { label: tCommon('nav.community'), path: '/community' },
+                        { label: tCommon('nav.resources'), path: '/resources' }
                     ]
                 }
             ]);
         }
-    }, [messages.length]);
+    }, [messages.length, t, tCommon]);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -51,7 +52,7 @@ export default function ChatAssistant() {
             setIsTyping(false);
             setMessages(prev => [...prev, {
                 role: 'assistant',
-                content: "Thank you for sharing that with me. It sounds like you're going through a lot. I'm here to support you. Would you like to explore some coaching options or perhaps look into our community groups?"
+                content: t('defaultResponse') || "Thank you for sharing that with me. It sounds like you're going through a lot. I'm here to support you. Would you like to explore some coaching options or perhaps look into our community groups?"
             }]);
         }, 1500);
     };
@@ -60,7 +61,6 @@ export default function ChatAssistant() {
         return (
             <button className={styles.trigger} onClick={() => setIsOpen(true)} aria-label="Open Chat">
                 <MessageCircle size={28} />
-                <span className={styles.triggerBadge}>Luna is here</span>
             </button>
         );
     }
@@ -70,18 +70,18 @@ export default function ChatAssistant() {
             <div className={styles.header}>
                 <div className={styles.headerInfo}>
                     <div className={styles.avatar}>
-                        <Sparkles size={16} className={styles.avatarIcon} />
+                        <Sparkles size={18} className={styles.avatarIcon} />
                     </div>
                     <div>
                         <h3 className={styles.name}>Luna</h3>
-                        <p className={styles.status}>Your Supportive Guide</p>
+                        <p className={styles.status}>{t('status') || "Your Supportive Guide"}</p>
                     </div>
                 </div>
                 <div className={styles.headerActions}>
-                    <button onClick={() => setIsMinimized(!isMinimized)} className={styles.actionBtn}>
+                    <button onClick={() => setIsMinimized(!isMinimized)} className={styles.actionBtn} aria-label="Minimize">
                         <Minimize2 size={18} />
                     </button>
-                    <button onClick={() => setIsOpen(false)} className={styles.actionBtn}>
+                    <button onClick={() => setIsOpen(false)} className={styles.actionBtn} aria-label="Close">
                         <X size={18} />
                     </button>
                 </div>

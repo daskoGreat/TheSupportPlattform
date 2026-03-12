@@ -13,13 +13,22 @@
 }
 
 .container {
-    max-width: 1200px;
-    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 var(--spacing-lg);
+    padding: 0 var(--spacing-xl);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 100%;
+}
+
+.menuToggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    z-index: 1001;
 }
 
 .logo {
@@ -40,6 +49,10 @@
 .links {
     display: flex;
     gap: var(--spacing-xl);
+}
+
+.mobileActions {
+    display: none;
 }
 
 .link {
@@ -94,7 +107,52 @@
 }
 
 @media (max-width: 768px) {
+    .menuToggle {
+        display: block;
+    }
+
     .links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--bg-panel);
+        flex-direction: column;
+        padding: 100px var(--spacing-xl) 40px;
+        transition: right 0.3s var(--transition-smooth);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        gap: var(--spacing-lg);
+    }
+
+    .links.mobileOpen {
+        right: 0;
+    }
+
+    .link {
+        font-size: 1.25rem;
+        padding: var(--spacing-sm) 0;
+    }
+
+    .actions {
         display: none;
+    }
+
+    .mobileActions {
+        display: block;
+        margin-top: auto;
+        padding-top: var(--spacing-xl);
+        border-top: var(--border-soft);
+    }
+
+    .mobileActions .signinBtn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logoText {
+        font-size: 1rem;
     }
 }
