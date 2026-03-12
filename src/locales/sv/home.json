@@ -1,7 +1,8 @@
 {
-  "title": "Välkommen till The Support Network!",
-  "join": "Klicka här för att gå med",
-  "alreadyMember": "Redan medlem?",
+  "title": "Välkommen till The Support Network",
+  "welcomeBadge": "En trygg plats för dig",
+  "subtitle": "En varm och trygg plats för att hitta det stöd du förtjänar. Få kontakt med specialiserade coacher, stöttande communities och hjälpsamma resurser.",
+  "join": "Påbörja din resa här",
+  "alreadyMember": "Har du redan ett konto?",
   "signIn": "Logga in"
 }
-

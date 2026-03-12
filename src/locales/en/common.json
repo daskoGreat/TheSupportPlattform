@@ -3,8 +3,10 @@
   "nav": {
     "back": "Back",
     "home": "Home",
+    "coaches": "Coaches",
     "community": "Community",
-    "findCoach": "Find a coach"
+    "resources": "Resources",
+    "signIn": "Sign In"
   },
   "loading": {
     "loading": "Loading...",
@@ -19,15 +21,24 @@
     "continue": "Continue",
     "save": "Save",
     "update": "Update",
-    "close": "Close"
+    "close": "Close",
+    "viewProfile": "View Profile"
   },
   "labels": {
     "unknownUser": "Unknown user"
   },
   "pages": {
     "coaches": {
-      "title": "Our specialized coaches",
+      "title": "Our Specialized Coaches",
       "subtitle": "Find the right person to support you on your journey."
+    },
+    "dashboard": {
+      "welcome": "Welcome back",
+      "subtitle": "How can we support you today?"
+    },
+    "community": {
+      "title": "Peer Communities",
+      "subtitle": "Connect with others who understand what you're going through."
     }
   },
   "toast": {
@@ -39,4 +50,3 @@
     "languageUpdated": "Language updated"
   }
 }
-

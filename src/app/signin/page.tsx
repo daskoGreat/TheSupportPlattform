@@ -56,51 +56,52 @@ export default function SignIn() {
     };
 
     return (
-        <div className={styles.wrapper}>
-            <img src="/branding/corner.png" className={`${styles.corner} ${styles.topRight}`} alt="" />
-            <img src="/branding/corner.png" className={`${styles.corner} ${styles.bottomLeft}`} alt="" />
+        <div className="page-content">
+            <div className={`${styles.authContainer} container`}>
+                <div className={`support-card ${styles.authCard}`}>
+                    <div className={styles.brandHeader}>
+                        <img src="/branding/heart.png" className={styles.miniHeart} alt="" />
+                    </div>
+                    <h1 className={styles.title}>{tAuth('signIn.title')}</h1>
+                    <p className={styles.subtitle}>{tAuth('signIn.subtitle')}</p>
 
-            <div className={styles.authCard}>
-                <img src="/branding/heart.png" className={styles.miniHeart} alt="" />
-                <h1>{tAuth('signIn.title')}</h1>
-                <p className={styles.subtitle}>{tAuth('signIn.subtitle')}</p>
+                    <form className={styles.form} onSubmit={handleSubmit}>
+                        <input
+                            type="email"
+                            placeholder={tAuth('signIn.email')}
+                            className={styles.input}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                        <input
+                            type="password"
+                            placeholder={tAuth('signIn.password')}
+                            className={styles.input}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
 
-                <form className={styles.form} onSubmit={handleSubmit}>
-                    <input
-                        type="email"
-                        placeholder={tAuth('signIn.email')}
-                        className={styles.input}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="password"
-                        placeholder={tAuth('signIn.password')}
-                        className={styles.input}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
+                        {error && <p className={styles.errorMessage}>{error}</p>}
 
-                    {error && <p className={styles.errorMessage}>{error}</p>}
+                        <button
+                            type="submit"
+                            className={styles.submitBtn}
+                            disabled={isLoading}
+                            aria-busy={isLoading}
+                            aria-live="polite"
+                        >
+                            {isLoading && <span className="spinner" style={{ marginRight: 8 }} aria-hidden="true" />}
+                            {isLoading ? tAuth('signIn.buttonLoading') : tAuth('signIn.button')}
+                        </button>
+                    </form>
 
-                    <button
-                        type="submit"
-                        className={styles.submitBtn}
-                        disabled={isLoading}
-                        aria-busy={isLoading}
-                        aria-live="polite"
-                    >
-                        {isLoading && <span className="spinner" style={{ marginRight: 8 }} aria-hidden="true" />}
-                        {isLoading ? tAuth('signIn.buttonLoading') : tAuth('signIn.button')}
-                    </button>
-                </form>
-
-                <div className={styles.footerLinks}>
-                    {tAuth('signIn.noAccount')} <Link href="/register">{tAuth('signIn.joinNow')}</Link>
-                    <br />
-                    <Link href="/" className={styles.backLink}>{tAuth('signIn.backHome')}</Link>
+                    <div className={styles.footerLinks}>
+                        {tAuth('signIn.noAccount')} <Link href="/register">{tAuth('signIn.joinNow')}</Link>
+                        <br />
+                        <Link href="/" className={styles.backLink}>{tAuth('signIn.backHome')}</Link>
+                    </div>
                 </div>
             </div>
         </div>

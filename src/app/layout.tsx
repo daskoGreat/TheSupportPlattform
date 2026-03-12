@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { SelectionProvider } from '@/context/SelectionContext';
 import { Providers } from '@/components/Providers';
 import GlobalOverlays from '@/components/GlobalOverlays';
+import Navbar from '@/components/Navbar';
 import { getServerLocale } from '@/i18n/server';
 
 export const metadata: Metadata = {
@@ -22,7 +23,8 @@ export default async function RootLayout({
                 <Providers>
                     <SelectionProvider>
                         <GlobalOverlays />
-                        <main>{children}</main>
+                        <Navbar />
+                        <main className="page-content">{children}</main>
                     </SelectionProvider>
                 </Providers>
             </body>

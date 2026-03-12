@@ -1,53 +1,55 @@
 :root {
-  /* Branded Dark Identity */
-  --bg-dark: #0b0f14;
-  --bg-panel: #11161d;
-  --bg-secondary: #151c24;
+  /* Supportive Charcoal Identity (Never pure black) */
+  --bg-dark: #12161b;
+  --bg-panel: #1a2027;
+  --bg-secondary: #222a33;
 
-  /* Text colors - Premium high contrast */
+  /* Text colors - Warm and readable */
   --text-bright: #ffffff;
-  --text-primary: #f4f6f8;
-  --text-secondary: #9aa6b2;
-  --text-muted: #6b7684;
+  --text-primary: #e6edf3;
+  --text-secondary: #a3b3c2;
+  --text-muted: #748ba0;
 
-  /* Brand Accents */
-  --accent-heart: #c41e3a;
-  --accent-blue: #7B9FB6;
-  /* Muted blue for secondary elements */
-  --hover-highlight: #1b2430;
+  /* Calming Accents */
+  --accent-blue: #7bb0d1;
+  /* soft blue -> trust */
+  --accent-teal: #4db6ac;
+  /* teal -> wellbeing */
+  --accent-green: #81c784;
+  /* soft green -> emotional safety */
+  --accent-beige: #d7ccc8;
+  /* warm beige -> calm */
+  --accent-heart: #e57373;
+  /* soft red for the heart icon */
 
-  /* Floral palette (for decorative elements) */
-  --floral-purple: #8E44AD;
-  --floral-gold: #F39C12;
-  --floral-blue: #2980B9;
+  --hover-highlight: rgba(123, 176, 209, 0.1);
 
-  /* Spacing */
+  /* Spacing - Generous and open */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2.5rem;
-  --spacing-2xl: 4rem;
-  --spacing-max: 8rem;
+  --spacing-lg: 1.75rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 5rem;
+  --spacing-max: 10rem;
 
   /* Transitions */
-  --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Default chat buble colors */
-  --bubble-user-bg: #2a3b52;
-  --bubble-user-text: #ffffff;
-  --bubble-coach-bg: #1b2430;
-  --bubble-coach-text: #e6edf3;
-  --bubble-ai-bg: #2a1f29;
-  --bubble-ai-text: #f1e7ea;
+  /* Soft Chat Bubble Colors */
+  --bubble-user-bg: var(--bg-secondary);
+  --bubble-user-text: var(--text-primary);
+  --bubble-ai-bg: var(--accent-blue);
+  --bubble-ai-text: #0b0f14;
+  /* contrast text for light bubble */
 
-  /* Borders & Shadows */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 32px;
+  /* Borders & Shadows - Soft edges */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 40px;
   --radius-full: 9999px;
-  --shadow-intimate: 0 10px 40px rgba(0, 0, 0, 0.6);
-  --border-subtle: 1px solid #1f2731;
+  --shadow-warm: 0 10px 40px rgba(0, 0, 0, 0.2);
+  --border-soft: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Generic loading spinner */
@@ -78,12 +80,10 @@
   position: absolute;
   inset: 0;
   transform: translateX(-100%);
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.08),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent);
   animation: shimmer 1.4s infinite;
 }
 
@@ -198,4 +198,54 @@ p {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #3a4656;
+}
+
+/* Layout Utilities */
+.page-content {
+  min-height: calc(100vh - 72px);
+  padding: var(--spacing-xl) 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Supportive UI Utilities */
+.support-card {
+  background: var(--bg-panel);
+  border: var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-warm);
+  transition: var(--transition-smooth);
+}
+
+.support-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+}
+
+.text-soft {
+  color: var(--text-secondary);
+}
+
+.text-warm {
+  color: var(--accent-beige);
+}
+
+.accent-blue {
+  color: var(--accent-blue);
+}
+
+.accent-teal {
+  color: var(--accent-teal);
+}
+
+.accent-green {
+  color: var(--accent-green);
+}
+
+@media (max-width: 768px) {
+  .page-content {
+    padding: var(--spacing-lg) 0;
+  }
 }

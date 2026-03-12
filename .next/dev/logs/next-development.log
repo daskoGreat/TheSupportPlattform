@@ -122,3 +122,41 @@ Read more at https://pris.ly/d/client-constructor
 [00:50:07.710] Server  LOG     ✓ Compiled in 114ms
 [00:50:07.987] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
 [00:50:07.987] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[01:51:02.840] Server  LOG     [Admin Actions] Server Actions module loaded
+[01:51:02.841] Server  LOG     [getUsers] Fetching with search="", page=1
+[01:51:02.853] Browser LOG     [Admin] Switching tab to: users
+[01:51:02.853] Browser LOG     [Admin] Rendering. Tab: users, Loading: false
+[01:51:02.853] Browser LOG     [Admin] Rendering. Tab: users, Loading: false
+[01:51:02.853] Browser LOG     [Admin] Rendering. Tab: users, Loading: true
+[01:51:02.853] Browser LOG     [Admin] Rendering. Tab: users, Loading: true
+[01:51:02.858] Server  LOG     prisma:error "\nInvalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__[\"prisma\"].user.findMany()` invocation in\n/Users/davidskoglund/Hemma projekt/TheSupportPlattform/.next/dev/server/chunks/ssr/[root-of-the-server]__caf3348d._.js:92:141\n\n  89 } : {};\n  90 console.log(`[getUsers] Fetching with search=\"${search}\", page=${page}`);\n  91 const [users, totalCount] = await Promise.all([\n→ 92     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__[\"prisma\"].user.findMany(\n"
+[01:51:03.020] Server  ERROR   ⨯ PrismaClientKnownRequestError: 
+Invalid `{imported module ./src/lib/prisma.ts}["prisma"].user.findMany()` invocation in
+/Users/davidskoglund/Hemma projekt/TheSupportPlattform/.next/dev/server/chunks/ssr/[root-of-the-server]__caf3348d._.js:92:141
+
+  89 } : {};
+  90 console.log(`[getUsers] Fetching with search="${search}", page=${page}`);
+  91 const [users, totalCount] = await Promise.all([
+→ 92     {imported module ./src/lib/prisma.ts}["prisma"].user.findMany(
+
+[01:51:03.029] Server  LOG     prisma:error "\nInvalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__[\"prisma\"].user.count()` invocation in\n/Users/davidskoglund/Hemma projekt/TheSupportPlattform/.next/dev/server/chunks/ssr/[root-of-the-server]__caf3348d._.js:107:141\n\n  104         createdAt: true\n  105     }\n  106 }),\n→ 107 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__[\"prisma\"].user.count(\n"
+[01:51:03.145] Browser ERROR   Error fetching admin data: {"digest":"4187400225","environmentName":"Server","name":"PrismaClientKnownRequestError"}
+[01:51:03.145] Browser LOG     [Admin] Rendering. Tab: users, Loading: false
+[01:51:03.145] Browser LOG     [Admin] Rendering. Tab: users, Loading: false
+[02:15:57.973] Server  LOG     ✓ Compiled in 926ms
+[03:55:14.202] Server  LOG     ✓ Compiled in 137ms
+[03:55:56.078] Server  LOG     ✓ Compiled in 9ms
+[03:56:26.694] Server  LOG     ✓ Compiled in 1ms
+[03:56:28.697] Server  LOG     ✓ Compiled in 3ms
+[03:57:02.684] Server  LOG     ✓ Compiled in 18ms
+[03:57:03.502] Server  LOG     ✓ Compiled in 4ms
+[03:57:09.760] Server  LOG     ✓ Compiled in 10ms
+[03:57:10.548] Server  LOG     ✓ Compiled in 1ms
+[03:59:53.765] Server  LOG     ✓ Compiled in 8ms
+[03:59:56.502] Server  LOG     ✓ Compiled in 4ms
+[04:00:06.814] Server  LOG     ✓ Compiled in 3ms
+[04:00:09.465] Server  LOG     ✓ Compiled in 1ms
+[04:00:21.040] Server  LOG     ✓ Compiled in 2ms
+[04:00:23.047] Server  LOG     ✓ Compiled in 0ms
+[04:00:25.125] Server  LOG     ✓ Compiled in 7ms
+[04:00:27.117] Server  LOG     ✓ Compiled in 2ms

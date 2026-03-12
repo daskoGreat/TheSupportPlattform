@@ -1,68 +1,42 @@
-.wrapper {
-    background-color: var(--bg-dark);
-    min-height: 100vh;
+.authContainer {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
-    color: var(--text-bright);
-    padding: var(--spacing-xl);
-}
-
-.corner {
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    pointer-events: none;
-    opacity: 0.6;
-}
-
-.topLeft {
-    top: -40px;
-    left: -40px;
-}
-
-.topRight {
-    top: -40px;
-    right: -40px;
-    transform: scaleX(-1);
-}
-
-.bottomLeft {
-    bottom: -40px;
-    left: -40px;
-    transform: scaleY(-1);
-}
-
-.bottomRight {
-    bottom: -40px;
-    right: -40px;
-    transform: scale(-1);
+    padding: var(--spacing-xl) var(--spacing-md);
 }
 
 .authCard {
-    background: var(--bg-panel);
     width: 100%;
     max-width: 480px;
-    padding: var(--spacing-2xl);
-    border-radius: var(--radius-lg);
-    border: var(--border-subtle);
-    position: relative;
-    z-index: 2;
+    padding: var(--spacing-2xl) !important;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.brandHeader {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--spacing-lg);
+    background: rgba(123, 176, 209, 0.1);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .miniHeart {
-    width: 60px;
-    height: auto;
-    margin-bottom: var(--spacing-md);
+    width: 32px;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm) !important;
 }
 
 .subtitle {
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+    font-size: 1rem;
 }
 
 .form {
@@ -71,107 +45,114 @@
     gap: var(--spacing-md);
 }
 
-.roleSelector {
-    display: flex;
+.input {
     background: var(--bg-dark);
-    padding: 4px;
-    border-radius: 50px;
-    margin-bottom: var(--spacing-md);
-}
-
-.roleSelector button {
-    flex: 1;
-    padding: 10px;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-muted);
+    border: var(--border-soft);
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 1rem;
     transition: var(--transition-smooth);
 }
 
-.roleSelector .activeRole {
-    background: var(--bg-secondary);
-    color: var(--text-bright);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+.input:focus {
+    border-color: var(--accent-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(123, 176, 209, 0.1);
 }
 
-.grid {
+.roleSelector {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-md);
-}
-
-.input {
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
     background: var(--bg-dark);
-    border: var(--border-subtle);
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: 4px;
+    border-radius: var(--radius-md);
+}
+
+.roleSelector button {
+    padding: 8px;
     border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    outline: none;
-    font-size: 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    transition: var(--transition-smooth);
 }
 
-.input:focus {
-    border-color: var(--accent-heart);
+.activeRole {
+    background: var(--bg-secondary);
+    color: var(--accent-blue) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-textarea.input {
-    min-height: 80px;
-    resize: none;
+.errorMessage {
+    color: var(--accent-heart);
+    font-size: 0.85rem;
+    background: rgba(229, 115, 115, 0.1);
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    margin-top: var(--spacing-sm);
 }
 
 .submitBtn {
-    background: var(--accent-heart);
-    color: white;
-    padding: var(--spacing-md);
-    border-radius: var(--radius-sm);
-    font-weight: 700;
+    background: var(--accent-blue);
+    color: #0b0f14;
+    padding: 1rem;
+    border-radius: var(--radius-md);
     font-size: 1.1rem;
+    font-weight: 700;
     margin-top: var(--spacing-md);
-    transition: background-color var(--transition-smooth), transform 0.2s;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .submitBtn:hover {
-    background: #e62345;
     transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(123, 176, 209, 0.3);
+}
+
+.submitBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.coachNote {
+    background: rgba(123, 176, 209, 0.05);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--accent-blue);
+    margin-top: var(--spacing-md);
+    text-align: left;
+}
+
+.coachNote p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
 }
 
 .footerLinks {
-    margin-top: var(--spacing-xl);
-    font-size: 0.9rem;
+    margin-top: var(--spacing-2xl);
+    font-size: 0.95rem;
     color: var(--text-muted);
 }
 
 .footerLinks a {
-    color: var(--text-bright);
-    text-decoration: underline;
-}
-
-.errorMessage {
-    background: rgba(227, 27, 35, 0.1);
-    color: var(--accent-heart);
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    margin-bottom: 10px;
-    border: 1px solid rgba(227, 27, 35, 0.2);
+    color: var(--accent-blue);
+    font-weight: 600;
 }
 
 .backLink {
     display: inline-block;
-    margin-top: var(--spacing-md);
-    font-weight: 600;
+    margin-top: var(--spacing-lg);
+    font-size: 0.85rem;
     opacity: 0.7;
+    transition: var(--transition-smooth);
 }
 
-@media (max-width: 520px) {
-    .authCard {
-        padding: var(--spacing-xl);
-    }
-
-    .corner {
-        width: 260px;
-        height: 260px;
-        opacity: 0.45;
-    }
+.backLink:hover {
+    opacity: 1;
 }

@@ -1,7 +1,8 @@
 {
-  "title": "Welcome to The Support Network!",
-  "join": "Click here to join",
-  "alreadyMember": "Already a member?",
+  "title": "Welcome to The Support Network",
+  "welcomeBadge": "A safe space for you",
+  "subtitle": "A warm, safe space to find the support you deserve. Connect with specialized coaches, supportive communities, and helpful resources.",
+  "join": "Let's begin your journey",
+  "alreadyMember": "Already have an account?",
   "signIn": "Sign In"
 }
-

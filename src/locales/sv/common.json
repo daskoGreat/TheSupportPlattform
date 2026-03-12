@@ -3,8 +3,10 @@
   "nav": {
     "back": "Tillbaka",
     "home": "Start",
+    "coaches": "Coacher",
     "community": "Community",
-    "findCoach": "Hitta en coach"
+    "resources": "Resurser",
+    "signIn": "Logga in"
   },
   "loading": {
     "loading": "Laddar...",
@@ -19,15 +21,24 @@
     "continue": "Fortsätt",
     "save": "Spara",
     "update": "Uppdatera",
-    "close": "Stäng"
+    "close": "Stäng",
+    "viewProfile": "Visa profil"
   },
   "labels": {
     "unknownUser": "Okänd användare"
   },
   "pages": {
     "coaches": {
-      "title": "Våra specialiserade coacher",
+      "title": "Våra Specialiserade Coacher",
       "subtitle": "Hitta rätt person som kan stötta dig på din resa."
+    },
+    "dashboard": {
+      "welcome": "Välkommen tillbaka",
+      "subtitle": "Hur kan vi stötta dig idag?"
+    },
+    "community": {
+      "title": "Community-grupper",
+      "subtitle": "Få kontakt med andra som förstår vad du går igenom."
     }
   },
   "toast": {
@@ -39,4 +50,3 @@
     "languageUpdated": "Språket uppdaterades"
   }
 }
-
