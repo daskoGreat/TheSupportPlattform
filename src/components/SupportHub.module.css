@@ -1,0 +1,217 @@
+.hubContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Welcome Section */
+.welcomeSection {
+    text-align: left;
+}
+
+.welcomeTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: -0.02em;
+}
+
+.welcomeSubtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Emotional Check-in */
+.checkinSection {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.checkinTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.moodGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.moodBtn {
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.moodBtn:hover {
+    background: rgba(123, 159, 182, 0.15);
+    border-color: var(--accent-blue);
+    color: var(--text-bright);
+    transform: translateY(-2px);
+}
+
+/* Support Grid */
+.supportGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.supportCard {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-soft-color);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.supportCard:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cardIcon {
+    font-size: 2rem;
+    color: var(--accent-blue);
+}
+
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-bright);
+}
+
+.cardDesc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.cardBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: var(--spacing-md);
+}
+
+.supportCard:hover .cardBtn {
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+}
+
+/* Journey Section */
+.journeySection {
+    margin-top: var(--spacing-xl);
+}
+
+.journeyTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: var(--spacing-xl);
+}
+
+.journeyGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.journeyCard {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    transition: var(--transition-smooth);
+}
+
+.journeyCard:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.journeyIcon {
+    font-size: 1.5rem;
+    color: var(--accent-blue);
+    background: rgba(123, 159, 182, 0.1);
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.journeyContent h5 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.journeyContent p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .welcomeTitle {
+        font-size: 2rem;
+    }
+
+    .hubContainer {
+        padding: var(--spacing-xl) var(--spacing-md);
+        gap: var(--spacing-xl);
+    }
+
+    .supportGrid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -10,7 +10,8 @@ export type Namespace =
     | "bookings"
     | "community"
     | "admin"
-    | "howItWorks";
+    | "howItWorks"
+    | "hub";
 
 export type Dictionary = Record<string, any>;
 

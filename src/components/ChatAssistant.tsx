@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { MessageCircle, X, Minimize2, Send, Sparkles } from 'lucide-react';
 import styles from './ChatAssistant.module.css';
 import { useTranslation } from '@/i18n/client';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function ChatAssistant() {
     const [isOpen, setIsOpen] = useState(false);
@@ -14,24 +15,30 @@ export default function ChatAssistant() {
     const [isTyping, setIsTyping] = useState(false);
     const { t } = useTranslation('chat');
     const { t: tCommon } = useTranslation('common');
+    const { locale } = useLanguage();
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    // Initial welcome message
+    // Initial welcome message - updates on locale change if it's the first message
     useEffect(() => {
-        if (messages.length === 0) {
-            setMessages([
-                {
-                    role: 'assistant',
-                    content: t('welcome') || "Hello! I'm Luna, your friendly guide at The Support Network. I'm here to help you find the right kind of support. Whenever you're ready, tell me a little about what's on your mind.",
-                    actions: [
-                        { label: tCommon('nav.coaches'), path: '/coaches' },
-                        { label: tCommon('nav.community'), path: '/community' },
-                        { label: tCommon('nav.resources'), path: '/resources' }
-                    ]
-                }
-            ]);
+        if (messages.length <= 1) {
+            const welcomeMsg = {
+                role: 'assistant' as const,
+                content: t('welcome') || "Hello! I'm Luna, your friendly guide at The Support Network. I'm here to help you find the right kind of support. Whenever you're ready, tell me a little about what's on your mind.",
+                actions: [
+                    { label: tCommon('nav.coaches'), path: '/coaches' },
+                    { label: tCommon('nav.community'), path: '/community' },
+                    { label: tCommon('nav.resources'), path: '/resources' }
+                ]
+            };
+
+            if (messages.length === 0) {
+                setMessages([welcomeMsg]);
+            } else if (messages[0].role === 'assistant') {
+                // Update existing welcome message if language changed
+                setMessages([welcomeMsg]);
+            }
         }
-    }, [messages.length, t, tCommon]);
+    }, [locale, t, tCommon]);
 
     useEffect(() => {
         if (scrollRef.current) {

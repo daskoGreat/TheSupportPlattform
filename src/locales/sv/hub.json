@@ -1,0 +1,51 @@
+{
+    "welcomeBack": "Välkommen tillbaka, {{name}}",
+    "supportIntro": "Vi finns här för att stötta dig. Ta en stund och välj det som känns rätt idag.",
+    "checkin": {
+        "title": "Hur mår du idag?",
+        "options": {
+            "calm": "Lugn",
+            "stressed": "Stressad",
+            "sad": "Ledsen",
+            "overwhelmed": "Överväldigad",
+            "talk": "Behöver bara prata"
+        }
+    },
+    "cards": {
+        "coach": {
+            "title": "Prata med en coach",
+            "description": "Få kontakt med någon som förstår vad du går igenom.",
+            "cta": "Utforska coacher"
+        },
+        "luna": {
+            "title": "Fortsätt med Luna",
+            "description": "Om du vill prata eller behöver hjälp att hitta rätt stöd finns Luna här.",
+            "cta": "Starta chatt"
+        },
+        "community": {
+            "title": "Gå med i en grupp",
+            "description": "Du är inte ensam. Hitta trygga rum där andra delar liknande erfarenheter.",
+            "cta": "Utforska grupper"
+        },
+        "resources": {
+            "title": "Hjälpsamma resurser",
+            "description": "Artiklar, verktyg och vägledning som kan hjälpa dig genom svåra stunder.",
+            "cta": "Bläddra i resurser"
+        }
+    },
+    "journey": {
+        "title": "Din stödresa",
+        "recentChat": {
+            "title": "Senaste konversationen",
+            "description": "Fortsätt din senaste chatt med Luna."
+        },
+        "upcomingSession": {
+            "title": "Kommande session",
+            "description": "Du har en session inbokad med {{coachName}}."
+        },
+        "savedCoaches": {
+            "title": "Sparade coacher",
+            "description": "Coacher du har utforskat eller sparat till senare."
+        }
+    }
+}

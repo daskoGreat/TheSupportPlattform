@@ -14,6 +14,7 @@ import en_bookings from "@/locales/en/bookings.json";
 import en_community from "@/locales/en/community.json";
 import en_admin from "@/locales/en/admin.json";
 import en_howItWorks from "@/locales/en/howItWorks.json";
+import en_hub from "@/locales/en/hub.json";
 
 import sv_common from "@/locales/sv/common.json";
 import sv_auth from "@/locales/sv/auth.json";
@@ -25,6 +26,7 @@ import sv_bookings from "@/locales/sv/bookings.json";
 import sv_community from "@/locales/sv/community.json";
 import sv_admin from "@/locales/sv/admin.json";
 import sv_howItWorks from "@/locales/sv/howItWorks.json";
+import sv_hub from "@/locales/sv/hub.json";
 
 import es_common from "@/locales/es/common.json";
 import es_auth from "@/locales/es/auth.json";
@@ -36,6 +38,7 @@ import es_bookings from "@/locales/es/bookings.json";
 import es_community from "@/locales/es/community.json";
 import es_admin from "@/locales/es/admin.json";
 import es_howItWorks from "@/locales/es/howItWorks.json";
+import es_hub from "@/locales/es/hub.json";
 
 const resources: Record<Locale, ResourceBundle> = {
     en: {
@@ -49,6 +52,7 @@ const resources: Record<Locale, ResourceBundle> = {
         community: en_community,
         admin: en_admin,
         howItWorks: en_howItWorks,
+        hub: en_hub,
     },
     sv: {
         common: sv_common,
@@ -61,6 +65,7 @@ const resources: Record<Locale, ResourceBundle> = {
         community: sv_community,
         admin: sv_admin,
         howItWorks: sv_howItWorks,
+        hub: sv_hub,
     },
     es: {
         common: es_common,
@@ -73,6 +78,7 @@ const resources: Record<Locale, ResourceBundle> = {
         community: es_community,
         admin: es_admin,
         howItWorks: es_howItWorks,
+        hub: es_hub,
     },
 };
 

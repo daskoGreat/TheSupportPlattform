@@ -1,0 +1,51 @@
+{
+    "welcomeBack": "Welcome back, {{name}}",
+    "supportIntro": "We're here to support you. Take a moment and choose what feels right today.",
+    "checkin": {
+        "title": "How are you feeling today?",
+        "options": {
+            "calm": "Calm",
+            "stressed": "Stressed",
+            "sad": "Sad",
+            "overwhelmed": "Overwhelmed",
+            "talk": "Just need to talk"
+        }
+    },
+    "cards": {
+        "coach": {
+            "title": "Talk to a Coach",
+            "description": "Connect with someone who understands what you're going through.",
+            "cta": "Explore Coaches"
+        },
+        "luna": {
+            "title": "Continue with Luna",
+            "description": "If you'd like to talk or need help finding the right support, Luna is here.",
+            "cta": "Start Chat"
+        },
+        "community": {
+            "title": "Join a Community",
+            "description": "You’re not alone. Find supportive spaces where others share similar experiences.",
+            "cta": "Explore Communities"
+        },
+        "resources": {
+            "title": "Helpful Resources",
+            "description": "Articles, tools, and guidance that may help you through difficult moments.",
+            "cta": "Browse Resources"
+        }
+    },
+    "journey": {
+        "title": "Your Support Journey",
+        "recentChat": {
+            "title": "Recent Conversation",
+            "description": "Continue your last chat with Luna."
+        },
+        "upcomingSession": {
+            "title": "Upcoming Session",
+            "description": "You have a session scheduled with {{coachName}}."
+        },
+        "savedCoaches": {
+            "title": "Saved Coaches",
+            "description": "Coaches you’ve explored or saved for later."
+        }
+    }
+}

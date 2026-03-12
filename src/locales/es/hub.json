@@ -1,0 +1,51 @@
+{
+    "welcomeBack": "Bienvenido de nuevo, {{name}}",
+    "supportIntro": "Estamos aquí para apoyarte. Tómate un momento y elige lo que te parezca mejor hoy.",
+    "checkin": {
+        "title": "¿Cómo te sientes hoy?",
+        "options": {
+            "calm": "Calmado",
+            "stressed": "Estresado",
+            "sad": "Triste",
+            "overwhelmed": "Abrumado",
+            "talk": "Solo necesito hablar"
+        }
+    },
+    "cards": {
+        "coach": {
+            "title": "Hablar con un Coach",
+            "description": "Conecta con alguien que entienda por lo que estás pasando.",
+            "cta": "Explorar Coaches"
+        },
+        "luna": {
+            "title": "Continuar con Luna",
+            "description": "Si quieres hablar o necesitas ayuda para encontrar el apoyo adecuado, Luna está aquí.",
+            "cta": "Iniciar Chat"
+        },
+        "community": {
+            "title": "Unirse a una Comunidad",
+            "description": "No estás solo. Encuentra espacios de apoyo donde otros compartan experiencias similares.",
+            "cta": "Explorar Comunidades"
+        },
+        "resources": {
+            "title": "Recursos Útiles",
+            "description": "Artículos, herramientas y orientación que pueden ayudarte en momentos difíciles.",
+            "cta": "Explorar Recursos"
+        }
+    },
+    "journey": {
+        "title": "Tu viaje de apoyo",
+        "recentChat": {
+            "title": "Conversación reciente",
+            "description": "Continúa tu última charla con Luna."
+        },
+        "upcomingSession": {
+            "title": "Próxima sesión",
+            "description": "Tienes una sesión programada con {{coachName}}."
+        },
+        "savedCoaches": {
+            "title": "Coaches guardados",
+            "description": "Coaches que has explorado o guardado para más tarde."
+        }
+    }
+}

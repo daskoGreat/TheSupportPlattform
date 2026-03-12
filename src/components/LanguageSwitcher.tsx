@@ -3,11 +3,13 @@
 import { useLanguage } from "@/context/LanguageContext";
 import { useToast } from "@/context/ToastContext";
 import { useT } from "@/i18n/client";
+import { useRouter } from "next/navigation";
 
 export default function LanguageSwitcher() {
     const { locale, setLocale, availableLocales } = useLanguage();
     const { showToast } = useToast();
     const tCommon = useT("common");
+    const router = useRouter();
 
     return (
         <div
@@ -33,6 +35,7 @@ export default function LanguageSwitcher() {
                             if (l.locale === locale) return;
                             setLocale(l.locale);
                             showToast(tCommon("toast.languageUpdated"), "info");
+                            router.refresh();
                         }}
                         aria-label={l.label}
                         title={l.label}
