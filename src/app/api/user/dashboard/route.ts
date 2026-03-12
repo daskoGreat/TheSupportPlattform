@@ -47,7 +47,7 @@ export async function GET() {
                             select: { name: true, image: true }
                         }
                     }
-                },
+                } as any,
                 messages: {
                     orderBy: { createdAt: 'desc' },
                     take: 1
