@@ -5,23 +5,32 @@ import ws from 'ws'
 
 neonConfig.webSocketConstructor = ws
 
+/**
+ * Prisma client singleton for Next.js to prevent multiple instances during development.
+ * Uses the Neon serverless adapter for stable database connectivity.
+ */
 const prismaClientSingleton = () => {
     const connectionString = process.env.DATABASE_URL
+
     if (!connectionString) {
+        // Provide a default instance during build time if env is missing
         return new PrismaClient()
     }
+
     const pool = new Pool({ connectionString })
-    const adapter = new PrismaNeon(pool)
+    // Use 'as any' to bypass a type mismatch between @neondatabase/serverless Pool 
+    // and the expected Pool type in @prisma/adapter-neon.
+    const adapter = new PrismaNeon(pool as any)
     return new PrismaClient({ adapter } as any)
 }
 
 declare global {
-    var prisma: undefined | ReturnType<typeof prismaClientSingleton>
+    var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>
 }
 
-const prisma = globalThis.prisma ?? prismaClientSingleton()
+const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
 
 export { prisma }
 export default prisma
 
-if (process.env.NODE_ENV !== 'production') globalThis.prisma = prisma
+if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma
