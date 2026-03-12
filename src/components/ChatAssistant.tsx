@@ -125,7 +125,7 @@ export default function ChatAssistant() {
                     <div className={styles.inputArea}>
                         <input
                             type="text"
-                            placeholder="Type a message..."
+                            placeholder={t('inputPlaceholder') || "Type a message..."}
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && handleSend()}

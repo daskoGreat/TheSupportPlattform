@@ -162,3 +162,5 @@ Invalid `{imported module ./src/lib/prisma.ts}["prisma"].user.findMany()` invoca
 [04:00:27.117] Server  LOG     ✓ Compiled in 2ms
 [04:12:40.003] Server  LOG     ✓ Compiled in 236ms
 [04:18:04.504] Server  LOG     ✓ Compiled in 34ms
+[04:20:37.502] Server  LOG     ✓ Compiled in 3ms
+[04:20:45.282] Server  LOG     ✓ Compiled in 1ms
