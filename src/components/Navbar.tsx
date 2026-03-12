@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import styles from './Navbar.module.css';
 import { useTranslation } from '@/i18n/client';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -48,6 +49,7 @@ export default function Navbar() {
                         </Link>
                     ))}
                     <div className={styles.mobileActions}>
+                        <LanguageSwitcher />
                         <Link href="/signin" className={styles.signinBtn} onClick={() => setIsMenuOpen(false)}>
                             {t('nav.signIn')}
                         </Link>
@@ -55,6 +57,7 @@ export default function Navbar() {
                 </div>
 
                 <div className={styles.actions}>
+                    <LanguageSwitcher />
                     <Link href="/signin" className={styles.signinBtn}>
                         {t('nav.signIn')}
                     </Link>

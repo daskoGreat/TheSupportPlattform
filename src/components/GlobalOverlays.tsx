@@ -9,16 +9,6 @@ export default function GlobalOverlays() {
         <>
             <RouteTransitionLoader />
             <ChatAssistant />
-            <div
-                style={{
-                    position: "fixed",
-                    top: 16,
-                    right: 16,
-                    zIndex: 50,
-                }}
-            >
-                <LanguageSwitcher />
-            </div>
         </>
     );
 }

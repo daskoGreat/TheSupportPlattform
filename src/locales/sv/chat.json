@@ -12,6 +12,9 @@
   "bookCta": "Boka ett samtal",
   "welcome": "Hej! Jag heter Luna och är din personliga guide här på The Support Network. Jag finns här för att hjälpa dig hitta rätt stöd. När du är redo får du gärna berätta lite om vad du funderar på.",
   "status": "Din personliga guide",
-  "defaultResponse": "Tack för att du delar med dig. Det låter som att du går igenom en hel del just nu. Jag finns här för att stötta dig. Vill du utforska våra coacher eller kanske titta närmare på våra community-grupper?",
+  "defaultResponse": "Tack för att du delar med dig. Jag finns här och lyssnar. Vill du utforska våra stödalternativ som coaching eller community-grupper?",
+  "coachResponse": "Jag förstår att du letar efter professionell vägledning. Vi har ett fint urval av specialiserade coacher. Vill du att jag visar dig vår sida för att hitta en coach?",
+  "communityResponse": "Att få kontakt med andra kan vara till stor hjälp. Våra community-grupper är trygga platser att dela och lyssna. Ska jag ta dig till grupperna?",
+  "resourcesResponse": "Ibland är rätt information ett bra första steg. Jag kan visa dig vårt bibliotek med hjälpsamma resurser. Skulle det vara till nytta?",
   "lunaInputPlaceholder": "Prata med Luna..."
 }

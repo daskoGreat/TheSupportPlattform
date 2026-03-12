@@ -12,6 +12,9 @@
   "bookCta": "Book a session",
   "welcome": "Hello! I'm Luna, your friendly guide at The Support Network. I'm here to help you find the right kind of support. Whenever you're ready, tell me a little about what's on your mind.",
   "status": "Your Supportive Guide",
-  "defaultResponse": "Thank you for sharing that with me. It sounds like you're going through a lot. I'm here to support you. Would you like to explore some coaching options or perhaps look into our community groups?",
+  "defaultResponse": "Thank you for sharing. I'm here to listen. Would you like to explore some of our support options like coaching or peer communities?",
+  "coachResponse": "I understand you're looking for professional guidance. We have a wonderful selection of specialized coaches. Would you like to see our coach discovery page?",
+  "communityResponse": "Connecting with others can be so helpful. Our peer communities are safe spaces to share and listen. Shall I take you to the community groups?",
+  "resourcesResponse": "Sometimes having the right information is a great first step. I can show you our library of helpful resources. Would that be useful?",
   "lunaInputPlaceholder": "Talk to Luna..."
 }

@@ -15,13 +15,12 @@ export default function LanguageSwitcher() {
             aria-label="Language selector"
             style={{
                 display: "inline-flex",
-                background: "rgba(17, 22, 29, 0.85)",
-                border: "1px solid rgba(255, 255, 255, 0.12)",
+                background: "rgba(255, 255, 255, 0.03)",
+                border: "1px solid rgba(255, 255, 255, 0.08)",
                 borderRadius: 9999,
-                padding: 4,
-                gap: 4,
+                padding: 2,
+                gap: 2,
                 backdropFilter: "blur(10px)",
-                boxShadow: "0 12px 35px rgba(0,0,0,0.55)",
             }}
         >
             {availableLocales.map((l) => {

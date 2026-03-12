@@ -42,17 +42,45 @@ export default function ChatAssistant() {
     const handleSend = () => {
         if (!input.trim()) return;
 
-        const userMsg = input;
-        setMessages(prev => [...prev, { role: 'user', content: userMsg }]);
+        const userMsg = input.toLowerCase();
+        setMessages(prev => [...prev, { role: 'user', content: input }]);
         setInput('');
         setIsTyping(true);
 
-        // Simulate Luna's response
+        // Simulated AI logic with keyword parsing
         setTimeout(() => {
             setIsTyping(false);
+
+            let responseContent = t('defaultResponse');
+            let suggestedActions: { label: string, path: string }[] = [];
+
+            if (userMsg.includes('coach') || userMsg.includes('yes') && messages[messages.length - 1]?.content.includes('coach')) {
+                responseContent = t('coachResponse');
+                suggestedActions = [{ label: tCommon('nav.coaches'), path: '/coaches' }];
+            } else if (userMsg.includes('communit') || userMsg.includes('group') || userMsg.includes('yes') && messages[messages.length - 1]?.content.includes('communit')) {
+                responseContent = t('communityResponse');
+                suggestedActions = [{ label: tCommon('nav.community'), path: '/community' }];
+            } else if (userMsg.includes('resourc') || userMsg.includes('library') || userMsg.includes('help')) {
+                responseContent = t('resourcesResponse');
+                suggestedActions = [{ label: tCommon('nav.resources'), path: '/resources' }];
+            } else if (userMsg.includes('stress') || userMsg.includes('anxiety') || userMsg.includes('feel') || userMsg.includes('mår')) {
+                responseContent = t('defaultResponse');
+                suggestedActions = [
+                    { label: tCommon('nav.coaches'), path: '/coaches' },
+                    { label: tCommon('nav.community'), path: '/community' }
+                ];
+            } else if (userMsg === 'yes' || userMsg === 'ja' || userMsg === 'si') {
+                responseContent = t('defaultResponse'); // General help if 'yes' is ambiguous
+                suggestedActions = [
+                    { label: tCommon('nav.coaches'), path: '/coaches' },
+                    { label: tCommon('nav.community'), path: '/community' }
+                ];
+            }
+
             setMessages(prev => [...prev, {
                 role: 'assistant',
-                content: t('defaultResponse') || "Thank you for sharing that with me. It sounds like you're going through a lot. I'm here to support you. Would you like to explore some coaching options or perhaps look into our community groups?"
+                content: responseContent || "I'm here to help. Would you like to see our coaches or community groups?",
+                actions: suggestedActions.length > 0 ? suggestedActions : undefined
             }]);
         }, 1500);
     };

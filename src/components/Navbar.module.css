@@ -18,7 +18,6 @@
     padding: 0 var(--spacing-xl);
     display: flex;
     align-items: center;
-    justify-content: space-between;
     height: 100%;
 }
 
@@ -49,6 +48,7 @@
 .links {
     display: flex;
     gap: var(--spacing-xl);
+    margin-left: auto;
 }
 
 .mobileActions {
@@ -141,7 +141,9 @@
     }
 
     .mobileActions {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
         margin-top: auto;
         padding-top: var(--spacing-xl);
         border-top: var(--border-soft);
