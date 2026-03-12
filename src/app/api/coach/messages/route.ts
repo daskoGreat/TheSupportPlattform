@@ -6,9 +6,10 @@ export async function POST(req: Request) {
     try {
         const session = await auth();
 
-        if (!session?.user) {
+        if (!session?.user?.id) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
+        const userId = session.user.id;
 
         const body = await req.json();
         const { conversationId, content } = body;
@@ -19,7 +20,7 @@ export async function POST(req: Request) {
             data: {
                 content,
                 conversationId,
-                senderId: session.user.id!
+                senderId: userId
             }
         });
 

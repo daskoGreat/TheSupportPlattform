@@ -11,21 +11,22 @@ export default async function CoachDashboardPage() {
     const t = await getServerT();
     const session = await auth();
 
-    if (!session?.user) {
+    if (!session?.user?.id) {
         redirect("/signin");
     }
+    const userId = session.user.id;
 
     if ((session.user as any).role !== "COACH") {
         redirect("/"); // unauthorized for non-coaches
     }
 
     const coachUser = await prisma.user.findUnique({
-        where: { id: session.user.id },
+        where: { id: userId },
         select: { id: true, name: true, image: true },
     });
 
     const coachProfile = await prisma.coachProfile.findUnique({
-        where: { userId: session.user.id }
+        where: { userId: userId }
     });
 
     const profileComplete = isCoachProfileComplete(coachUser, coachProfile);
@@ -33,13 +34,13 @@ export default async function CoachDashboardPage() {
         redirect("/coach/profile");
     }
 
-    const actualCoachId = coachProfile ? coachProfile.id : session.user.id;
+    const actualCoachId = coachProfile ? coachProfile.id : userId;
 
     const conversations = await prisma.conversation.findMany({
         where: {
             participants: {
                 some: {
-                    userId: session.user.id
+                    userId: userId
                 }
             }
         },
@@ -66,11 +67,11 @@ export default async function CoachDashboardPage() {
     const userMap = new Map(users.map(u => [u.id, u]));
 
     const formattedConversations = conversations.map(c => {
-        const otherParticipantId = c.participants.find(p => p.userId !== session.user?.id)?.userId;
+        const otherParticipantId = c.participants.find(p => p.userId !== userId)?.userId;
         const otherParticipant = otherParticipantId ? userMap.get(otherParticipantId) : null;
         const lastMessage = c.messages.length > 0 ? c.messages[c.messages.length - 1] : null;
 
-        const isUnread = lastMessage && lastMessage.senderId !== session.user?.id;
+        const isUnread = lastMessage && lastMessage.senderId !== userId;
 
         return {
             id: c.id,

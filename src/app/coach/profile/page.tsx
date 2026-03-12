@@ -10,16 +10,17 @@ export default async function CoachProfilePage() {
     const t = await getServerT();
     const session = await auth();
 
-    if (!session?.user) {
+    if (!session?.user?.id) {
         redirect("/signin");
     }
+    const userId = session.user.id;
 
     if ((session.user as any).role !== "COACH") {
         redirect("/");
     }
 
     const user = await prisma.user.findUnique({
-        where: { id: session.user.id },
+        where: { id: userId },
         select: {
             id: true,
             name: true,
@@ -28,7 +29,7 @@ export default async function CoachProfilePage() {
     });
 
     const coachProfile = await prisma.coachProfile.findUnique({
-        where: { userId: session.user.id },
+        where: { userId: userId },
         select: {
             id: true,
             title: true,

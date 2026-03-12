@@ -8,16 +8,17 @@ import { getNestedValue } from "@/i18n/utils";
 export async function GET() {
     const session = await auth();
 
-    if (!session?.user) {
+    if (!session?.user?.id) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+    const userId = session.user.id;
 
     if ((session.user as any).role !== "COACH") {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
     const user = await prisma.user.findUnique({
-        where: { id: session.user.id },
+        where: { id: userId },
         select: {
             id: true,
             name: true,
@@ -26,7 +27,7 @@ export async function GET() {
     });
 
     const coachProfile = await prisma.coachProfile.findUnique({
-        where: { userId: session.user.id },
+        where: { userId: userId },
         select: {
             id: true,
             title: true,
@@ -103,8 +104,13 @@ export async function POST(req: Request) {
             );
         }
 
+        const userId = session.user.id;
+        if (!userId) {
+            return NextResponse.json({ error: "User ID not found in session" }, { status: 400 });
+        }
+
         await prisma.user.update({
-            where: { id: session.user.id },
+            where: { id: userId },
             data: {
                 name,
                 image,
@@ -114,32 +120,32 @@ export async function POST(req: Request) {
         const expertiseArray: string[] =
             typeof specialties === "string"
                 ? specialties
-                      .split(",")
-                      .map((s: string) => s.trim())
-                      .filter(Boolean)
+                    .split(",")
+                    .map((s: string) => s.trim())
+                    .filter(Boolean)
                 : Array.isArray(specialties)
-                ? specialties
-                : [];
+                    ? specialties
+                    : [];
 
         const languagesArray: string[] =
             typeof languages === "string"
                 ? languages
-                      .split(",")
-                      .map((s: string) => s.trim())
-                      .filter(Boolean)
+                    .split(",")
+                    .map((s: string) => s.trim())
+                    .filter(Boolean)
                 : Array.isArray(languages)
-                ? languages
-                : [];
+                    ? languages
+                    : [];
 
         const years =
             typeof yearsOfExperience === "number"
                 ? yearsOfExperience
                 : yearsOfExperience
-                ? Number(yearsOfExperience)
-                : null;
+                    ? Number(yearsOfExperience)
+                    : null;
 
         const coachProfile = await prisma.coachProfile.upsert({
-            where: { userId: session.user.id },
+            where: { userId: userId },
             update: {
                 title: title ?? "",
                 shortIntro: shortDescription,
@@ -151,7 +157,7 @@ export async function POST(req: Request) {
                 isActive: true,
             },
             create: {
-                userId: session.user.id,
+                userId: userId,
                 title: title ?? "",
                 shortIntro: shortDescription,
                 longBio: longBio ?? "",
