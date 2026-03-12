@@ -8,11 +8,12 @@ interface BookingPageProps {
     params: { id: string };
 }
 
-export default async function BookingPage({ params }: BookingPageProps) {
+export default async function BookingPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     const t = await getServerT();
 
     const coach = await prisma.user.findUnique({
-        where: { id: params.id },
+        where: { id: id },
         include: {
             coachProfile: true
         }

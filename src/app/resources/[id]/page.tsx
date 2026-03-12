@@ -9,9 +9,10 @@ interface ResourceDetailPageProps {
     params: { id: string };
 }
 
-export default async function ResourceDetailPage({ params }: { params: { id: string } }) {
+export default async function ResourceDetailPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     const resource = await (prisma as any).resource.findUnique({
-        where: { id: params.id }
+        where: { id: id }
     });
 
     if (!resource) {

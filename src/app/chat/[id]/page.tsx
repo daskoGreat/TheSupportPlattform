@@ -1,13 +1,14 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, use } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSelection } from '@/context/SelectionContext';
 import styles from './chat.module.css';
 import { ArrowLeft, Send, ShieldCheck, Heart } from 'lucide-react';
 import { useT } from '@/i18n/client';
 
-export default function CoachChat({ params }: { params: { id: string } }) {
+export default function CoachChat({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = use(params);
     const tChat = useT("chat");
     const { selectedCoach } = useSelection();
     const [messages, setMessages] = useState<{ id: string; sender: 'user' | 'coach'; text: string; time: string }[]>([
@@ -122,7 +123,7 @@ export default function CoachChat({ params }: { params: { id: string } }) {
                         <button type="submit" className={styles.sendBtn}><Send size={20} /></button>
                     </form>
                     <div className={styles.bookingBar}>
-                        {tChat('bookBar')} <button onClick={() => router.push(`/book/${params.id}`)} className={styles.bookInChat}>{tChat('bookCta')}</button>
+                        {tChat('bookBar')} <button onClick={() => router.push(`/book/${id}`)} className={styles.bookInChat}>{tChat('bookCta')}</button>
                     </div>
                 </div>
             </div>

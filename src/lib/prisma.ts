@@ -1,27 +1,23 @@
 import { PrismaClient } from '@prisma/client'
 
-// PrismaClient is attached to the `globalThis` object in development to prevent
-// exhausting your database connection limit.
-//
-// Learn more:
-// https://pris.ly/d/help/next-js-best-practices
-
 const prismaClientSingleton = () => {
-    // Avoid construction errors during build if DATABASE_URL is somehow missing or malformed
-    try {
-        return new PrismaClient()
-    } catch (err) {
-        console.warn('PrismaClient failed to initialize. This is expected during some build phases if DB is unavailable.');
-        return null as unknown as PrismaClient;
-    }
+    return new PrismaClient()
 }
 
 declare global {
-    var prisma: undefined | ReturnType<typeof prismaClientSingleton>
+    var prismaInstance: undefined | PrismaClient
 }
 
-const prisma = globalThis.prisma ?? prismaClientSingleton()
+// Use a proxy to delay instantiation until the first property access.
+// This prevents initialization errors during the Next.js build-time 
+// module evaluation phase.
+const prisma = new Proxy({} as PrismaClient, {
+    get: (target, prop) => {
+        if (!globalThis.prismaInstance) {
+            globalThis.prismaInstance = prismaClientSingleton();
+        }
+        return (globalThis.prismaInstance as any)[prop];
+    }
+});
 
 export default prisma
-
-if (process.env.NODE_ENV !== 'production') globalThis.prisma = prisma

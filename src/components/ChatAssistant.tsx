@@ -25,9 +25,35 @@ export default function ChatAssistant() {
     const { locale } = useLanguage();
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    // Initial welcome message (omitted for brevity in this chunk, keeping existing logic)
+    // Add trigger listener for the Support Hub
+    useEffect(() => {
+        const handleTrigger = (e: any) => {
+            const { action, text } = e.detail;
+            setIsOpen(true);
+            setIsMinimized(false);
+            if (action === 'send' && text) {
+                setInput(text);
+            }
+        };
 
-    // ...
+        window.addEventListener('tsn:trigger-luna', handleTrigger);
+        return () => window.removeEventListener('tsn:trigger-luna', handleTrigger);
+    }, []);
+
+    // Initial welcome message
+    useEffect(() => {
+        if (isOpen && messages.length === 0) {
+            setIsTyping(true);
+            const timer = setTimeout(() => {
+                setIsTyping(false);
+                setMessages([{
+                    role: 'assistant',
+                    content: t('welcome') || "Hi! I'm Luna, your supportive guide. How are you feeling today?"
+                }]);
+            }, 600);
+            return () => clearTimeout(timer);
+        }
+    }, [isOpen, messages.length, t]);
 
     // Refactored handleSend logic to be callable internally
     const sendMessage = async (text: string) => {

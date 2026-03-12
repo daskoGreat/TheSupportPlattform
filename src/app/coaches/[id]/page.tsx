@@ -10,12 +10,13 @@ interface CoachProfilePageProps {
     params: { id: string };
 }
 
-export default async function CoachProfilePage({ params }: CoachProfilePageProps) {
+export default async function CoachProfilePage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     const t = await getServerT();
 
     // The ID in the URL is the USER ID (linked to the coach profile)
     const coach = await prisma.user.findUnique({
-        where: { id: params.id },
+        where: { id: id },
         include: {
             coachProfile: {
                 include: {

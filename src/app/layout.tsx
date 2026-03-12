@@ -7,6 +7,8 @@ import Navbar from '@/components/Navbar';
 import { getServerLocale } from '@/i18n/server';
 import { auth } from '@/auth';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: 'The Support Network',
     description: 'A warm, safe and inviting support marketplace.',
