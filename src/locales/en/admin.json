@@ -1,0 +1,29 @@
+{
+  "title": "Admin",
+  "overview": "Overview",
+  "users": "Users",
+  "coaches": "Coaches",
+  "bookings": "Bookings",
+  "messages": "Messages",
+  "platformOverview": "Platform overview",
+  "recentBookings": "Recent bookings",
+  "viewAll": "View all",
+  "table": {
+    "user": "User",
+    "coach": "Coach",
+    "time": "Time",
+    "status": "Status"
+  },
+  "statusConfirmed": "Confirmed",
+  "statusPending": "Pending",
+  "statusCancelled": "Cancelled",
+  "searchUsers": "Search users...",
+  "searchBookings": "Search bookings...",
+  "settings": "Settings",
+  "manageUsersDescription": "Manage registered users and their permissions.",
+  "manageBookingsDescription": "View and manage all session bookings.",
+  "platformSettingsDescription": "Configure platform-wide settings and preferences.",
+  "sample": {
+    "timeTomorrow": "Tomorrow 10:30"
+  }
+}

@@ -1,0 +1,180 @@
+/* [project]/src/app/signin/auth.module.css [app-client] (css) */
+.auth-module__e2Oyya__wrapper {
+  background-color: var(--bg-dark);
+  min-height: 100vh;
+  color: var(--text-bright);
+  padding: var(--spacing-xl);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-module__e2Oyya__corner {
+  pointer-events: none;
+  opacity: .6;
+  width: 350px;
+  height: 350px;
+  position: absolute;
+}
+
+.auth-module__e2Oyya__topLeft {
+  top: -40px;
+  left: -40px;
+}
+
+.auth-module__e2Oyya__topRight {
+  top: -40px;
+  right: -40px;
+  transform: scaleX(-1);
+}
+
+.auth-module__e2Oyya__bottomLeft {
+  bottom: -40px;
+  left: -40px;
+  transform: scaleY(-1);
+}
+
+.auth-module__e2Oyya__bottomRight {
+  bottom: -40px;
+  right: -40px;
+  transform: scale(-1);
+}
+
+.auth-module__e2Oyya__authCard {
+  background: var(--bg-panel);
+  width: 100%;
+  max-width: 480px;
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-lg);
+  border: var(--border-subtle);
+  z-index: 2;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 20px #00000080;
+}
+
+.auth-module__e2Oyya__miniHeart {
+  width: 60px;
+  height: auto;
+  margin-bottom: var(--spacing-md);
+}
+
+.auth-module__e2Oyya__subtitle {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xl);
+}
+
+.auth-module__e2Oyya__form {
+  gap: var(--spacing-md);
+  flex-direction: column;
+  display: flex;
+}
+
+.auth-module__e2Oyya__roleSelector {
+  background: var(--bg-dark);
+  margin-bottom: var(--spacing-md);
+  border-radius: 50px;
+  padding: 4px;
+  display: flex;
+}
+
+.auth-module__e2Oyya__roleSelector button {
+  color: var(--text-muted);
+  transition: var(--transition-smooth);
+  border-radius: 50px;
+  flex: 1;
+  padding: 10px;
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.auth-module__e2Oyya__roleSelector .auth-module__e2Oyya__activeRole {
+  background: var(--bg-secondary);
+  color: var(--text-bright);
+  box-shadow: 0 2px 10px #0006;
+}
+
+.auth-module__e2Oyya__grid {
+  gap: var(--spacing-md);
+  grid-template-columns: 1fr 1fr;
+  display: grid;
+}
+
+.auth-module__e2Oyya__input {
+  background: var(--bg-dark);
+  border: var(--border-subtle);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  outline: none;
+  font-size: 1rem;
+}
+
+.auth-module__e2Oyya__input:focus {
+  border-color: var(--accent-heart);
+}
+
+textarea.auth-module__e2Oyya__input {
+  resize: none;
+  min-height: 80px;
+}
+
+.auth-module__e2Oyya__submitBtn {
+  background: var(--accent-heart);
+  color: #fff;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-sm);
+  margin-top: var(--spacing-md);
+  transition: background-color var(--transition-smooth), transform .2s;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.auth-module__e2Oyya__submitBtn:hover {
+  background: #e62345;
+  transform: translateY(-2px);
+}
+
+.auth-module__e2Oyya__footerLinks {
+  margin-top: var(--spacing-xl);
+  color: var(--text-muted);
+  font-size: .9rem;
+}
+
+.auth-module__e2Oyya__footerLinks a {
+  color: var(--text-bright);
+  text-decoration: underline;
+}
+
+.auth-module__e2Oyya__errorMessage {
+  color: var(--accent-heart);
+  background: #e31b231a;
+  border: 1px solid #e31b2333;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: .85rem;
+}
+
+.auth-module__e2Oyya__backLink {
+  margin-top: var(--spacing-md);
+  opacity: .7;
+  font-weight: 600;
+  display: inline-block;
+}
+
+@media (max-width: 520px) {
+  .auth-module__e2Oyya__authCard {
+    padding: var(--spacing-xl);
+  }
+
+  .auth-module__e2Oyya__corner {
+    opacity: .45;
+    width: 260px;
+    height: 260px;
+  }
+}
+
+/*# sourceMappingURL=src_app_signin_auth_module_f7e09cec.css.map*/

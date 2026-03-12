@@ -1,0 +1,14 @@
+{
+  "initialCoachMessage": "Hi! I see you matched with me. How are you feeling today?",
+  "header": {
+    "online": "Online",
+    "defaultCoach": "Your coach"
+  },
+  "disclaimer": "This is a private conversation between you and your coach.",
+  "emptyTitle": "Your conversation starts here.",
+  "emptySubtitle": "Write a message to start the conversation.",
+  "inputPlaceholder": "Write a message to your coach...",
+  "bookBar": "Feels right?",
+  "bookCta": "Book a session"
+}
+

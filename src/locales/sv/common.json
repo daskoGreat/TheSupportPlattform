@@ -1,0 +1,42 @@
+{
+  "appName": "The Support Network",
+  "nav": {
+    "back": "Tillbaka",
+    "home": "Start",
+    "community": "Community",
+    "findCoach": "Hitta en coach"
+  },
+  "loading": {
+    "loading": "Laddar...",
+    "saving": "Sparar...",
+    "sending": "Skickar...",
+    "signingIn": "Loggar in..."
+  },
+  "empty": {
+    "none": "Inget här ännu"
+  },
+  "actions": {
+    "continue": "Fortsätt",
+    "save": "Spara",
+    "update": "Uppdatera",
+    "close": "Stäng"
+  },
+  "labels": {
+    "unknownUser": "Okänd användare"
+  },
+  "pages": {
+    "coaches": {
+      "title": "Våra specialiserade coacher",
+      "subtitle": "Hitta rätt person som kan stötta dig på din resa."
+    }
+  },
+  "toast": {
+    "actionFailed": "Kunde inte genomföra åtgärden",
+    "messageSent": "Meddelandet skickades",
+    "bookingAccepted": "Bokningen accepterades",
+    "bookingDeclined": "Bokningen avböjdes",
+    "profileSaved": "Profilen sparades",
+    "languageUpdated": "Språket uppdaterades"
+  }
+}
+

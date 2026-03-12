@@ -1,0 +1,73 @@
+{
+  "dashboard": {
+    "title": "Panel del coach",
+    "messages": "Mensajes",
+    "bookings": "Reservas",
+    "summary": {
+      "newMessages": "Nuevos mensajes",
+      "todayBookings": "Reservas de hoy",
+      "pendingRequests": "Solicitudes pendientes",
+      "upcoming": "Sesiones próximas"
+    },
+    "emptyMessages": "No hay mensajes nuevos",
+    "emptyBookings": "No hay reservas pendientes o próximas",
+    "backToList": "Volver a la lista",
+    "replyPlaceholder": "Escribe un mensaje...",
+    "reply": "Responder",
+    "pendingTitle": "Solicitudes pendientes",
+    "todayTitle": "Sesiones de hoy",
+    "upcomingTitle": "Próximas",
+    "accept": "Aceptar",
+    "decline": "Rechazar",
+    "status": {
+      "pending": "Pendiente",
+      "confirmed": "Confirmada",
+      "declined": "Rechazada"
+    }
+  },
+  "publicProfile": {
+    "title": "Perfil del coach",
+    "selectFirst": "Por favor, primero elige un coach en la página de matching.",
+    "toMatching": "Ir al matching",
+    "aboutMe": "Sobre mí",
+    "aboutBody": "Estoy dedicado a apoyar a personas en situaciones similares a la tuya. Mi objetivo es crear un espacio seguro y cercano donde podamos explorar soluciones juntos.",
+    "privacyNote": "Tu privacidad importa. Todas las conversaciones y reservas están cifradas y seguras.",
+    "startChat": "Iniciar chat",
+    "book": "Reservar sesión"
+  },
+  "profile": {
+    "createTitle": "Crea tu perfil de coach",
+    "editTitle": "Editar perfil de coach",
+    "createSubtitle": "Necesitas completar tu perfil antes de usar el panel.",
+    "editSubtitle": "Actualiza tu información para que las personas correctas te encuentren.",
+    "noticeTitle": "Necesitas completar tu perfil de coach",
+    "noticeBody": "Añade una imagen, tu nombre y una descripción corta para empezar.",
+    "avatar": "Imagen de perfil",
+    "name": "Nombre",
+    "title": "Título",
+    "shortDescription": "Descripción corta",
+    "longBio": "Biografía larga (opcional)",
+    "specialties": "Especialidades (opcional)",
+    "languages": "Idiomas (opcional)",
+    "years": "Años de experiencia (opcional)",
+    "avatarHelper": "Pega una URL segura. Verás una vista previa al instante.",
+    "avatarPlaceholder": "URL de imagen de perfil (https://...)",
+    "namePlaceholder": "Tu nombre completo",
+    "titlePlaceholder": "Por ejemplo: Coach de estrés, Coach de vida...",
+    "shortPlaceholder": "Describe brevemente quién eres y cómo ayudas a tus clientes.",
+    "longPlaceholder": "Cuenta más sobre tu experiencia, tu enfoque y lo que importa en tus sesiones.",
+    "specialtiesPlaceholder": "Por ejemplo: estrés, burnout, relaciones (separado por comas)",
+    "languagesPlaceholder": "Por ejemplo: Español, Inglés",
+    "defaultLanguage": "Español",
+    "yearsPlaceholder": "Por ejemplo: 5",
+    "save": "Guardar perfil",
+    "update": "Actualizar perfil",
+    "saving": "Guardando...",
+    "validation": {
+      "image": "Añade una imagen de perfil",
+      "name": "Escribe tu nombre",
+      "short": "Escribe una descripción corta"
+    }
+  }
+}
+

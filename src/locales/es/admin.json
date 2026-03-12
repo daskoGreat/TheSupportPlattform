@@ -1,0 +1,29 @@
+{
+  "title": "Admin",
+  "overview": "Resumen",
+  "users": "Usuarios",
+  "coaches": "Coaches",
+  "bookings": "Reservas",
+  "messages": "Mensajes",
+  "platformOverview": "Resumen de la plataforma",
+  "recentBookings": "Reservas recientes",
+  "viewAll": "Ver todo",
+  "table": {
+    "user": "Usuario",
+    "coach": "Coach",
+    "time": "Hora",
+    "status": "Estado"
+  },
+  "statusConfirmed": "Confirmada",
+  "statusPending": "Pendiente",
+  "statusCancelled": "Cancelada",
+  "searchUsers": "Buscar usuarios...",
+  "searchBookings": "Buscar reservas...",
+  "settings": "Ajustes",
+  "manageUsersDescription": "Administrar usuarios registrados y sus permisos.",
+  "manageBookingsDescription": "Ver y gestionar todas las reservas de sesiones.",
+  "platformSettingsDescription": "Configurar los ajustes y preferencias de toda la plataforma.",
+  "sample": {
+    "timeTomorrow": "Mañana 10:30"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "dashboard": {
+    "title": "Coach overview",
+    "messages": "Messages",
+    "bookings": "Bookings",
+    "summary": {
+      "newMessages": "New messages",
+      "todayBookings": "Today's bookings",
+      "pendingRequests": "Pending requests",
+      "upcoming": "Upcoming sessions"
+    },
+    "emptyMessages": "No new messages",
+    "emptyBookings": "No pending or upcoming bookings",
+    "backToList": "Back to list",
+    "replyPlaceholder": "Write a message...",
+    "reply": "Reply",
+    "pendingTitle": "Pending requests",
+    "todayTitle": "Today's sessions",
+    "upcomingTitle": "Upcoming",
+    "accept": "Accept",
+    "decline": "Decline",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "declined": "Declined"
+    }
+  },
+  "publicProfile": {
+    "title": "Coach profile",
+    "selectFirst": "Please select a coach from the matching page first.",
+    "toMatching": "Go to matching",
+    "aboutMe": "About me",
+    "aboutBody": "I’m dedicated to supporting people in situations similar to yours. My focus is to create a safe and supportive space where we can explore solutions together.",
+    "privacyNote": "Your privacy matters. All conversations and bookings are encrypted and secure.",
+    "startChat": "Start chat",
+    "book": "Book a session"
+  },
+  "profile": {
+    "createTitle": "Create your coach profile",
+    "editTitle": "Edit coach profile",
+    "createSubtitle": "You need to complete your coach profile before you can use your dashboard.",
+    "editSubtitle": "Update your information so the right people can find you.",
+    "noticeTitle": "You need to complete your coach profile",
+    "noticeBody": "Add an image, name and a short description to get started.",
+    "avatar": "Profile image",
+    "name": "Name",
+    "title": "Title",
+    "shortDescription": "Short description",
+    "longBio": "Long bio (optional)",
+    "specialties": "Specialties (optional)",
+    "languages": "Languages (optional)",
+    "years": "Years of experience (optional)",
+    "avatarHelper": "Paste a secure image URL. You’ll see a preview immediately.",
+    "avatarPlaceholder": "Profile image URL (https://...)",
+    "namePlaceholder": "Your full name",
+    "titlePlaceholder": "For example: Stress coach, Life coach...",
+    "shortPlaceholder": "Briefly describe who you are and how you support your clients.",
+    "longPlaceholder": "Share more about your background, approach and what matters in your sessions.",
+    "specialtiesPlaceholder": "For example: stress, burnout, relationships (comma separated)",
+    "languagesPlaceholder": "For example: English, Swedish",
+    "defaultLanguage": "English",
+    "yearsPlaceholder": "For example: 5",
+    "save": "Save profile",
+    "update": "Update profile",
+    "saving": "Saving...",
+    "validation": {
+      "image": "Add a profile image",
+      "name": "Enter your name",
+      "short": "Write a short description"
+    }
+  }
+}
+

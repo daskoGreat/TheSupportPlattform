@@ -1,0 +1,194 @@
+.wrapper {
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    color: var(--text-bright);
+    padding: var(--spacing-xl);
+}
+
+.corner {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.topLeft {
+    top: -40px;
+    left: -40px;
+}
+
+.topRight {
+    top: -40px;
+    right: -40px;
+    transform: scaleX(-1);
+}
+
+.bottomLeft {
+    bottom: -40px;
+    left: -40px;
+    transform: scaleY(-1);
+}
+
+.bottomRight {
+    bottom: -40px;
+    right: -40px;
+    transform: scale(-1);
+}
+
+.authCard {
+    background: var(--bg-panel);
+    width: 100%;
+    max-width: 480px;
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-lg);
+    border: var(--border-subtle);
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.miniHeart {
+    width: 60px;
+    height: auto;
+    margin-bottom: var(--spacing-md);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.roleSelector {
+    display: flex;
+    background: var(--bg-dark);
+    padding: 4px;
+    border-radius: 50px;
+    margin-bottom: var(--spacing-md);
+}
+
+.roleSelector button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+
+.roleSelector .activeRole {
+    background: var(--bg-secondary);
+    color: var(--text-bright);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.input {
+    background: var(--bg-dark);
+    border: var(--border-subtle);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    outline: none;
+    font-size: 1rem;
+}
+
+.input:focus {
+    border-color: var(--accent-heart);
+}
+
+textarea.input {
+    min-height: 80px;
+    resize: none;
+}
+
+.submitBtn {
+    background: var(--accent-heart);
+    color: white;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: var(--spacing-md);
+    transition: background-color var(--transition-smooth), transform 0.2s;
+}
+
+.submitBtn:hover {
+    background: #e62345;
+    transform: translateY(-2px);
+}
+
+.coachNote {
+    background: rgba(123, 159, 182, 0.08);
+    border: 1px solid rgba(123, 159, 182, 0.22);
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.coachNote p {
+    margin: 0;
+}
+
+.errorMessage {
+    background: rgba(227, 27, 35, 0.1);
+    color: var(--accent-heart);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    border: 1px solid rgba(227, 27, 35, 0.2);
+}
+
+.footerLinks {
+    margin-top: var(--spacing-xl);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.footerLinks a {
+    color: var(--text-bright);
+    text-decoration: underline;
+}
+
+.backLink {
+    display: inline-block;
+    margin-top: var(--spacing-md);
+    font-weight: 600;
+    opacity: 0.7;
+}
+
+@media (max-width: 520px) {
+    .authCard {
+        padding: var(--spacing-xl);
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .corner {
+        width: 260px;
+        height: 260px;
+        opacity: 0.45;
+    }
+}

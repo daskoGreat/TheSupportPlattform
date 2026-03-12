@@ -1,0 +1,135 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // url handled in prisma.config.ts and runtime adapter
+}
+
+enum Role {
+  USER
+  COACH
+  ADMIN
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  coachProfile  CoachProfile?
+  aiSessions    AiSession[]
+  sentMessages  Message[]    @relation("SentMessages")
+  userBookings  Booking[]    @relation("UserBookings")
+}
+
+model CoachProfile {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id])
+  title            String
+  shortIntro       String
+  longBio          String
+  expertise        String[]
+  languages        String[]
+  yearsOfExperience Int
+  preferredModes   String[] // ["VIDEO", "PHONE"]
+  isActive         Boolean  @default(true)
+  
+  // Vector search related (if pgvector is used, we might manage this differently but for now tags/text)
+  searchVector     Unsupported("tsvector")? 
+  
+  availability     Availability[]
+  bookings         Booking[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model AiSession {
+  id              String      @id @default(cuid())
+  userId          String
+  user            User        @relation(fields: [userId], references: [id])
+  summary         String?
+  emotionalTone   String?
+  extractedNeeds  String[]
+  matches         MatchResult[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  messages        AiMessage[]
+}
+
+model AiMessage {
+  id           String    @id @default(cuid())
+  sessionId    String
+  session      AiSession @relation(fields: [sessionId], references: [id])
+  role         String    // "user" or "assistant"
+  content      String
+  createdAt    DateTime  @default(now())
+}
+
+model MatchResult {
+  id          String    @id @default(cuid())
+  sessionId   String
+  session     AiSession @relation(fields: [sessionId], references: [id])
+  coachId     String
+  score       Float
+  explanation String
+  createdAt   DateTime  @default(now())
+}
+
+model Conversation {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  messages  Message[]
+  participants ConversationParticipant[]
+}
+
+model ConversationParticipant {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  userId         String
+  createdAt      DateTime     @default(now())
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  senderId       String
+  sender         User         @relation("SentMessages", fields: [senderId], references: [id])
+  content        String
+  createdAt      DateTime     @default(now())
+}
+
+model Availability {
+  id             String       @id @default(cuid())
+  coachId        String
+  coach          CoachProfile @relation(fields: [coachId], references: [id])
+  dayOfWeek      Int          // 0-6
+  startTime      String       // "HH:mm"
+  endTime        String       // "HH:mm"
+  isActive       Boolean      @default(true)
+}
+
+model Booking {
+  id             String       @id @default(cuid())
+  coachId        String
+  coach          CoachProfile @relation(fields: [coachId], references: [id])
+  userId         String
+  user           User         @relation("UserBookings", fields: [userId], references: [id])
+  startTime      DateTime
+  endTime        DateTime
+  status         String       // "PENDING", "CONFIRMED", "CANCELLED"
+  type           String       // "VIDEO", "PHONE"
+  meetingLink    String?
+  createdAt      DateTime     @default(now())
+}

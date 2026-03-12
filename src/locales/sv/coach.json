@@ -1,0 +1,73 @@
+{
+  "dashboard": {
+    "title": "Coachöversikt",
+    "messages": "Meddelanden",
+    "bookings": "Bokningar",
+    "summary": {
+      "newMessages": "Nya meddelanden",
+      "todayBookings": "Dagens bokningar",
+      "pendingRequests": "Väntande förfrågningar",
+      "upcoming": "Kommande samtal"
+    },
+    "emptyMessages": "Inga nya meddelanden",
+    "emptyBookings": "Inga väntande eller kommande bokningar",
+    "backToList": "Tillbaka till listan",
+    "replyPlaceholder": "Skriv ett meddelande...",
+    "reply": "Svara",
+    "pendingTitle": "Väntande förfrågningar",
+    "todayTitle": "Dagens samtal",
+    "upcomingTitle": "Kommande",
+    "accept": "Acceptera",
+    "decline": "Avböj",
+    "status": {
+      "pending": "Väntar",
+      "confirmed": "Bekräftad",
+      "declined": "Avböjd"
+    }
+  },
+  "publicProfile": {
+    "title": "Coachprofil",
+    "selectFirst": "Vänligen välj en coach från matchningssidan först.",
+    "toMatching": "Till matchningen",
+    "aboutMe": "Om mig",
+    "aboutBody": "Jag är dedikerad till att hjälpa personer i liknande situationer som din. Mitt fokus ligger på att skapa en trygg och stöttande miljö där vi kan utforska lösningar tillsammans.",
+    "privacyNote": "Din integritet är viktig. Alla samtal och bokningar är krypterade och säkra.",
+    "startChat": "Starta chatt",
+    "book": "Boka tid"
+  },
+  "profile": {
+    "createTitle": "Skapa din coachprofil",
+    "editTitle": "Redigera coachprofil",
+    "createSubtitle": "Du behöver först slutföra din coachprofil innan du kan använda din coachöversikt.",
+    "editSubtitle": "Uppdatera din information så att rätt personer hittar dig.",
+    "noticeTitle": "Du behöver först slutföra din coachprofil",
+    "noticeBody": "Lägg till bild, namn och en kort beskrivning för att komma igång.",
+    "avatar": "Profilbild",
+    "name": "Namn",
+    "title": "Titel",
+    "shortDescription": "Kort beskrivning",
+    "longBio": "Längre presentation (valfritt)",
+    "specialties": "Specialiseringar (valfritt)",
+    "languages": "Språk (valfritt)",
+    "years": "År av erfarenhet (valfritt)",
+    "avatarHelper": "Klistra in en säker bildlänk. Du ser en förhandsvisning direkt.",
+    "avatarPlaceholder": "Länk till profilbild (https://...)",
+    "namePlaceholder": "Ditt fullständiga namn",
+    "titlePlaceholder": "Till exempel: Stresscoach, Samtalscoach...",
+    "shortPlaceholder": "Beskriv kort vem du är och hur du stöttar dina klienter.",
+    "longPlaceholder": "Berätta mer om din bakgrund, ditt arbetssätt och vad som är viktigt i dina samtal.",
+    "specialtiesPlaceholder": "Till exempel: stress, utmattning, relationer (kommaseparerat)",
+    "languagesPlaceholder": "Till exempel: Svenska, Engelska",
+    "defaultLanguage": "Svenska",
+    "yearsPlaceholder": "Till exempel: 5",
+    "save": "Spara profil",
+    "update": "Uppdatera profil",
+    "saving": "Sparar...",
+    "validation": {
+      "image": "Lägg till en profilbild",
+      "name": "Fyll i ditt namn",
+      "short": "Skriv en kort beskrivning"
+    }
+  }
+}
+

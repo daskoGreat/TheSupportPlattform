@@ -1,0 +1,29 @@
+{
+  "title": "Admin",
+  "overview": "Översikt",
+  "users": "Användare",
+  "coaches": "Coacher",
+  "bookings": "Bokningar",
+  "messages": "Meddelanden",
+  "platformOverview": "Plattformens översikt",
+  "recentBookings": "Senaste bokningarna",
+  "viewAll": "Visa alla",
+  "table": {
+    "user": "Användare",
+    "coach": "Coach",
+    "time": "Tid",
+    "status": "Status"
+  },
+  "statusConfirmed": "Bekräftad",
+  "statusPending": "Väntande",
+  "statusCancelled": "Avbokad",
+  "searchUsers": "Sök användare...",
+  "searchBookings": "Sök bokningar...",
+  "settings": "Inställningar",
+  "manageUsersDescription": "Hantera registrerade användare och deras behörigheter.",
+  "manageBookingsDescription": "Visa och hantera alla sessionsbokningar.",
+  "platformSettingsDescription": "Konfigurera plattformens inställningar och preferenser.",
+  "sample": {
+    "timeTomorrow": "Imorgon 10:30"
+  }
+}

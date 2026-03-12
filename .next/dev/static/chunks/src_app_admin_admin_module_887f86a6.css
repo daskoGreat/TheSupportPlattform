@@ -1,0 +1,228 @@
+/* [project]/src/app/admin/admin.module.css [app-client] (css) */
+.admin-module__4WpgRW__wrapper {
+  background: var(--bg-dark);
+  min-height: 100vh;
+  color: var(--text-primary);
+  display: flex;
+}
+
+.admin-module__4WpgRW__sidebar {
+  background: var(--bg-panel);
+  border-right: var(--border-subtle);
+  width: 260px;
+  padding: var(--spacing-xl);
+  flex-direction: column;
+  display: flex;
+}
+
+.admin-module__4WpgRW__logo {
+  margin-bottom: var(--spacing-2xl);
+  align-items: center;
+  gap: 12px;
+  display: flex;
+}
+
+.admin-module__4WpgRW__logo img {
+  width: 32px;
+}
+
+.admin-module__4WpgRW__logo span {
+  color: var(--text-bright);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.admin-module__4WpgRW__nav {
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+}
+
+.admin-module__4WpgRW__nav button {
+  color: var(--text-muted);
+  transition: var(--transition-smooth);
+  text-align: left;
+  border-radius: 12px;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  font-weight: 600;
+  display: flex;
+}
+
+.admin-module__4WpgRW__nav button:hover {
+  color: var(--text-primary);
+  background: #ffffff0d;
+}
+
+.admin-module__4WpgRW__nav .admin-module__4WpgRW__active {
+  color: var(--text-bright);
+  background: #ffffff14;
+}
+
+.admin-module__4WpgRW__main {
+  padding: var(--spacing-2xl);
+  flex: 1;
+  position: relative;
+  overflow-y: auto;
+}
+
+.admin-module__4WpgRW__loaderOverlay {
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+  background: #0b0f1480;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  inset: 0;
+}
+
+.admin-module__4WpgRW__spin {
+  color: var(--accent-blue);
+  animation: 1s linear infinite admin-module__4WpgRW__spin;
+}
+
+.admin-module__4WpgRW__simpleLoader {
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+.admin-module__4WpgRW__emptyState {
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-subtle);
+  margin-top: var(--spacing-md);
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+@keyframes admin-module__4WpgRW__spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.admin-module__4WpgRW__header {
+  margin-bottom: var(--spacing-2xl);
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.admin-module__4WpgRW__userProfile {
+  align-items: center;
+  gap: var(--spacing-md);
+  color: var(--text-secondary);
+  font-size: .9rem;
+  display: flex;
+}
+
+.admin-module__4WpgRW__avatar {
+  background: var(--accent-sage);
+  color: #fff;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  font-weight: bold;
+  display: flex;
+}
+
+.admin-module__4WpgRW__statsGrid {
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: grid;
+}
+
+.admin-module__4WpgRW__statCard {
+  background: var(--bg-card);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-md);
+  border: var(--border-subtle);
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.admin-module__4WpgRW__statInfo p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: .9rem;
+}
+
+.admin-module__4WpgRW__statInfo h3 {
+  color: var(--text-bright);
+  margin: 4px 0 0;
+  font-size: 1.8rem;
+}
+
+.admin-module__4WpgRW__statIcon {
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  width: 52px;
+  height: 52px;
+  display: flex;
+}
+
+.admin-module__4WpgRW__recentActivity {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: var(--border-subtle);
+  padding: var(--spacing-xl);
+}
+
+.admin-module__4WpgRW__sectionHeader {
+  margin-bottom: var(--spacing-xl);
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.admin-module__4WpgRW__viewAll {
+  color: var(--accent-blue);
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.admin-module__4WpgRW__table {
+  flex-direction: column;
+  display: flex;
+}
+
+.admin-module__4WpgRW__tableRow {
+  border-bottom: var(--border-subtle);
+  padding: var(--spacing-md) 0;
+  display: flex;
+}
+
+.admin-module__4WpgRW__tableRow:last-child {
+  border-bottom: none;
+}
+
+.admin-module__4WpgRW__tableCell {
+  color: var(--text-secondary);
+  flex: 1;
+  font-size: .9rem;
+}
+
+.admin-module__4WpgRW__badge {
+  color: var(--color-success);
+  background: #5cb85c1a;
+  border-radius: 50px;
+  padding: 4px 12px;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+/*# sourceMappingURL=src_app_admin_admin_module_887f86a6.css.map*/

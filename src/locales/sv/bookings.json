@@ -1,0 +1,19 @@
+{
+  "book": {
+    "title": "Boka tid med {{name}}",
+    "step1": "1. Välj typ av samtal",
+    "step2": "2. Välj en ledig tid",
+    "confirm": "Bekräfta bokning",
+    "video": "Videosamtal",
+    "phone": "Telefonsamtal",
+    "videoSub": "Via vår säkra länk",
+    "phoneSub": "Coachen ringer upp dig",
+    "successTitle": "Bokad och klar!",
+    "successBody": "Du har bokat ett {{type}} med {{name}}.",
+    "detailsTime": "Tid",
+    "detailsType": "Typ",
+    "tomorrowAt": "Imorgon kl {{time}}",
+    "backHome": "Tillbaka till start"
+  }
+}
+

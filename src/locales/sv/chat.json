@@ -1,0 +1,14 @@
+{
+  "initialCoachMessage": "Hej! Jag ser att du matchades med mig. Hur mår du idag?",
+  "header": {
+    "online": "Online",
+    "defaultCoach": "Din coach"
+  },
+  "disclaimer": "Det här är ett privat samtal mellan dig och din coach.",
+  "emptyTitle": "Din konversation börjar här.",
+  "emptySubtitle": "Skriv ett meddelande för att starta samtalet.",
+  "inputPlaceholder": "Skriv ett meddelande till din coach...",
+  "bookBar": "Känns det rätt?",
+  "bookCta": "Boka ett samtal"
+}
+

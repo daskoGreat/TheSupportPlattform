@@ -1,0 +1,104 @@
+[00:00:00.538] Server  LOG     ✓ Ready in 361ms
+[00:00:00.826] Server  LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:00.940] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:00.940] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:00.940] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:01.195] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:01.274] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:01.278] Browser LOG     [Admin] Rendering. Tab: overview, Loading: true
+[00:00:01.278] Browser LOG     [Admin] Rendering. Tab: overview, Loading: true
+[00:00:01.394] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:01.395] Browser ERROR   Error fetching admin data: {"digest":"995923197","environmentName":"Server","name":"PrismaClientConstructorValidationError"}
+[00:00:01.395] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:01.395] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:01.514] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:01.620] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:00:01.620] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:00:08.975] Server  LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:09.060] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:09.060] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:09.060] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:09.131] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:09.278] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:09.280] Browser LOG     [Admin] Rendering. Tab: overview, Loading: true
+[00:00:09.280] Browser LOG     [Admin] Rendering. Tab: overview, Loading: true
+[00:00:09.394] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:09.396] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:00:09.396] Browser ERROR   Error fetching admin data: {"digest":"995923197","environmentName":"Server","name":"PrismaClientConstructorValidationError"}
+[00:00:09.396] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:09.396] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:09.396] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:09.396] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:09.424] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:09.530] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:00:10.713] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:10.714] Browser LOG     [Admin] Switching tab to: users
+[00:00:10.714] Browser LOG     [Admin] Rendering. Tab: users, Loading: false
+[00:00:10.714] Browser LOG     [Admin] Rendering. Tab: users, Loading: false
+[00:00:10.714] Browser LOG     [Admin] Rendering. Tab: users, Loading: true
+[00:00:10.714] Browser LOG     [Admin] Rendering. Tab: users, Loading: true
+[00:00:10.820] Browser ERROR   Error fetching admin data: {"digest":"995923197","environmentName":"Server","name":"PrismaClientConstructorValidationError"}
+[00:00:10.820] Browser LOG     [Admin] Rendering. Tab: users, Loading: false
+[00:00:10.820] Browser LOG     [Admin] Rendering. Tab: users, Loading: false
+[00:00:11.737] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:11.738] Browser LOG     [Admin] Switching tab to: overview
+[00:00:11.738] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:11.738] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:11.738] Browser LOG     [Admin] Rendering. Tab: overview, Loading: true
+[00:00:11.738] Browser LOG     [Admin] Rendering. Tab: overview, Loading: true
+[00:00:11.849] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:11.850] Browser ERROR   Error fetching admin data: {"digest":"995923197","environmentName":"Server","name":"PrismaClientConstructorValidationError"}
+[00:00:11.850] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:11.850] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:42.938] Server  LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:43.018] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:43.018] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:43.018] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:43.079] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:43.236] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:43.238] Browser LOG     [Admin] Rendering. Tab: overview, Loading: true
+[00:00:43.238] Browser LOG     [Admin] Rendering. Tab: overview, Loading: true
+[00:00:43.376] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:43.377] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:00:43.377] Browser ERROR   Error fetching admin data: {"digest":"995923197","environmentName":"Server","name":"PrismaClientConstructorValidationError"}
+[00:00:43.377] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:43.377] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:00:43.402] Server  ERROR   ⨯ PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+[00:00:43.510] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:01:22.022] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:01:22.022] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:03:27.010] Server  LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:03:27.242] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:27.312] Server  LOG     [Admin Actions] Server Actions module loaded
+[00:03:27.312] Server  LOG     [getStats] Fetching platform stats
+[00:03:27.400] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:03:27.400] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:03:27.400] Browser LOG     [Admin] Rendering. Tab: overview, Loading: true
+[00:03:27.400] Browser LOG     [Admin] Rendering. Tab: overview, Loading: true
+[00:03:27.477] Server  LOG     prisma:query "SELECT COUNT(*) AS \"_count$_all\" FROM (SELECT \"public\".\"User\".\"id\" FROM \"public\".\"User\" WHERE \"public\".\"User\".\"role\" = CAST($1::text AS \"public\".\"Role\") OFFSET $2) AS \"sub\""
+[00:03:37.489] Server  LOG     prisma:query "SELECT COUNT(*) AS \"_count$_all\" FROM (SELECT \"public\".\"User\".\"id\" FROM \"public\".\"User\" WHERE \"public\".\"User\".\"role\" = CAST($1::text AS \"public\".\"Role\") OFFSET $2) AS \"sub\""
+[00:03:47.497] Server  LOG     prisma:query "SELECT COUNT(*) AS \"_count$_all\" FROM (SELECT \"public\".\"Booking\".\"id\" FROM \"public\".\"Booking\" WHERE 1=1 OFFSET $1) AS \"sub\""
+[00:03:47.498] Server  LOG     [getStats] Stats fetched successfully
+[00:03:47.522] Server  LOG     [getBookings] Fetching with search="", page=1
+[00:03:47.544] Server  LOG     prisma:query "SELECT \"public\".\"Booking\".\"id\", \"public\".\"Booking\".\"coachId\", \"public\".\"Booking\".\"userId\", \"public\".\"Booking\".\"startTime\", \"public\".\"Booking\".\"endTime\", \"public\".\"Booking\".\"status\", \"public\".\"Booking\".\"type\", \"public\".\"Booking\".\"meetingLink\", \"public\".\"Booking\".\"createdAt\" FROM \"public\".\"Booking\" WHERE 1=1 ORDER BY \"public\".\"Booking\".\"startTime\" DESC LIMIT $1 OFFSET $2"
+[00:03:47.547] Server  LOG     prisma:query "SELECT \"public\".\"User\".\"id\", \"public\".\"User\".\"name\" FROM \"public\".\"User\" WHERE \"public\".\"User\".\"id\" IN ($1,$2,$3) OFFSET $4"
+[00:03:57.552] Server  LOG     prisma:query "SELECT COUNT(*) AS \"_count$_all\" FROM (SELECT \"public\".\"Booking\".\"id\" FROM \"public\".\"Booking\" WHERE 1=1 OFFSET $1) AS \"sub\""
+[00:04:07.571] Server  LOG     prisma:query "SELECT \"public\".\"CoachProfile\".\"id\", \"public\".\"CoachProfile\".\"userId\", \"public\".\"CoachProfile\".\"title\", \"public\".\"CoachProfile\".\"shortIntro\", \"public\".\"CoachProfile\".\"longBio\", \"public\".\"CoachProfile\".\"expertise\", \"public\".\"CoachProfile\".\"languages\", \"public\".\"CoachProfile\".\"yearsOfExperience\", \"public\".\"CoachProfile\".\"preferredModes\", \"public\".\"CoachProfile\".\"isActive\", \"public\".\"CoachProfile\".\"createdAt\", \"public\".\"CoachProfile\".\"updatedAt\" FROM \"public\".\"CoachProfile\" WHERE \"public\".\"CoachProfile\".\"id\" IN ($1,$2,$3) OFFSET $4"
+[00:04:07.576] Server  LOG     prisma:query "SELECT \"public\".\"User\".\"id\", \"public\".\"User\".\"name\" FROM \"public\".\"User\" WHERE \"public\".\"User\".\"id\" IN ($1,$2,$3) OFFSET $4"
+[00:04:07.728] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:04:07.728] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false

@@ -1,0 +1,192 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--bg-dark);
+}
+
+.header {
+    background: var(--bg-panel);
+    padding: var(--spacing-md) 0;
+    border-bottom: var(--border-subtle);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.backBtn {
+    color: var(--text-secondary);
+    transition: var(--transition-smooth);
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.name {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+.status {
+    font-size: 0.75rem;
+    color: var(--color-success);
+    font-weight: 600;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-xl) 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* 8px for same-sender, larger gap logic handled in TSX */
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.disclaimer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    margin: 0 var(--spacing-lg) var(--spacing-xl);
+    border: var(--border-subtle);
+}
+
+.messageWrapper {
+    display: flex;
+    padding: 0 var(--spacing-lg);
+}
+
+.user {
+    justify-content: flex-end;
+}
+
+.coach {
+    justify-content: flex-start;
+}
+
+.bubble {
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    max-width: 65%;
+    min-width: 80px;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.user .bubble {
+    background: var(--bubble-user-bg);
+    color: var(--bubble-user-text);
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.coach .bubble {
+    background: var(--bubble-coach-bg);
+    color: var(--bubble-coach-text);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.time {
+    display: block;
+    font-size: 0.7rem;
+    margin-top: 4px;
+    opacity: 0.7;
+    text-align: right;
+}
+
+.inputArea {
+    background: var(--bg-panel);
+    padding: var(--spacing-lg) 0 var(--spacing-xl);
+    border-top: var(--border-subtle);
+}
+
+.form {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.input {
+    flex: 1;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: 50px;
+    border: var(--border-subtle);
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    outline: none;
+    font-size: 1rem;
+    transition: border-color var(--transition-smooth);
+}
+
+.input::placeholder {
+    color: var(--text-muted);
+}
+
+.input:focus {
+    border-color: var(--hover-highlight);
+}
+
+.sendBtn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--accent-heart);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.sendBtn:hover {
+    background: #e62345;
+    box-shadow: 0 0 15px rgba(227, 27, 35, 0.4);
+}
+
+.bookingBar {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.bookInChat {
+    color: var(--text-bright);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.bookInChat:hover {
+    color: var(--accent-heart);
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    text-align: center;
+    padding: var(--spacing-xl);
+    opacity: 0.8;
+}
+
+.emptyState svg {
+    margin-bottom: var(--spacing-sm);
+    color: var(--bg-secondary);
+}

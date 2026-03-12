@@ -1,0 +1,145 @@
+.wrapper {
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-bright);
+    font-family: 'Outfit', sans-serif;
+}
+
+.corner {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    pointer-events: none;
+    opacity: 0.9;
+    z-index: 1;
+}
+
+.topLeft {
+    top: -40px;
+    left: -40px;
+}
+
+.topRight {
+    top: -40px;
+    right: -40px;
+    transform: scaleX(-1);
+}
+
+.bottomLeft {
+    bottom: -40px;
+    left: -40px;
+    transform: scaleY(-1);
+}
+
+.bottomRight {
+    bottom: -40px;
+    right: -40px;
+    transform: scale(-1);
+}
+
+.main {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    max-width: 900px;
+    padding: var(--spacing-xl);
+}
+
+.title {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-bright);
+}
+
+.joinLink {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--text-bright);
+    margin-bottom: var(--spacing-xl);
+    transition: var(--transition-smooth);
+}
+
+.joinLink:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+.heartContainer {
+    margin: var(--spacing-xl) 0;
+    display: flex;
+    justify-content: center;
+}
+
+.heart {
+    width: 220px;
+    height: auto;
+    display: block;
+}
+
+.loginSection {
+    margin-top: var(--spacing-2xl);
+}
+
+.alreadyMember {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.signinBtn {
+    display: inline-block;
+    background: transparent;
+    border: 2px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: var(--spacing-md) var(--spacing-2xl);
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.signinBtn:hover {
+    background: var(--bg-panel);
+    color: var(--text-bright);
+    border-color: var(--text-secondary);
+}
+
+.footerBranding {
+    position: absolute;
+    bottom: 2rem;
+    left: 21rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    opacity: 0.7;
+    border: 2px solid white;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+@media (max-width: 1024px) {
+    .title {
+        font-size: 3.5rem;
+    }
+
+    .joinLink {
+        font-size: 1.8rem;
+    }
+
+    .corner {
+        width: 250px;
+        height: 250px;
+    }
+}

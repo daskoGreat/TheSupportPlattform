@@ -1,0 +1,19 @@
+{
+  "book": {
+    "title": "Reserva una sesión con {{name}}",
+    "step1": "1. Elige el tipo de sesión",
+    "step2": "2. Elige un horario disponible",
+    "confirm": "Confirmar reserva",
+    "video": "Sesión por video",
+    "phone": "Sesión por teléfono",
+    "videoSub": "A través de nuestro enlace seguro",
+    "phoneSub": "El coach te llamará",
+    "successTitle": "¡Reserva confirmada!",
+    "successBody": "Reservaste una {{type}} con {{name}}.",
+    "detailsTime": "Hora",
+    "detailsType": "Tipo",
+    "tomorrowAt": "Mañana a las {{time}}",
+    "backHome": "Volver al inicio"
+  }
+}
+

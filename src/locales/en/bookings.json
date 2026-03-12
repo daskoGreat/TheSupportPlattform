@@ -1,0 +1,19 @@
+{
+  "book": {
+    "title": "Book a session with {{name}}",
+    "step1": "1. Choose session type",
+    "step2": "2. Choose an available time",
+    "confirm": "Confirm booking",
+    "video": "Video session",
+    "phone": "Phone session",
+    "videoSub": "Via our secure link",
+    "phoneSub": "Your coach will call you",
+    "successTitle": "Booked!",
+    "successBody": "You booked a {{type}} with {{name}}.",
+    "detailsTime": "Time",
+    "detailsType": "Type",
+    "tomorrowAt": "Tomorrow at {{time}}",
+    "backHome": "Back to home"
+  }
+}
+

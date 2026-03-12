@@ -1,0 +1,225 @@
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+.sidebar {
+    width: 260px;
+    background: var(--bg-panel);
+    border-right: var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-xl);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.logo img {
+    width: 32px;
+}
+
+.logo span {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--text-bright);
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+    width: 100%;
+    text-align: left;
+}
+
+.nav button:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.nav .active {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-bright);
+}
+
+.main {
+    flex: 1;
+    padding: var(--spacing-2xl);
+    overflow-y: auto;
+    position: relative;
+    /* Needed for loader overlay */
+}
+
+.loaderOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 15, 20, 0.5);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+    color: var(--accent-blue);
+}
+
+.simpleLoader {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.emptyState {
+    padding: var(--spacing-xl);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1rem;
+    border: 1px dashed var(--border-subtle);
+    border-radius: 12px;
+    margin-top: var(--spacing-md);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.userProfile {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent-sage);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.statCard {
+    background: var(--bg-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-md);
+    border: var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statInfo p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.statInfo h3 {
+    margin: 4px 0 0;
+    font-size: 1.8rem;
+    color: var(--text-bright);
+}
+
+.statIcon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recentActivity {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: var(--border-subtle);
+    padding: var(--spacing-xl);
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.viewAll {
+    color: var(--accent-blue);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+}
+
+.tableRow {
+    display: flex;
+    border-bottom: var(--border-subtle);
+    padding: var(--spacing-md) 0;
+}
+
+.tableRow:last-child {
+    border-bottom: none;
+}
+
+.tableCell {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.badge {
+    background: rgba(92, 184, 92, 0.1);
+    color: var(--color-success);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}

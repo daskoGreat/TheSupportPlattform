@@ -1,0 +1,42 @@
+{
+  "appName": "The Support Network",
+  "nav": {
+    "back": "Back",
+    "home": "Home",
+    "community": "Community",
+    "findCoach": "Find a coach"
+  },
+  "loading": {
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "sending": "Sending...",
+    "signingIn": "Signing in..."
+  },
+  "empty": {
+    "none": "Nothing here yet"
+  },
+  "actions": {
+    "continue": "Continue",
+    "save": "Save",
+    "update": "Update",
+    "close": "Close"
+  },
+  "labels": {
+    "unknownUser": "Unknown user"
+  },
+  "pages": {
+    "coaches": {
+      "title": "Our specialized coaches",
+      "subtitle": "Find the right person to support you on your journey."
+    }
+  },
+  "toast": {
+    "actionFailed": "Could not complete the action",
+    "messageSent": "Message sent",
+    "bookingAccepted": "Booking accepted",
+    "bookingDeclined": "Booking declined",
+    "profileSaved": "Profile saved",
+    "languageUpdated": "Language updated"
+  }
+}
+
