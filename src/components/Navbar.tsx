@@ -23,21 +23,26 @@ export default function Navbar() {
     return (
         <nav className={styles.navbar}>
             <div className={styles.container}>
-                <Link href="/" className={styles.logo}>
-                    <img src="/branding/heart.png" alt="Logo" className={styles.logoIcon} />
-                    <span className={styles.logoText}>The Support Network</span>
-                </Link>
+                <div className={styles.mainNav}>
+                    <Link href="/" className={styles.logo}>
+                        <img src="/branding/heart.png" alt="Logo" className={styles.logoIcon} />
+                        <span className={styles.logoText}>The Support Network</span>
+                    </Link>
 
-                {/* Mobile Menu Toggle */}
-                <button
-                    className={styles.menuToggle}
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    aria-label="Toggle menu"
-                >
-                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+                    <div className={styles.desktopLinks}>
+                        {navItems.map((item) => (
+                            <Link
+                                key={item.path}
+                                href={item.path}
+                                className={`${styles.link} ${pathname === item.path ? styles.active : ''}`}
+                            >
+                                {t(item.label)}
+                            </Link>
+                        ))}
+                    </div>
+                </div>
 
-                <div className={`${styles.links} ${isMenuOpen ? styles.mobileOpen : ''}`}>
+                <div className={`${styles.mobileLinks} ${isMenuOpen ? styles.mobileOpen : ''}`}>
                     {navItems.map((item) => (
                         <Link
                             key={item.path}
@@ -55,6 +60,15 @@ export default function Navbar() {
                         </Link>
                     </div>
                 </div>
+
+                {/* Mobile Menu Toggle */}
+                <button
+                    className={styles.menuToggle}
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    aria-label="Toggle menu"
+                >
+                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
 
                 <div className={styles.actions}>
                     <LanguageSwitcher />

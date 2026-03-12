@@ -68,27 +68,23 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         writeCookie(COOKIE_KEY, next);
     };
 
-    const resources = useMemo(() => getResources(locale), [locale]);
-    const fallbackResources = useMemo(() => getResources("en"), []);
+    const resources = getResources(locale);
+    const fallbackResources = getResources("en");
 
-    const t = useMemo(() => {
-        return (key: string, vars?: Record<string, string | number>) => {
-            const [ns, rest] = key.includes(":") ? (key.split(":") as [string, string]) : ["common", key];
-            const nsTyped = (ns as Namespace) || "common";
+    const t = (key: string, vars?: Record<string, string | number>) => {
+        const [ns, rest] = key.includes(":") ? (key.split(":") as [string, string]) : ["common", key];
+        const nsTyped = (ns as Namespace) || "common";
 
-            const value =
-                (getNestedValue(resources[nsTyped], rest) as string | undefined) ??
-                (getNestedValue(fallbackResources[nsTyped], rest) as string | undefined) ??
-                key;
+        const value =
+            (getNestedValue(resources[nsTyped], rest) as string | undefined) ??
+            (getNestedValue(fallbackResources[nsTyped], rest) as string | undefined) ??
+            key;
 
-            if (typeof value !== "string") return key;
-            return interpolate(value, vars);
-        };
-    }, [resources, fallbackResources]);
+        if (typeof value !== "string") return key;
+        return interpolate(value, vars);
+    };
 
-    const tn = useMemo(() => {
-        return (ns: Namespace) => (key: string, vars?: Record<string, string | number>) => t(`${ns}:${key}`, vars);
-    }, [t]);
+    const tn = (ns: Namespace) => (key: string, vars?: Record<string, string | number>) => t(`${ns}:${key}`, vars);
 
     const value: LanguageContextValue = {
         locale,

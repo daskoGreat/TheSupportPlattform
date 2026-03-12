@@ -45,10 +45,19 @@
     object-fit: contain;
 }
 
-.links {
+.mainNav {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-max);
+}
+
+.desktopLinks {
     display: flex;
     gap: var(--spacing-xl);
-    margin-left: auto;
+}
+
+.mobileLinks {
+    display: none;
 }
 
 .mobileActions {
@@ -87,6 +96,7 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
+    margin-left: auto;
 }
 
 .signinBtn {
@@ -106,12 +116,21 @@
     transform: translateY(-1px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+    .desktopLinks {
+        display: none;
+    }
+
+    .mainNav {
+        gap: var(--spacing-lg);
+    }
+
     .menuToggle {
         display: block;
     }
 
-    .links {
+    .mobileLinks {
+        display: flex;
         position: fixed;
         top: 0;
         right: -100%;
@@ -127,7 +146,7 @@
         gap: var(--spacing-lg);
     }
 
-    .links.mobileOpen {
+    .mobileLinks.mobileOpen {
         right: 0;
     }
 
