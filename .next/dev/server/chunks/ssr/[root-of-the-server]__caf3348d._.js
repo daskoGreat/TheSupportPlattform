@@ -21,23 +21,23 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 const url = process.env.DATABASE_URL;
 const prismaClientSingleton = ()=>{
-    if (url?.startsWith('prisma+postgres://')) {
-        return new __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2c$__cjs$2c$__$5b$project$5d2f$node_modules$2f40$prisma$2f$client$29$__["PrismaClient"]({
-            accelerateUrl: url
-        });
+    const maskedUrl = url ? url.replace(/:[^:]+@/, ':****@') : 'undefined';
+    console.log(`[Prisma] Initializing with URL: ${maskedUrl}`);
+    if (!url) {
+        throw new Error("DATABASE_URL is not defined");
     }
+    // Prisma 7 requires an adapter or accelerateUrl if the schema doesn't have a url property.
     const pool = new __TURBOPACK__imported__module__$5b$externals$5d2f$pg__$5b$external$5d$__$28$pg$2c$__esm_import$2c$__$5b$project$5d2f$node_modules$2f$pg$29$__["Pool"]({
         connectionString: url
     });
     const adapter = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$prisma$2f$adapter$2d$pg$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["PrismaPg"](pool);
     return new __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2c$__cjs$2c$__$5b$project$5d2f$node_modules$2f40$prisma$2f$client$29$__["PrismaClient"]({
         adapter,
-        log: [
+        log: ("TURBOPACK compile-time truthy", 1) ? [
             'query',
-            'info',
-            'warn',
-            'error'
-        ]
+            'error',
+            'warn'
+        ] : "TURBOPACK unreachable"
     });
 };
 const prisma = globalThis.prisma ?? prismaClientSingleton();

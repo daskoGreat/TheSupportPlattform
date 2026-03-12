@@ -1,36 +1,25 @@
 import { PrismaClient } from '@prisma/client';
+import { Pool } from 'pg';
+import { PrismaPg } from '@prisma/adapter-pg';
 
 const url = process.env.DATABASE_URL;
 
 const prismaClientSingleton = () => {
     const maskedUrl = url ? url.replace(/:[^:]+@/, ':****@') : 'undefined';
-    console.log(`[Prisma] Initializing. Vercel: ${!!process.env.VERCEL}, URL: ${maskedUrl}`);
+    console.log(`[Prisma] Initializing with URL: ${maskedUrl}`);
 
-    // On Vercel (Production), use the standard Prisma Client with the Neon Pooler URL.
-    // This is the most stable and reliable configuration for Serverless Functions.
-    if (process.env.VERCEL) {
-        console.log('[Prisma] Using standard client for Vercel deployment');
-        return new PrismaClient({
-            log: ['error', 'warn'],
-        });
+    if (!url) {
+        throw new Error("DATABASE_URL is not defined");
     }
 
-    // Local Development - Fallback to pg adapter for local PostgreSQL
-    try {
-        console.log('[Prisma] Using local PostgreSQL adapter');
-        const { Pool: PgPool } = require('pg');
-        const { PrismaPg } = require('@prisma/adapter-pg');
-        const pool = new PgPool({ connectionString: url });
-        const adapter = new PrismaPg(pool);
+    // Prisma 7 requires an adapter or accelerateUrl if the schema doesn't have a url property.
+    const pool = new Pool({ connectionString: url });
+    const adapter = new PrismaPg(pool);
 
-        return new PrismaClient({
-            adapter,
-            log: ['query', 'info', 'warn', 'error'],
-        });
-    } catch (e) {
-        console.log('[Prisma] Adapter fallback failed, using standard client');
-        return new PrismaClient();
-    }
+    return new PrismaClient({
+        adapter,
+        log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+    });
 };
 
 declare global {
