@@ -102,3 +102,9 @@ Read more at https://pris.ly/d/client-constructor
 [00:04:07.576] Server  LOG     prisma:query "SELECT \"public\".\"User\".\"id\", \"public\".\"User\".\"name\" FROM \"public\".\"User\" WHERE \"public\".\"User\".\"id\" IN ($1,$2,$3) OFFSET $4"
 [00:04:07.728] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
 [00:04:07.728] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:09:18.745] Server  LOG       Reload env: .env
+[00:09:18.990] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:09:18.990] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:11:12.759] Server  LOG     ✓ Compiled in 60ms
+[00:11:12.850] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false
+[00:11:12.850] Browser LOG     [Admin] Rendering. Tab: overview, Loading: false

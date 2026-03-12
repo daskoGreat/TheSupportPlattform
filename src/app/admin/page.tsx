@@ -130,7 +130,7 @@ export default function AdminDashboard() {
                         <header className={styles.header}>
                             <h2>{tAdmin('platformOverview')}</h2>
                             <div className={styles.userProfile}>
-                                <span>admin@supportnetwork.local</span>
+                                <span>Dashboard</span>
                                 <div className={styles.avatar}>A</div>
                             </div>
                         </header>
