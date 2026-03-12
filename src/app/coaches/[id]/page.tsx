@@ -1,84 +1,119 @@
-'use client';
+import prisma from '@/lib/prisma';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { ArrowLeft, MessageCircle, Calendar, Star, ShieldCheck, Globe, Award, Briefcase } from 'lucide-react';
+import { getServerT } from '@/i18n/server';
+import styles from './CoachProfile.module.css';
 
-import { useRouter } from 'next/navigation';
-import { useSelection } from '@/context/SelectionContext';
-import { ArrowLeft, MessageCircle, Calendar, Star, ShieldCheck } from 'lucide-react';
-import { useT } from '@/i18n/client';
+interface CoachProfilePageProps {
+    params: { id: string };
+}
 
-export default function CoachProfile() {
-    const tCoach = useT("coach");
-    const { selectedCoach } = useSelection();
-    const router = useRouter();
+export default async function CoachProfilePage({ params }: CoachProfilePageProps) {
+    const t = await getServerT();
 
-    if (!selectedCoach) {
-        return (
-            <div className="container section-padding text-center">
-                <p>{tCoach("publicProfile.selectFirst")}</p>
-                <button onClick={() => router.push('/intake')} className="primaryBtn">{tCoach("publicProfile.toMatching")}</button>
-            </div>
-        );
+    // The ID in the URL is the USER ID (linked to the coach profile)
+    const coach = await prisma.user.findUnique({
+        where: { id: params.id },
+        include: {
+            coachProfile: {
+                include: {
+                    availability: true
+                }
+            }
+        }
+    });
+
+    if (!coach || !coach.coachProfile) {
+        notFound();
     }
 
-    return (
-        <div style={{ background: 'var(--bg-primary)', minHeight: '100vh' }}>
-            <header style={{ background: 'white', padding: 'var(--spacing-lg) 0', borderBottom: 'var(--border-soft)' }}>
-                <div className="container flex items-center gap-md">
-                    <button onClick={() => router.back()} style={{ color: 'var(--text-muted)' }}><ArrowLeft size={20} /></button>
-                    <h1>{tCoach("publicProfile.title")}</h1>
-                </div>
-            </header>
+    const profile = coach.coachProfile;
 
-            <div className="container section-padding" style={{ maxWidth: '800px' }}>
-                <div style={{ background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--spacing-2xl)', boxShadow: 'var(--shadow-soft)', border: 'var(--border-soft)' }}>
-                    <div style={{ display: 'flex', gap: 'var(--spacing-xl)', marginBottom: 'var(--spacing-2xl)', flexWrap: 'wrap' }}>
-                        <img
-                            src={selectedCoach.avatar}
-                            alt={selectedCoach.name}
-                            style={{ width: '150px', height: '150px', borderRadius: 'var(--radius-lg)', objectFit: 'cover' }}
-                        />
-                        <div style={{ flex: 1 }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                                <h2 style={{ fontSize: '2rem', marginBottom: 'var(--spacing-xs)' }}>{selectedCoach.name}</h2>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#F5A623', fontWeight: 'bold' }}>
-                                    <Star size={18} fill="#F5A623" /> 5.0
+    return (
+        <div className="page-content">
+            <div className="container section-padding">
+                <Link href="/coaches" className={styles.backBtn}>
+                    <ArrowLeft size={18} /> Back to Coaches
+                </Link>
+
+                <div className={styles.profileLayout}>
+                    <aside className={styles.profileSidebar}>
+                        <div className={styles.imageCard}>
+                            <img
+                                src={coach.image || '/avatars/default-coach.png'}
+                                alt={coach.name || ''}
+                                className={styles.profileImage}
+                            />
+                            <div className={styles.ratingBadge}>
+                                <Star size={16} fill="#F5A623" color="#F5A623" />
+                                <span>5.0 (24 reviews)</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.actionCard}>
+                            <Link href={`/chat/${coach.id}`} className={styles.chatBtn}>
+                                <MessageCircle size={20} /> Chat with {coach.name?.split(' ')[0]}
+                            </Link>
+                            <Link href={`/book/${coach.id}`} className={styles.bookBtn}>
+                                <Calendar size={20} /> Book Video Session
+                            </Link>
+                            <p className={styles.pricingNote}>First session is always free.</p>
+                        </div>
+
+                        <div className={styles.infoCard}>
+                            <div className={styles.infoItem}>
+                                <Globe size={18} />
+                                <div>
+                                    <h5>Languages</h5>
+                                    <p>{profile.languages.join(', ')}</p>
                                 </div>
                             </div>
-                            <p style={{ color: 'var(--accent-sage)', fontWeight: '600', fontSize: '1.1rem', marginBottom: 'var(--spacing-md)' }}>{selectedCoach.title}</p>
+                            <div className={styles.infoItem}>
+                                <Briefcase size={18} />
+                                <div>
+                                    <h5>Experience</h5>
+                                    <p>{profile.yearsOfExperience} years</p>
+                                </div>
+                            </div>
+                            <div className={styles.infoItem}>
+                                <ShieldCheck size={18} />
+                                <div>
+                                    <h5>Verified</h5>
+                                    <p>Background checked</p>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
 
-                            <div style={{ display: 'flex', gap: 'var(--spacing-sm)', flexWrap: 'wrap' }}>
-                                {selectedCoach.specialties.map(s => (
-                                    <span key={s} style={{ background: 'var(--bg-primary)', padding: '4px 12px', borderRadius: '20px', fontSize: '0.85rem' }}>{s}</span>
+                    <main className={styles.profileMain}>
+                        <div className={styles.header}>
+                            <h1 className={styles.name}>{coach.name}</h1>
+                            <p className={styles.title}>{profile.title}</p>
+                            <div className={styles.specialties}>
+                                {profile.expertise.map(tag => (
+                                    <span key={tag} className={styles.specialtyTag}>{tag}</span>
                                 ))}
                             </div>
                         </div>
-                    </div>
 
-                    <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
-                        <h3>{tCoach("publicProfile.aboutMe")}</h3>
-                        <p style={{ color: 'var(--text-secondary)' }}>
-                            {tCoach("publicProfile.aboutBody")}
-                        </p>
-                    </section>
+                        <section className={styles.section}>
+                            <h3 className={styles.sectionTitle}>About Me</h3>
+                            <p className={styles.bio}>{profile.longBio}</p>
+                        </section>
 
-                    <div style={{ background: 'var(--accent-blue-light)', padding: 'var(--spacing-lg)', borderRadius: 'var(--radius-md)', display: 'flex', gap: 'var(--spacing-md)', alignItems: 'center', marginBottom: 'var(--spacing-2xl)' }}>
-                        <ShieldCheck size={24} color="var(--accent-blue)" />
-                        <p style={{ color: 'var(--accent-blue)', margin: 0, fontSize: '0.9rem' }}>{tCoach("publicProfile.privacyNote")}</p>
-                    </div>
+                        <section className={styles.section}>
+                            <h3 className={styles.sectionTitle}>My Approach</h3>
+                            <p className={styles.bio}>
+                                I believe that everyone has the inner strength to navigate life's challenges. My role is to provide the tools, perspective, and supportive space needed to unlock that resilience. We'll work together at your pace, focusing on practical strategies that make a real difference in your daily wellbeing.
+                            </p>
+                        </section>
 
-                    <div style={{ display: 'flex', gap: 'var(--spacing-md)' }}>
-                        <button
-                            onClick={() => router.push(`/chat/${selectedCoach.id}`)}
-                            style={{ flex: 1, padding: 'var(--spacing-md)', background: 'var(--accent-blue-light)', color: 'var(--accent-blue)', borderRadius: 'var(--radius-md)', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--spacing-sm)' }}
-                        >
-                            <MessageCircle size={20} /> {tCoach("publicProfile.startChat")}
-                        </button>
-                        <button
-                            onClick={() => router.push(`/book/${selectedCoach.id}`)}
-                            style={{ flex: 1, padding: 'var(--spacing-md)', background: 'var(--accent-sage)', color: 'white', borderRadius: 'var(--radius-md)', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--spacing-sm)' }}
-                        >
-                            <Calendar size={20} /> {tCoach("publicProfile.book")}
-                        </button>
-                    </div>
+                        <div className={styles.quoteCard}>
+                            <Award size={32} className={styles.quoteIcon} />
+                            <p className={styles.quoteText}>"{profile.shortIntro}"</p>
+                        </div>
+                    </main>
                 </div>
             </div>
         </div>

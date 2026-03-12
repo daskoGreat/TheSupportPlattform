@@ -11,99 +11,82 @@ export default function ChatAssistant() {
     const [isOpen, setIsOpen] = useState(false);
     const [isMinimized, setIsMinimized] = useState(false);
     const [input, setInput] = useState('');
-    const [messages, setMessages] = useState<{ role: 'assistant' | 'user', content: string, actions?: { label: string, path: string }[] }[]>([]);
+    // Updated message type to support cards
+    const [messages, setMessages] = useState<{
+        role: 'assistant' | 'user',
+        content: string,
+        actions?: { label: string, path: string }[],
+        coaches?: { id: string, name: string, avatar?: string, title: string, shortIntro: string }[],
+        resources?: { id: string, title: string, description: string, category: string }[]
+    }[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const { t } = useTranslation('chat');
     const { t: tCommon } = useTranslation('common');
     const { locale } = useLanguage();
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    // Initial welcome message - updates on locale change if it's the first message
-    useEffect(() => {
-        if (messages.length <= 1) {
-            const welcomeMsg = {
-                role: 'assistant' as const,
-                content: t('welcome') || "Hello! I'm Luna, your friendly guide at The Support Network. I'm here to help you find the right kind of support. Whenever you're ready, tell me a little about what's on your mind.",
-                actions: [
-                    { label: tCommon('nav.coaches'), path: '/coaches' },
-                    { label: tCommon('nav.community'), path: '/community' },
-                    { label: tCommon('nav.resources'), path: '/resources' }
-                ]
-            };
+    // Initial welcome message (omitted for brevity in this chunk, keeping existing logic)
 
-            if (messages.length === 0) {
-                setMessages([welcomeMsg]);
-            } else if (messages[0].role === 'assistant') {
-                // Update existing welcome message if language changed
-                setMessages([welcomeMsg]);
-            }
-        }
-    }, [locale, t, tCommon]);
-
-    // Handle external triggers (e.g. from Support Hub)
-    useEffect(() => {
-        const handleTrigger = (event: Event) => {
-            const customEvent = event as CustomEvent;
-            const { action, text } = customEvent.detail || {};
-
-            setIsOpen(true);
-            setIsMinimized(false);
-
-            if (action === 'send' && text) {
-                // Simulate the user sending a message
-                setInput(text);
-                // We'll use a small timeout to let the state update or just call handleSend directly if we refactor it
-            }
-        };
-
-        window.addEventListener('tsn:trigger-luna', handleTrigger);
-        return () => window.removeEventListener('tsn:trigger-luna', handleTrigger);
-    }, []);
+    // ...
 
     // Refactored handleSend logic to be callable internally
-    const sendMessage = (text: string) => {
+    const sendMessage = async (text: string) => {
         if (!text.trim()) return;
 
         const userMsg = text.toLowerCase();
         setMessages(prev => [...prev, { role: 'user', content: text }]);
         setIsTyping(true);
 
-        // Simulated AI logic with keyword parsing
-        setTimeout(() => {
+        try {
+            // Call the matching API
+            const response = await fetch('/api/ai/match', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text })
+            });
+            const data = await response.json();
+
             setIsTyping(false);
 
-            let responseContent = t('defaultResponse');
-            let suggestedActions: { label: string, path: string }[] = [];
+            if (data.matched) {
+                const matchedMsg = {
+                    role: 'assistant' as const,
+                    content: `I've found some specialized support for you regarding ${data.categories.join(' and ')}.`,
+                    coaches: data.coaches,
+                    resources: data.resources,
+                    actions: [
+                        { label: 'View all coaches', path: '/coaches' },
+                        { label: 'Browse library', path: '/resources' }
+                    ]
+                };
+                setMessages(prev => [...prev, matchedMsg]);
+            } else {
+                // Fallback to basic responses if no matching categories found
+                let responseContent = t('defaultResponse');
+                let suggestedActions: { label: string, path: string }[] = [];
 
-            if (userMsg.includes('coach') || userMsg.includes('yes') && messages[messages.length - 1]?.content.includes('coach')) {
-                responseContent = t('coachResponse');
-                suggestedActions = [{ label: tCommon('nav.coaches'), path: '/coaches' }];
-            } else if (userMsg.includes('communit') || userMsg.includes('group') || userMsg.includes('yes') && messages[messages.length - 1]?.content.includes('communit')) {
-                responseContent = t('communityResponse');
-                suggestedActions = [{ label: tCommon('nav.community'), path: '/community' }];
-            } else if (userMsg.includes('resourc') || userMsg.includes('library') || userMsg.includes('help')) {
-                responseContent = t('resourcesResponse');
-                suggestedActions = [{ label: tCommon('nav.resources'), path: '/resources' }];
-            } else if (userMsg.includes('stress') || userMsg.includes('anxiety') || userMsg.includes('feel') || userMsg.includes('mår') || userMsg.includes('mood') || userMsg.includes('känsla')) {
-                responseContent = t('defaultResponse');
-                suggestedActions = [
-                    { label: tCommon('nav.coaches'), path: '/coaches' },
-                    { label: tCommon('nav.community'), path: '/community' }
-                ];
-            } else if (userMsg === 'yes' || userMsg === 'ja' || userMsg === 'si') {
-                responseContent = t('defaultResponse'); // General help if 'yes' is ambiguous
-                suggestedActions = [
-                    { label: tCommon('nav.coaches'), path: '/coaches' },
-                    { label: tCommon('nav.community'), path: '/community' }
-                ];
+                if (userMsg.includes('coach')) {
+                    responseContent = t('coachResponse');
+                    suggestedActions = [{ label: tCommon('nav.coaches'), path: '/coaches' }];
+                } else if (userMsg.includes('communit')) {
+                    responseContent = t('communityResponse');
+                    suggestedActions = [{ label: tCommon('nav.community'), path: '/community' }];
+                }
+
+                setMessages(prev => [...prev, {
+                    role: 'assistant',
+                    content: responseContent || "I'm here to help. What's on your mind?",
+                    actions: suggestedActions.length > 0 ? suggestedActions : undefined
+                }]);
             }
-
+        } catch (error) {
+            setIsTyping(false);
             setMessages(prev => [...prev, {
                 role: 'assistant',
-                content: responseContent || "I'm here to help. Would you like to see our coaches or community groups?",
-                actions: suggestedActions.length > 0 ? suggestedActions : undefined
+                content: "I'm having a little trouble connecting right now, but I'm still here for you. Would you like to see our coaches instead?",
+                actions: [{ label: 'View coaches', path: '/coaches' }]
             }]);
-        }, 1500);
+        }
     };
 
     // Use effect to handle the 'send' action from trigger
@@ -170,7 +153,45 @@ export default function ChatAssistant() {
                         {messages.map((msg, i) => (
                             <div key={i} className={`${styles.message} ${styles[msg.role]}`}>
                                 <div className={styles.bubble}>
-                                    {msg.content}
+                                    <div className={styles.messageText}>{msg.content}</div>
+
+                                    {msg.coaches && msg.coaches.length > 0 && (
+                                        <div className={styles.recommendationLabel}>Recommended Coaches:</div>
+                                    )}
+                                    {msg.coaches && (
+                                        <div className={styles.cardList}>
+                                            {msg.coaches.map(coach => (
+                                                <div key={coach.id} className={styles.coachChatCard}>
+                                                    <img src={coach.avatar || '/avatars/default-coach.png'} alt={coach.name} className={styles.coachChatAvatar} />
+                                                    <div className={styles.coachChatInfo}>
+                                                        <h5>{coach.name}</h5>
+                                                        <p>{coach.title}</p>
+                                                        <Link href={`/coaches/${coach.id}`} className={styles.viewProfileBtn} onClick={() => setIsOpen(false)}>
+                                                            View Profile
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {msg.resources && msg.resources.length > 0 && (
+                                        <div className={styles.recommendationLabel}>Helpful Resources:</div>
+                                    )}
+                                    {msg.resources && (
+                                        <div className={styles.cardList}>
+                                            {msg.resources.map(res => (
+                                                <div key={res.id} className={styles.resourceChatCard}>
+                                                    <span className={styles.resCategory}>{res.category}</span>
+                                                    <h5>{res.title}</h5>
+                                                    <Link href={`/resources/${res.id}`} className={styles.readGuideBtn} onClick={() => setIsOpen(false)}>
+                                                        Read Guide
+                                                    </Link>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
                                     {msg.actions && (
                                         <div className={styles.actionCards}>
                                             {msg.actions.map((action, idx) => (

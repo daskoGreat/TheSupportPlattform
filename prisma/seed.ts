@@ -301,6 +301,65 @@ async function main() {
     }
 
     console.log(`Created ${bookingsCreated} upcoming bookings within the next 7 days`);
+
+    // Resources
+    const resourcesData = [
+        {
+            title: "Understanding Work Stress",
+            description: "Learn how to identify and manage the most common sources of work-related stress.",
+            content: "# Understanding Work Stress\n\nWork-related stress is a significant issue for many people. It can be caused by long hours, heavy workload, job insecurity, and conflicts with co-workers or supervisors.\n\n### Key Signs\n- Feeling anxious or irritable\n- Difficulty concentrating\n- Changes in sleep patterns\n\n### Practical Tools\n1. **Take Breaks**: Regular short breaks can significantly reduce stress levels.\n2. **Prioritize**: Focus on the most important tasks first.\n3. **Set Boundaries**: Learn to say no when your workload is too high.\n\nTalk to one of our coaches if you feel like work is becoming overwhelming.",
+            category: "Stress",
+            tags: ["Work", "Stress", "Boundaries"],
+            author: "Dr. Elena Vance"
+        },
+        {
+            title: "Grounding Techniques for Anxiety",
+            description: "A practical guide to 5-4-3-2-1 and other techniques for managing moments of anxiety.",
+            content: "# Grounding Techniques for Anxiety\n\nWhen anxiety feels like it's taking over, grounding techniques can help pull you back into the present moment.\n\n### The 5-4-3-2-1 Technique\nIdentify:\n- **5** things you can see\n- **4** things you can touch\n- **3** things you can hear\n- **2** things you can smell\n- **1** thing you can taste\n\n### Box Breathing\nInhale for 4 seconds, hold for 4, exhale for 4, and hold for 4. Repeat until you feel calmer.",
+            category: "Anxiety",
+            tags: ["Anxiety", "Grounding", "Mindfulness"],
+            author: "Mark Solms"
+        },
+        {
+            title: "Beating Burnout",
+            description: "Recovering from burnout takes time. Here's how to start the journey back to yourself.",
+            content: "# Beating Burnout\n\nBurnout is more than just being tired. It's a state of emotional, physical, and mental exhaustion caused by excessive and prolonged stress.\n\n### Steps to Recovery\n- **Acknowledge it**: Acceptance is the first step toward healing.\n- **Rest**: True rest, not just sleeping, but disconnecting.\n- **Re-evaluate**: What led to this? What needs to change in the long term?",
+            category: "Burnout",
+            tags: ["Burnout", "Recovery", "Wellbeing"],
+            author: "Dr. Sarah Miller"
+        },
+        {
+            title: "Healthy Relationships 101",
+            description: "Communication tools for building stronger and more supportive relationships.",
+            content: "# Healthy Relationships 101\n\nGood communication is the foundation of any healthy relationship.\n\n- **Active Listening**: Listening to understand, not just to respond.\n- **I-Statements**: Expressing how you feel without blaming others.\n- **Repair**: Learning how to apologize and move forward naturally.",
+            category: "Relationships",
+            tags: ["Relationships", "Communication", "Conflict"],
+            author: "James Chen"
+        },
+        {
+            title: "The Power of Self-Compassion",
+            description: "How being kinder to yourself can improve your mental health and resilience.",
+            content: "# The Power of Self-Compassion\n\nMost of us are much harder on ourselves than we would ever be on a friend. Self-compassion is about changing that internal dialogue.\n\n- Treat yourself with kindness.\n- Recognize that imperfection is part of being human.\n- Don't over-identify with negative thoughts.",
+            category: "Self-care",
+            tags: ["Self-care", "Resilience", "Compassion"],
+            author: "Anais Nin"
+        }
+    ];
+
+    let resourcesCreated = 0;
+    for (const res of resourcesData) {
+        await prisma.resource.upsert({
+            where: { id: res.title.toLowerCase().replace(/ /g, '-') },
+            update: res,
+            create: {
+                id: res.title.toLowerCase().replace(/ /g, '-'),
+                ...res
+            }
+        });
+        resourcesCreated++;
+    }
+
+    console.log(`Created or ensured ${resourcesCreated} resources`);
     console.log("Database seed for The Support Network completed successfully.");
 }
 
