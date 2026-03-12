@@ -1,13 +1,10 @@
 import { PrismaClient } from '@prisma/client'
-import { Pool, neonConfig } from '@neondatabase/serverless'
+import { neon } from '@neondatabase/serverless'
 import { PrismaNeon } from '@prisma/adapter-neon'
-import ws from 'ws'
-
-neonConfig.webSocketConstructor = ws
 
 /**
  * Prisma client singleton for Next.js to prevent multiple instances during development.
- * Uses the Neon serverless adapter for stable database connectivity.
+ * Uses the Neon serverless HTTP adapter for optimal performance on Vercel.
  */
 const prismaClientSingleton = () => {
     const connectionString = process.env.DATABASE_URL
@@ -17,10 +14,9 @@ const prismaClientSingleton = () => {
         return new PrismaClient()
     }
 
-    const pool = new Pool({ connectionString })
-    // Use 'as any' to bypass a type mismatch between @neondatabase/serverless Pool 
-    // and the expected Pool type in @prisma/adapter-neon.
-    const adapter = new PrismaNeon(pool as any)
+    // Use HTTP connection instead of WebSockets for better stability in serverless environments
+    const sql = neon(connectionString)
+    const adapter = new PrismaNeon(sql as any)
     return new PrismaClient({ adapter } as any)
 }
 
