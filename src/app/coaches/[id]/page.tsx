@@ -54,9 +54,23 @@ export default async function CoachProfilePage({ params }: { params: Promise<{ i
                         </div>
 
                         <div className={styles.actionCard}>
-                            <Link href={`/chat/${coach.id}`} className={styles.chatBtn}>
+                            <button
+                                onClick={async () => {
+                                    const res = await fetch('/api/conversations', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({ coachId: coach.id })
+                                    });
+                                    if (res.ok) {
+                                        const conv = await res.json();
+                                        window.location.href = `/chat/${coach.id}`;
+                                    }
+                                }}
+                                className={styles.chatBtn}
+                                style={{ width: '100%', border: 'none', cursor: 'pointer' }}
+                            >
                                 <MessageCircle size={20} /> Chat with {coach.name?.split(' ')[0]}
-                            </Link>
+                            </button>
                             <Link href={`/book/${coach.id}`} className={styles.bookBtn}>
                                 <Calendar size={20} /> Book Video Session
                             </Link>

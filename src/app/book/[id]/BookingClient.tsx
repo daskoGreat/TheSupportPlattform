@@ -20,8 +20,29 @@ export default function BookingClient({ coach }: BookingClientProps) {
     const times = ['09:00', '10:30', '13:00', '15:30', '17:00'];
 
     const handleConfirm = async () => {
-        // In a real app, we'd call an API here to save the booking
-        setStep(2);
+        if (!selectedTime) return;
+
+        try {
+            const res = await fetch('/api/coach/bookings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    coachId: coach.id,
+                    date: new Date().toISOString(), // In a real app, let user pick date
+                    time: selectedTime,
+                    type: sessionType === 'VIDEO' ? 'Video' : 'Phone'
+                })
+            });
+
+            if (res.ok) {
+                setStep(2);
+            } else {
+                alert("Booking failed. Please try again.");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("An error occurred while booking.");
+        }
     };
 
     if (step === 2) {

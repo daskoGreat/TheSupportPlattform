@@ -14,11 +14,23 @@ interface SupportHubProps {
 export default function SupportHub({ userName }: SupportHubProps) {
     const { t } = useTranslation('hub');
     const [isLoading, setIsLoading] = useState(true);
+    const [dashboardData, setDashboardData] = useState<any>(null);
 
     useEffect(() => {
-        // Subtle delay to show premium loading state as requested
-        const timer = setTimeout(() => setIsLoading(false), 800);
-        return () => clearTimeout(timer);
+        const fetchDashboard = async () => {
+            try {
+                const res = await fetch('/api/user/dashboard');
+                if (res.ok) {
+                    const data = await res.json();
+                    setDashboardData(data);
+                }
+            } catch (err) {
+                console.error("Dashboard fetch failed", err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchDashboard();
     }, []);
 
     const moodOptions = [
@@ -152,24 +164,54 @@ export default function SupportHub({ userName }: SupportHubProps) {
             <section className={styles.journeySection}>
                 <h3 className={styles.journeyTitle}>{t('journey.title')}</h3>
                 <div className={styles.journeyGrid}>
-                    <button onClick={() => triggerLuna()} className={styles.journeyCard} style={{ border: 'none', background: 'none', padding: 0, textAlign: 'left', cursor: 'pointer' }}>
-                        <div className={styles.journeyIcon}>
-                            <Clock size={20} />
-                        </div>
-                        <div className={styles.journeyContent}>
-                            <h5>{t('journey.recentChat.title')}</h5>
-                            <p>{t('journey.recentChat.description')}</p>
-                        </div>
-                    </button>
-                    <Link href="/coaches" className={styles.journeyCard}>
-                        <div className={styles.journeyIcon}>
-                            <Calendar size={20} />
-                        </div>
-                        <div className={styles.journeyContent}>
-                            <h5>{t('journey.upcomingSession.title')}</h5>
-                            <p>{t('journey.upcomingSession.description', { coachName: 'Sarah Miller' })}</p>
-                        </div>
-                    </Link>
+                    {dashboardData?.recentConversations?.[0] ? (
+                        <button
+                            onClick={() => window.location.href = `/chat/${dashboardData.recentConversations[0].participants[0].userId}`}
+                            className={styles.journeyCard}
+                            style={{ border: 'none', background: 'none', padding: 0, textAlign: 'left', cursor: 'pointer' }}
+                        >
+                            <div className={styles.journeyIcon}>
+                                <Clock size={20} />
+                            </div>
+                            <div className={styles.journeyContent}>
+                                <h5>{t('journey.recentChat.title')}</h5>
+                                <p>Conversation with {dashboardData.recentConversations[0].participants[0].user.name}</p>
+                            </div>
+                        </button>
+                    ) : (
+                        <button onClick={() => triggerLuna()} className={styles.journeyCard} style={{ border: 'none', background: 'none', padding: 0, textAlign: 'left', cursor: 'pointer' }}>
+                            <div className={styles.journeyIcon}>
+                                <Clock size={20} />
+                            </div>
+                            <div className={styles.journeyContent}>
+                                <h5>{t('journey.recentChat.title')}</h5>
+                                <p>{t('journey.recentChat.description')}</p>
+                            </div>
+                        </button>
+                    )}
+
+                    {dashboardData?.upcomingBookings?.[0] ? (
+                        <Link href={`/coaches/${dashboardData.upcomingBookings[0].coach.userId}`} className={styles.journeyCard}>
+                            <div className={styles.journeyIcon}>
+                                <Calendar size={20} />
+                            </div>
+                            <div className={styles.journeyContent}>
+                                <h5>{t('journey.upcomingSession.title')}</h5>
+                                <p>{new Date(dashboardData.upcomingBookings[0].startTime).toLocaleDateString()} with {dashboardData.upcomingBookings[0].coach.user.name}</p>
+                            </div>
+                        </Link>
+                    ) : (
+                        <Link href="/coaches" className={styles.journeyCard}>
+                            <div className={styles.journeyIcon}>
+                                <Calendar size={20} />
+                            </div>
+                            <div className={styles.journeyContent}>
+                                <h5>{t('journey.upcomingSession.title')}</h5>
+                                <p>{t('journey.upcomingSession.description', { coachName: 'Sarah Miller' })}</p>
+                            </div>
+                        </Link>
+                    )}
+
                     <Link href="/coaches?filter=saved" className={styles.journeyCard}>
                         <div className={styles.journeyIcon}>
                             <Bookmark size={20} />

@@ -47,20 +47,45 @@ export default function CoachChat({ params }: { params: Promise<{ id: string }> 
         scrollToBottom('auto');
     }, []);
 
-    const handleSend = (e: React.FormEvent) => {
+    const handleSend = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!input.trim()) return;
 
-        setMessages(prev => [...prev, {
+        const userMsg = {
             id: Date.now().toString(),
-            sender: 'user',
+            sender: 'user' as const,
             text: input,
             time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        }]);
+        };
+
+        setMessages(prev => [...prev, userMsg]);
+        const text = input;
         setInput('');
 
         // Reset scrolling flag so their own message forces scroll to bottom
         isUserScrolling.current = false;
+
+        try {
+            // First find/create conversation
+            const convRes = await fetch('/api/conversations', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ coachId: id })
+            });
+            const conversation = await convRes.json();
+
+            // Then send message
+            await fetch('/api/coach/messages', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    conversationId: conversation.id,
+                    content: text
+                })
+            });
+        } catch (err) {
+            console.error("Failed to persist message:", err);
+        }
     };
 
     return (

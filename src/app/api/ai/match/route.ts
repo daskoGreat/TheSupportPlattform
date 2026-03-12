@@ -7,27 +7,27 @@ export async function POST(req: Request) {
         const { text } = await req.json();
         const input = text.toLowerCase();
 
-        // 1. Define support categories
+        // 1. Define support categories with expanded keyword mapping
         const categories = [
-            "Stress", "Anxiety", "Burnout", "Relationships", "Life transitions",
-            "Loneliness", "Mental wellbeing", "Career pressure", "Self-care"
+            { name: "Stress", keywords: ["stress", "pressur", "overwhelmed", "busy", "load"] },
+            { name: "Anxiety", keywords: ["anxiety", "panic", "worry", "fear", "overthink"] },
+            { name: "Burnout", keywords: ["burnout", "tired", "exhausted", "drain", "energy"] },
+            { name: "Relationships", keywords: ["breakup", "partner", "family", "friend", "divorce", "dating"] },
+            { name: "Loneliness", keywords: ["lonely", "alone", "isolated", "connection"] },
+            { name: "Grief", keywords: ["grief", "loss", "death", "mourning"] },
+            { name: "Self-esteem", keywords: ["confidence", "self-esteem", "worth", "insecure"] },
+            { name: "Work pressure", keywords: ["work", "job", "career", "office", "boss"] },
+            { name: "Mental wellbeing", keywords: ["wellbeing", "health", "mind", "inner"] }
         ];
 
-        // 2. Detect multiple matching categories based on keywords
-        const matchedCategories = categories.filter(cat =>
-            input.includes(cat.toLowerCase()) ||
-            (cat === "Stress" && (input.includes("pressur") || input.includes("overwhelmed"))) ||
-            (cat === "Burnout" && (input.includes("tired") || input.includes("exhausted"))) ||
-            (cat === "Relationships" && (input.includes("partner") || input.includes("family") || input.includes("friend"))) ||
-            (cat === "Anxiety" && (input.includes("panic") || input.includes("worry"))) ||
-            (cat === "Career pressure" && (input.includes("work") || input.includes("job") || input.includes("boss")))
-        );
+        // 2. Detect multiple matching categories
+        const matchedCategories = categories
+            .filter(cat => cat.keywords.some(kw => input.includes(kw)))
+            .map(cat => cat.name);
 
         if (matchedCategories.length === 0) {
-            return NextResponse.json({
-                matched: false,
-                message: "I didn't find specific categories, but I'm here to listen."
-            });
+            // Default to mental wellbeing if no specific category matched
+            matchedCategories.push("Mental wellbeing");
         }
 
         // 3. Query coaches that match these specialties
@@ -61,14 +61,15 @@ export async function POST(req: Request) {
         });
 
         const response = {
-            matched: coaches.length > 0 || matchedResources.length > 0,
+            matched: true,
             categories: matchedCategories,
             coaches: coaches.map((c: any) => ({
                 id: c.userId,
                 name: c.user.name,
                 avatar: c.user.image,
                 title: c.title,
-                shortIntro: c.shortIntro
+                shortIntro: c.shortIntro,
+                expertise: c.expertise
             })),
             resources: matchedResources.map((r: any) => ({
                 id: r.id,

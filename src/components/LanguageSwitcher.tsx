@@ -35,7 +35,10 @@ export default function LanguageSwitcher() {
                             if (l.locale === locale) return;
                             setLocale(l.locale);
                             showToast(tCommon("toast.languageUpdated"), "info");
-                            router.refresh();
+                            // Small delay to ensure state and cookie are reconciled before refresh
+                            setTimeout(() => {
+                                router.refresh();
+                            }, 50);
                         }}
                         aria-label={l.label}
                         title={l.label}
