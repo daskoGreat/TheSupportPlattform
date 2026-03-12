@@ -7,17 +7,12 @@ import { PrismaNeon } from '@prisma/adapter-neon'
  * Uses the Neon serverless HTTP adapter for optimal performance on Vercel.
  */
 const prismaClientSingleton = () => {
-    // Ensure we have a connection string, either from env or elsewhere
     const connectionString = process.env.DATABASE_URL || process.env.DIRECT_URL
 
     if (!connectionString) {
-        if (process.env.NODE_ENV === 'production') {
-            throw new Error("DATABASE_URL is missing in production environment")
-        }
-        // Fallback for build-time or restricted environments
-        return new PrismaClient({
-            datasourceUrl: "postgresql://dummy:dummy@localhost:5432/dummy"
-        } as any)
+        // In local/build environments without DB URL, we return a basic client
+        // strictly for module evaluation safety.
+        return new PrismaClient()
     }
 
     // Use HTTP connection instead of WebSockets for better stability in serverless environments
@@ -30,9 +25,8 @@ declare global {
     var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>
 }
 
-const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
-
-export { prisma }
-export default prisma
+export const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
 
 if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma
+
+export default prisma
