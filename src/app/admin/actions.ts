@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { Role } from '@prisma/client';
 
 console.log("[Admin Actions] Server Actions module loaded");
