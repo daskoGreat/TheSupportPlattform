@@ -65,7 +65,7 @@ export async function POST(req: Request) {
             include: { user: true },
         });
 
-        const scored = allCoaches
+        let scored = allCoaches
             .map((coach) => {
                 const tags = coach.expertise.join(" ").toLowerCase();
                 let score = 0;
@@ -90,6 +90,14 @@ export async function POST(req: Request) {
             .filter((c) => c.coach.user)
             .sort((a, b) => b.score - a.score)
             .slice(0, 4);
+
+        // Fallback: if no strong matches, just pick a few active coaches
+        if (scored.length === 0) {
+            scored = allCoaches
+                .filter((c) => c.user)
+                .slice(0, 4)
+                .map((coach) => ({ coach, score: 0 }));
+        }
 
         // 4) Persist MatchResults for this session (optional but useful)
         if (aiSession && userId) {
