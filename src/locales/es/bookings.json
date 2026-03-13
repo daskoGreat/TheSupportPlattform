@@ -3,17 +3,28 @@
     "title": "Reserva una sesión con {{name}}",
     "step1": "1. Elige el tipo de sesión",
     "step2": "2. Elige un horario disponible",
+    "slotsIntro": "Horarios disponibles para los próximos días:",
+    "noSlots": "No hay horarios disponibles en este momento. Vuelve a intentarlo pronto.",
     "confirm": "Confirmar reserva",
+    "confirmingCta": "Guardando…",
     "video": "Sesión por video",
     "phone": "Sesión por teléfono",
     "videoSub": "A través de nuestro enlace seguro",
     "phoneSub": "El coach te llamará",
-    "successTitle": "¡Reserva confirmada!",
-    "successBody": "Reservaste una {{type}} con {{name}}.",
+    "successTitle": "Reserva confirmada",
+    "successBodyVideo": "Tu sesión por video con {{name}} ha sido confirmada.",
+    "successBodyPhone": "Tu sesión telefónica con {{name}} ha sido confirmada.",
+    "calendarNote": "Se ha enviado una invitación a tu correo.",
+    "summaryVideoLabel": "Sesión por video",
+    "summaryPhoneLabel": "Sesión por teléfono",
+    "summaryAt": "a las",
+    "summaryOn": "el",
     "detailsTime": "Hora",
     "detailsType": "Tipo",
     "tomorrowAt": "Mañana a las {{time}}",
-    "backHome": "Volver al inicio"
+    "backHome": "Volver al inicio",
+    "returnToHub": "Volver al hub",
+    "errorBooking": "No pudimos reservar la sesión. Inténtalo de nuevo en unos minutos."
   }
 }
 

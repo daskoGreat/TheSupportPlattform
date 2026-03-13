@@ -3,17 +3,28 @@
     "title": "Boka tid med {{name}}",
     "step1": "1. Välj typ av samtal",
     "step2": "2. Välj en ledig tid",
+    "slotsIntro": "Tillgängliga tider de kommande dagarna:",
+    "noSlots": "Inga lediga tider just nu. Prova igen lite senare.",
     "confirm": "Bekräfta bokning",
+    "confirmingCta": "Schemalägger…",
     "video": "Videosamtal",
     "phone": "Telefonsamtal",
     "videoSub": "Via vår säkra länk",
     "phoneSub": "Coachen ringer upp dig",
-    "successTitle": "Bokad och klar!",
-    "successBody": "Du har bokat ett {{type}} med {{name}}.",
+    "successTitle": "Bokad och klar",
+    "successBodyVideo": "Ditt videosamtal med {{name}} är bekräftat.",
+    "successBodyPhone": "Ditt telefonsamtal med {{name}} är bekräftat.",
+    "calendarNote": "En inbjudan har skickats till din e‑post.",
+    "summaryVideoLabel": "Videosamtal",
+    "summaryPhoneLabel": "Telefonsamtal",
+    "summaryAt": "kl",
+    "summaryOn": "den",
     "detailsTime": "Tid",
     "detailsType": "Typ",
     "tomorrowAt": "Imorgon kl {{time}}",
-    "backHome": "Tillbaka till start"
+    "backHome": "Tillbaka till start",
+    "returnToHub": "Tillbaka till hubben",
+    "errorBooking": "Vi kunde inte boka tiden just nu. Försök igen strax."
   }
 }
 

@@ -3,17 +3,28 @@
     "title": "Book a session with {{name}}",
     "step1": "1. Choose session type",
     "step2": "2. Choose an available time",
+    "slotsIntro": "Available slots for the next days:",
+    "noSlots": "No available slots right now. Please check back soon.",
     "confirm": "Confirm booking",
+    "confirmingCta": "Scheduling…",
     "video": "Video session",
     "phone": "Phone session",
     "videoSub": "Via our secure link",
     "phoneSub": "Your coach will call you",
-    "successTitle": "Booked!",
-    "successBody": "You booked a {{type}} with {{name}}.",
+    "successTitle": "Session scheduled",
+    "successBodyVideo": "Your video session with {{name}} has been confirmed.",
+    "successBodyPhone": "Your phone session with {{name}} has been confirmed.",
+    "calendarNote": "An invite has been sent to your email.",
+    "summaryVideoLabel": "Video session",
+    "summaryPhoneLabel": "Phone session",
+    "summaryAt": "at",
+    "summaryOn": "on",
     "detailsTime": "Time",
     "detailsType": "Type",
     "tomorrowAt": "Tomorrow at {{time}}",
-    "backHome": "Back to home"
+    "backHome": "Back to home",
+    "returnToHub": "Return to hub",
+    "errorBooking": "We could not schedule this session. Please try again."
   }
 }
 

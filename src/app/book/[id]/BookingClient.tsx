@@ -150,7 +150,7 @@ export default function BookingClient({ coach }: BookingClientProps) {
                 <div className="container flex items-center gap-md">
                     <button onClick={() => router.back()} className={styles.backBtn}><ArrowLeft size={20} /></button>
                     <h1 className={styles.headerTitle}>
-                        {tBook('pageTitle') || "Book a session"}
+                        {tBook('book.title', { name: coach.name }) || `Book a session with ${coach.name}`}
                     </h1>
                 </div>
             </header>
@@ -168,7 +168,7 @@ export default function BookingClient({ coach }: BookingClientProps) {
                     <div className={styles.card}>
                         <section className={styles.section}>
                             <h3 className={styles.sectionTitle}>
-                                {tBook('step1Title') || "1. Choose session type"}
+                                {tBook('book.step1') || "1. Choose session type"}
                             </h3>
                             <div className={styles.typeGrid}>
                                 <button
@@ -178,10 +178,10 @@ export default function BookingClient({ coach }: BookingClientProps) {
                                     <Video size={24} />
                                     <div className={styles.typeText}>
                                         <p className={styles.typeTitle}>
-                                            {tBook('typeVideoTitle') || "Video call"}
+                                            {tBook('book.video') || "Video session"}
                                         </p>
                                         <p className={styles.typeSub}>
-                                            {tBook('typeVideoSub') || "Face-to-face support from anywhere"}
+                                            {tBook('book.videoSub') || "Face-to-face support from anywhere"}
                                         </p>
                                     </div>
                                 </button>
@@ -192,10 +192,10 @@ export default function BookingClient({ coach }: BookingClientProps) {
                                     <Phone size={24} />
                                     <div className={styles.typeText}>
                                         <p className={styles.typeTitle}>
-                                            {tBook('typePhoneTitle') || "Phone call"}
+                                            {tBook('book.phone') || "Phone session"}
                                         </p>
                                         <p className={styles.typeSub}>
-                                            {tBook('typePhoneSub') || "Voice-only for more privacy"}
+                                            {tBook('book.phoneSub') || "Voice-only for more privacy"}
                                         </p>
                                     </div>
                                 </button>
@@ -204,10 +204,10 @@ export default function BookingClient({ coach }: BookingClientProps) {
 
                         <section className={styles.section}>
                             <h3 className={styles.sectionTitle}>
-                                {tBook('step2Title') || "2. Select a time"}
+                                {tBook('book.step2') || "2. Select a time"}
                             </h3>
                             <p className={styles.subtext}>
-                                {tBook('slotsIntro') || "Available slots for the next days:"}
+                                {tBook('book.slotsIntro') || "Available slots for the next days:"}
                             </p>
                             {loadingSlots && (
                                 <div className={styles.timeGrid}>
@@ -225,7 +225,7 @@ export default function BookingClient({ coach }: BookingClientProps) {
                             )}
                             {!loadingSlots && !error && slots.length === 0 && (
                                 <p className={styles.emptyText}>
-                                    {tBook('noSlots') || "No available slots right now. Please check back soon."}
+                                    {tBook('book.noSlots') || "No available slots right now. Please check back soon."}
                                 </p>
                             )}
                             {!loadingSlots && !error && slots.length > 0 && (
@@ -256,12 +256,12 @@ export default function BookingClient({ coach }: BookingClientProps) {
                                 {selectedSlot && (
                                     <p className={styles.selectionSummary}>
                                         {sessionType === 'VIDEO'
-                                            ? (tBook('summaryVideoLabel') || "Video session")
-                                            : (tBook('summaryPhoneLabel') || "Phone session")
+                                            ? (tBook('book.summaryVideoLabel') || "Video session")
+                                            : (tBook('book.summaryPhoneLabel') || "Phone session")
                                         }{" "}
-                                        {tBook('summaryAt') || "at"}{" "}
+                                        {tBook('book.summaryAt') || "at"}{" "}
                                         {formatSlotTime(selectedSlot.start)}{" "}
-                                        {tBook('summaryOn') || "on"}{" "}
+                                        {tBook('book.summaryOn') || "on"}{" "}
                                         {formatSlotDate(selectedSlot.start)}
                                     </p>
                                 )}
