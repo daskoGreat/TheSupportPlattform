@@ -10,23 +10,18 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const { date, time, coachId, type } = await req.json();
+        const { start, end, coachId, type } = await req.json();
 
-        // Calculate startTime and endTime (mocking 60 min session)
-        const start = new Date(date);
-        const [hours, minutes] = time.split(':');
-        start.setHours(parseInt(hours), parseInt(minutes), 0, 0);
-
-        const end = new Date(start);
-        end.setHours(start.getHours() + 1);
+        const startTime = new Date(start);
+        const endTime = new Date(end);
 
         const booking = await prisma.booking.create({
             data: {
                 userId: session.user.id,
                 coachId: coachId,
-                startTime: start,
-                endTime: end,
-                type: type || "Video", // Video or Phone
+                startTime,
+                endTime,
+                type: type || "VIDEO",
                 status: "CONFIRMED"
             }
         });
