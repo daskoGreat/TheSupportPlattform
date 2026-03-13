@@ -182,16 +182,23 @@ export default function ChatAssistant() {
                                     {msg.coaches && (
                                         <div className={styles.cardList}>
                                             {msg.coaches.map(coach => (
-                                                <div key={coach.id} className={styles.coachChatCard}>
-                                                    <img src={coach.avatar || '/avatars/default-coach.png'} alt={coach.name} className={styles.coachChatAvatar} />
+                                                <Link
+                                                    key={coach.id}
+                                                    href={`/coaches/${coach.id}`}
+                                                    className={styles.coachChatCard}
+                                                    onClick={() => setIsOpen(false)}
+                                                >
+                                                    <img
+                                                        src={coach.avatar || '/avatars/default-coach.png'}
+                                                        alt={coach.name}
+                                                        className={styles.coachChatAvatar}
+                                                    />
                                                     <div className={styles.coachChatInfo}>
                                                         <h5>{coach.name}</h5>
                                                         <p>{coach.title}</p>
-                                                        <Link href={`/coaches/${coach.id}`} className={styles.viewProfileBtn} onClick={() => setIsOpen(false)}>
-                                                            View Profile
-                                                        </Link>
+                                                        <span className={styles.viewProfileBtn}>View profile</span>
                                                     </div>
-                                                </div>
+                                                </Link>
                                             ))}
                                         </div>
                                     )}
@@ -202,13 +209,16 @@ export default function ChatAssistant() {
                                     {msg.resources && (
                                         <div className={styles.cardList}>
                                             {msg.resources.map(res => (
-                                                <div key={res.id} className={styles.resourceChatCard}>
+                                                <Link
+                                                    key={res.id}
+                                                    href="/community"
+                                                    className={styles.resourceChatCard}
+                                                    onClick={() => setIsOpen(false)}
+                                                >
                                                     <span className={styles.resCategory}>{res.category}</span>
                                                     <h5>{res.title}</h5>
-                                                    <Link href={`/resources/${res.id}`} className={styles.readGuideBtn} onClick={() => setIsOpen(false)}>
-                                                        Read Guide
-                                                    </Link>
-                                                </div>
+                                                    <span className={styles.readGuideBtn}>Read guide</span>
+                                                </Link>
                                             ))}
                                         </div>
                                     )}
