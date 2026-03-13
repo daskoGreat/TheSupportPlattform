@@ -103,18 +103,18 @@
 .coachGrid,
 .communityGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--spacing-sm);
 }
 
 .coachCard {
     background: var(--bg-card);
-    padding: var(--spacing-md);
-    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
     border: var(--border-subtle);
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     transition: var(--transition-smooth);
 }
 
@@ -124,9 +124,9 @@
 }
 
 .coachAvatar {
-    width: 60px;
-    height: 60px;
-    border-radius: var(--radius-sm);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     object-fit: cover;
 }
 
@@ -136,7 +136,7 @@
 
 .coachName {
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin: 0;
 }
 
@@ -164,12 +164,12 @@
 .coachActions {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
 }
 
 .coachActions button {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -194,12 +194,45 @@
 
 .communityCard {
     background: var(--bg-card);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
     border: var(--border-subtle);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .coachGrid,
+    .communityGrid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .coachCard {
+        padding: var(--spacing-sm);
+    }
+
+    .coachInfo {
+        min-width: 0;
+    }
+
+    .coachName {
+        font-size: 0.9rem;
+    }
+
+    .coachTitle {
+        font-size: 0.75rem;
+    }
+
+    .coachActions {
+        flex-direction: row;
+    }
+
+    .coachActions button {
+        width: 26px;
+        height: 26px;
+    }
 }
 
 .commHeader {
