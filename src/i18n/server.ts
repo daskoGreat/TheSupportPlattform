@@ -14,14 +14,26 @@ function normalizeLocale(input: string | null | undefined): Locale | null {
     return null;
 }
 
-export async function getServerLocale(): Promise<Locale> {
-    const cookieStore = await cookies();
-    const raw = cookieStore.get(COOKIE_KEY)?.value;
-    return normalizeLocale(raw) ?? "en";
+export function getServerLocale(): Locale {
+    try {
+        const cookieStore: any = cookies();
+        let raw: string | null | undefined = undefined;
+
+        if (cookieStore && typeof cookieStore.get === "function") {
+            raw = cookieStore.get(COOKIE_KEY)?.value;
+        } else if (cookieStore && typeof cookieStore[COOKIE_KEY] !== "undefined") {
+            const value = cookieStore[COOKIE_KEY];
+            raw = typeof value === "string" ? value : (value?.value as string | undefined);
+        }
+
+        return normalizeLocale(raw) ?? "en";
+    } catch {
+        return "en";
+    }
 }
 
-export async function getServerT(locale?: Locale) {
-    const activeLocale = locale ?? await getServerLocale();
+export function getServerT(locale?: Locale) {
+    const activeLocale = locale ?? getServerLocale();
     const resources = getResources(activeLocale);
     const fallbackResources = getResources("en");
 
