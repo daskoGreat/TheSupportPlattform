@@ -21,10 +21,10 @@ function makeDateForDay(base: Date, dayOffset: number, minutes: number) {
 
 export async function GET(
     _req: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        const coachUserId = params.id;
+        const { id: coachUserId } = await params;
 
         const coachProfile = await prisma.coachProfile.findUnique({
             where: { userId: coachUserId },
