@@ -202,8 +202,8 @@ p {
 
 /* Layout Utilities */
 .page-content {
-  padding-top: 72px;
-  /* Navbar height */
+  padding-top: 76px;
+  /* Navbar height (matches .navbar) */
   min-height: 100vh;
   display: flex;
   flex-direction: column;

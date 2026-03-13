@@ -83,6 +83,13 @@
     color: var(--text-bright);
 }
 
+.link:focus-visible,
+.menuToggle:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 3px;
+    border-radius: 999px;
+}
+
 .link.active {
     color: var(--accent-blue);
     font-weight: 500;
