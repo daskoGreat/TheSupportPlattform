@@ -1,5 +1,5 @@
 .container {
-    background: var(--bg-primary);
+    background: var(--bg-dark);
     min-height: 100vh;
 }
 
@@ -192,12 +192,16 @@
 }
 
 .confirmBtn {
-    padding: 0.8rem 2.5rem;
-    background: var(--accent-teal);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.9rem 1.8rem;
+    background: var(--accent-blue);
     color: #0b0f14;
     border: none;
-    border-radius: var(--radius-md);
-    font-weight: 700;
+    border-radius: var(--radius-full);
+    font-weight: 600;
     cursor: pointer;
     transition: var(--transition-smooth);
 }

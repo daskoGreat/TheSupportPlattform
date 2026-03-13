@@ -18,6 +18,7 @@ export default function BookingClient({ coach }: BookingClientProps) {
     const [slots, setSlots] = useState<{ start: string; end: string }[]>([]);
     const [loadingSlots, setLoadingSlots] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [isConfirming, setIsConfirming] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -67,6 +68,7 @@ export default function BookingClient({ coach }: BookingClientProps) {
     const handleConfirm = async () => {
         if (!selectedSlot) return;
 
+        setIsConfirming(true);
         try {
             const res = await fetch('/api/coach/bookings', {
                 method: 'POST',
@@ -82,11 +84,14 @@ export default function BookingClient({ coach }: BookingClientProps) {
             if (res.ok) {
                 setStep(2);
             } else {
-                alert("Booking failed. Please try again.");
+                setError(tBook('errorBooking') || "Booking failed. Please try again.");
             }
         } catch (err) {
             console.error(err);
-            alert("An error occurred while booking.");
+            setError(tBook('errorBooking') || "An error occurred while booking.");
+        }
+        finally {
+            setIsConfirming(false);
         }
     };
 
@@ -97,9 +102,16 @@ export default function BookingClient({ coach }: BookingClientProps) {
                     <div className={styles.successIconWrapper}>
                         <CheckCircle size={64} color="var(--accent-teal)" />
                     </div>
-                    <h1 className={styles.successTitle}>Session Scheduled!</h1>
+                    <h1 className={styles.successTitle}>
+                        {tBook('successTitle') || "Session scheduled"}
+                    </h1>
                     <p className={styles.successBody}>
-                        Your {sessionType === "VIDEO" ? 'Video Call' : 'Phone Call'} with <strong>{coach.name}</strong> has been confirmed.
+                        {sessionType === "VIDEO"
+                            ? (tBook('successBodyVideo', { name: coach.name }) ||
+                                `Your video call with ${coach.name} has been confirmed.`)
+                            : (tBook('successBodyPhone', { name: coach.name }) ||
+                                `Your phone call with ${coach.name} has been confirmed.`)
+                        }
                     </p>
                     <div className={styles.detailsBox}>
                         {selectedSlot && (
@@ -119,9 +131,13 @@ export default function BookingClient({ coach }: BookingClientProps) {
                             </>
                         )}
                     </div>
-                    <p className={styles.calendarNote}>An invite has been sent to your email.</p>
+                    <p className={styles.calendarNote}>
+                        {tBook('calendarNote') || "An invite has been sent to your email."}
+                    </p>
                     <div className={styles.successActions}>
-                        <button onClick={() => router.push('/')} className={styles.primaryBtn}>Return to Hub</button>
+                        <button onClick={() => router.push('/')} className={styles.primaryBtn}>
+                            {tBook('returnToHub') || "Return to hub"}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -133,7 +149,9 @@ export default function BookingClient({ coach }: BookingClientProps) {
             <header className={styles.header}>
                 <div className="container flex items-center gap-md">
                     <button onClick={() => router.back()} className={styles.backBtn}><ArrowLeft size={20} /></button>
-                    <h1 className={styles.headerTitle}>Book a Session</h1>
+                    <h1 className={styles.headerTitle}>
+                        {tBook('pageTitle') || "Book a session"}
+                    </h1>
                 </div>
             </header>
 
@@ -149,7 +167,9 @@ export default function BookingClient({ coach }: BookingClientProps) {
 
                     <div className={styles.card}>
                         <section className={styles.section}>
-                            <h3 className={styles.sectionTitle}>1. Choose Session Type</h3>
+                            <h3 className={styles.sectionTitle}>
+                                {tBook('step1Title') || "1. Choose session type"}
+                            </h3>
                             <div className={styles.typeGrid}>
                                 <button
                                     onClick={() => setSessionType('VIDEO')}
@@ -157,8 +177,12 @@ export default function BookingClient({ coach }: BookingClientProps) {
                                 >
                                     <Video size={24} />
                                     <div className={styles.typeText}>
-                                        <p className={styles.typeTitle}>Video Call</p>
-                                        <p className={styles.typeSub}>Face-to-face support from anywhere</p>
+                                        <p className={styles.typeTitle}>
+                                            {tBook('typeVideoTitle') || "Video call"}
+                                        </p>
+                                        <p className={styles.typeSub}>
+                                            {tBook('typeVideoSub') || "Face-to-face support from anywhere"}
+                                        </p>
                                     </div>
                                 </button>
                                 <button
@@ -167,16 +191,24 @@ export default function BookingClient({ coach }: BookingClientProps) {
                                 >
                                     <Phone size={24} />
                                     <div className={styles.typeText}>
-                                        <p className={styles.typeTitle}>Phone Call</p>
-                                        <p className={styles.typeSub}>Voice-only for more privacy</p>
+                                        <p className={styles.typeTitle}>
+                                            {tBook('typePhoneTitle') || "Phone call"}
+                                        </p>
+                                        <p className={styles.typeSub}>
+                                            {tBook('typePhoneSub') || "Voice-only for more privacy"}
+                                        </p>
                                     </div>
                                 </button>
                             </div>
                         </section>
 
                         <section className={styles.section}>
-                            <h3 className={styles.sectionTitle}>2. Select a Time</h3>
-                            <p className={styles.subtext}>Available slots for the next days:</p>
+                            <h3 className={styles.sectionTitle}>
+                                {tBook('step2Title') || "2. Select a time"}
+                            </h3>
+                            <p className={styles.subtext}>
+                                {tBook('slotsIntro') || "Available slots for the next days:"}
+                            </p>
                             {loadingSlots && (
                                 <div className={styles.timeGrid}>
                                     {Array.from({ length: 5 }).map((_, idx) => (
@@ -193,7 +225,7 @@ export default function BookingClient({ coach }: BookingClientProps) {
                             )}
                             {!loadingSlots && !error && slots.length === 0 && (
                                 <p className={styles.emptyText}>
-                                    No available slots right now. Please check back soon.
+                                    {tBook('noSlots') || "No available slots right now. Please check back soon."}
                                 </p>
                             )}
                             {!loadingSlots && !error && slots.length > 0 && (
@@ -223,17 +255,31 @@ export default function BookingClient({ coach }: BookingClientProps) {
                             <div className={styles.summaryFooter}>
                                 {selectedSlot && (
                                     <p className={styles.selectionSummary}>
-                                        {sessionType === 'VIDEO' ? 'Video' : 'Phone'} session at{" "}
-                                        {formatSlotTime(selectedSlot.start)} on{" "}
+                                        {sessionType === 'VIDEO'
+                                            ? (tBook('summaryVideoLabel') || "Video session")
+                                            : (tBook('summaryPhoneLabel') || "Phone session")
+                                        }{" "}
+                                        {tBook('summaryAt') || "at"}{" "}
+                                        {formatSlotTime(selectedSlot.start)}{" "}
+                                        {tBook('summaryOn') || "on"}{" "}
                                         {formatSlotDate(selectedSlot.start)}
                                     </p>
                                 )}
                                 <button
-                                    disabled={!selectedSlot}
+                                    disabled={!selectedSlot || isConfirming}
                                     onClick={handleConfirm}
                                     className={styles.confirmBtn}
                                 >
-                                    Confirm Booking
+                                    {isConfirming && (
+                                        <span
+                                            className="spinner"
+                                            style={{ marginRight: 8 }}
+                                            aria-hidden="true"
+                                        />
+                                    )}
+                                    {isConfirming
+                                        ? (tBook('confirmingCta') || "Scheduling…")
+                                        : (tBook('confirmCta') || "Confirm booking")}
                                 </button>
                             </div>
                         </footer>
