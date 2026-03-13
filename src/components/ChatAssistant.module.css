@@ -249,7 +249,6 @@
 }
 
 @keyframes bounce {
-
     0%,
     80%,
     100% {
@@ -259,4 +258,84 @@
     40% {
         transform: scale(1);
     }
+}
+
+/* Recommendation section inside assistant bubble */
+.recommendationLabel {
+    margin-top: var(--spacing-sm);
+    margin-bottom: 4px;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.cardList {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 220px;
+    overflow-y: auto;
+    margin-top: 4px;
+}
+
+.coachChatCard {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.coachChatAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.coachChatInfo h5 {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.coachChatInfo p {
+    margin: 2px 0 4px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.viewProfileBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-blue);
+    font-size: 0.7rem;
+    font-weight: 500;
+    border: 1px solid rgba(56, 189, 248, 0.5);
+    margin-top: 2px;
+}
+
+.resourceChatCard {
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.resCategory {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.2);
+    color: var(--text-muted);
+    font-size: 0.65rem;
+    margin-bottom: 4px;
 }
