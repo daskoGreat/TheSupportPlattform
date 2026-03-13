@@ -52,7 +52,8 @@ export default async function CoachDashboardPage() {
         },
         orderBy: {
             updatedAt: "desc"
-        }
+        },
+        take: 50
     });
 
     const userIdsToFetch = new Set<string>();
@@ -100,7 +101,8 @@ export default async function CoachDashboardPage() {
         },
         orderBy: {
             startTime: "asc"
-        }
+        },
+        take: 100
     });
 
     const now = new Date();
