@@ -121,14 +121,18 @@ textarea.input {
 }
 
 .submitBtn {
-    background: var(--accent-heart);
-    color: white;
-    padding: var(--spacing-md);
-    border-radius: var(--radius-sm);
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-top: var(--spacing-md);
-    transition: background-color var(--transition-smooth), transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background: var(--accent-blue);
+    color: #0b0f14;
+    padding: 0.9rem 1.8rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: var(--spacing-lg);
+    transition: var(--transition-smooth);
 }
 
 .submitBtn:hover {

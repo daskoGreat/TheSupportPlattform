@@ -96,17 +96,18 @@
 }
 
 .submitBtn {
-    background: var(--accent-blue);
-    color: #0b0f14;
-    padding: 1rem;
-    border-radius: var(--radius-md);
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-top: var(--spacing-md);
-    transition: var(--transition-smooth);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 0.4rem;
+    background: var(--accent-blue);
+    color: #0b0f14;
+    padding: 0.9rem 1.8rem;
+    border-radius: var(--radius-full);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: var(--spacing-lg);
+    transition: var(--transition-smooth);
 }
 
 .submitBtn:hover {
