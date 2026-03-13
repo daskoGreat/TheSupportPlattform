@@ -266,12 +266,15 @@
 }
 
 .primaryBtn {
-    padding: 1rem 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 1.8rem;
     background: var(--accent-blue);
     color: #0b0f14;
     border: none;
-    border-radius: var(--radius-md);
-    font-weight: 700;
+    border-radius: var(--radius-full);
+    font-weight: 600;
     cursor: pointer;
     transition: var(--transition-smooth);
 }
