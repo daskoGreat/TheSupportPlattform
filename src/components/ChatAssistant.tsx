@@ -59,52 +59,47 @@ export default function ChatAssistant() {
     const sendMessage = async (text: string) => {
         if (!text.trim()) return;
 
-        const userMsg = text.toLowerCase();
         setMessages(prev => [...prev, { role: 'user', content: text }]);
         setIsTyping(true);
 
         try {
-            // Call the matching API
+            // Call the matching API (shared with intake)
             const response = await fetch('/api/ai/match', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text })
+                body: JSON.stringify({ userInput: text })
             });
             const data = await response.json();
 
             setIsTyping(false);
 
-            if (data.matched) {
-                const matchedMsg = {
-                    role: 'assistant' as const,
-                    content: `I've found some specialized support for you regarding ${data.categories.join(' and ')}.`,
-                    coaches: data.coaches,
-                    resources: data.resources,
-                    actions: [
-                        { label: 'View all coaches', path: '/coaches' },
-                        { label: 'Browse library', path: '/resources' }
-                    ]
-                };
-                setMessages(prev => [...prev, matchedMsg]);
-            } else {
-                // Fallback to basic responses if no matching categories found
-                let responseContent = t('defaultResponse');
-                let suggestedActions: { label: string, path: string }[] = [];
+            const assistantContent =
+                data.message ||
+                t('defaultResponse') ||
+                "I'm here to help. What's on your mind?";
 
-                if (userMsg.includes('coach')) {
-                    responseContent = t('coachResponse');
-                    suggestedActions = [{ label: tCommon('nav.coaches'), path: '/coaches' }];
-                } else if (userMsg.includes('communit')) {
-                    responseContent = t('communityResponse');
-                    suggestedActions = [{ label: tCommon('nav.community'), path: '/community' }];
-                }
+            const actions: { label: string; path: string }[] = [];
+            actions.push({ label: tCommon('nav.coaches') || 'Coaches', path: '/coaches' });
+            actions.push({ label: tCommon('nav.community') || 'Community', path: '/community' });
 
-                setMessages(prev => [...prev, {
+            setMessages(prev => [
+                ...prev,
+                {
                     role: 'assistant',
-                    content: responseContent || "I'm here to help. What's on your mind?",
-                    actions: suggestedActions.length > 0 ? suggestedActions : undefined
-                }]);
-            }
+                    content: assistantContent,
+                    coaches: data.coaches || [],
+                    // Map communities into "resources" cards if present
+                    resources: data.communities
+                        ? data.communities.map((c: any) => ({
+                              id: c.id,
+                              title: c.title,
+                              description: c.description,
+                              category: 'Community',
+                          }))
+                        : undefined,
+                    actions,
+                },
+            ]);
         } catch (error) {
             setIsTyping(false);
             setMessages(prev => [...prev, {
